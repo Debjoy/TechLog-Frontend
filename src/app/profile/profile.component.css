@@ -1,0 +1,19 @@
+.profile-info{
+              margin:20px;
+          }
+          .profile-info .col-md-9{
+            padding:20px;
+          }
+          .profile-info .col-md-3{
+            padding:20px;
+            text-align:center;
+          }
+          .profile-info .col-md-3 .img-fluid{
+            max-height: 200px;
+          }
+          .profile-info .row{
+            margin:auto;
+          }
+          .profile-info .col-md-9 .simple-link{
+            display: inline-block;
+          }

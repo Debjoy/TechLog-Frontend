@@ -1,1 +1,148 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+               background:#171714;
+               color:white;
+               height:100%;
+           }
+           .view{
+               max-width:1300px;
+               margin:auto;
+               padding:0px !important;
+               
+               margin-top:10px;
+               
+           }
+           .view .side-content{
+               padding:10px 20px;
+               height:100%;
+               background:#272727;
+               position: sticky;
+                top: 10px;
+           }
+           .view .content{
+               padding:0px !important;
+               background:#1f1f1d;
+               
+           }
+           .logo{
+               display:inline-block;
+               font-size:2rem;
+               color:#f9a825;
+           }
+           .logo-main h1{
+               display: inline-block;
+           }
+           .side-user{
+               padding:50px 0px;
+           }
+           .side-tech{
+               padding:30px 0px;
+           }
+           .search{
+               padding:10px;
+               background:#252523;
+           }
+           .search-box{
+               margin:auto;
+           }
+           .search-box input{
+                   padding: 6px 20px;
+                    border: none;
+                    margin-left: 20px;
+                    border-top-left-radius: 10px;
+                    border-bottom-left-radius: 10px;
+                    vertical-align: middle;
+                    background: #171714;
+                color: #ffffffb8;
+           }
+           .search-btn{
+                   border: none;
+                    border-radius: 0;
+                    border-top-right-radius: 10px;
+                    border-bottom-right-radius: 10px;
+           } 
+           .search-box h3{
+               display:inline-block;
+               margin:0;
+               vertical-align: top;
+           }
+           .post-card h4{
+               margin:0;
+           }
+           .post-card{
+            padding: 20px;
+            background: #272727;
+           }
+           .new-post{
+               padding:20px;
+           }
+           .new-post-title{
+                display: inline-block;
+                vertical-align: middle;
+                /* padding: 10px 20px; */
+                padding: 6px 20px;
+                border: none;
+                background: #272727;
+                color: white;
+                border-bottom: 1px solid white;
+           }
+           .give-a-title{
+               display: inline-block;
+               vertical-align: middle;
+                padding: 5px 10px;
+                margin: 0px;
+            }
+           .post-card .btn{
+               border-radius:10px;
+           }
+           .top-posts{
+               padding:20px;
+           }
+           .top-posts .badge{
+               display:inline-block;
+               margin:10px;
+           }
+           .top-posts h5{
+               display:inline-block;
+               margin:10px;
+           }
+           .post-filters{
+               display:inline-block;
+               margin:10px;
+           }h4{
+               margin:0;
+           }
+           .load-more-posts{
+               text-align:center;
+           }
+           
+           .side-user a{
+               color:white;
+               text-decoration: none;
+           }
+           .side-user h4{
+               padding:10px 20px;
+               transition: all ease 0.3s;
+           }
+           .side-user h4:hover{
+               background:#f9a825; 
+           }
+           .side-tech p{
+               padding:0px 10px;
+           }
+           .simple-link{
+               color:white;
+               
+               transition:all ease 0.3s;
+           }
+           .simple-link:hover{
+               color:#f9a825;
+               text-decoration: none;
+           }
+           .post:hover .simple-link{
+               color:#f9a825;
+               text-decoration: none;
+           }
+           .post:hover{
+               cursor:pointer;
+           }

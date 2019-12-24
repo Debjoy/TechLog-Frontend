@@ -1,0 +1,70 @@
+.bb-post-title{
+            padding:20px;
+            padding-bottom: 0px;
+          }
+          .top-posts{
+            padding-top:0px;
+          }
+          .bb-post-content{
+            margin:20px;
+          }
+          .bb-post-image{
+            width:100%;
+            text-align:center;
+          }
+          .bb-post-text{
+            padding:30px 20px 0px 20px;
+          }
+          .bb-like-share{
+            margin:20px 60px;
+          }
+          .bb-comment{
+            margin:10px 20px;
+            display:flex;
+            flex-wrap:nowrap;
+          }
+          .bb-comment img{
+              padding:10px;
+          }
+          .bb-comment pre{
+            color:white;
+            font-family:arial;
+            white-space: pre-wrap;       /* Since CSS 2.1 */
+            white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;
+          }
+          .bb-comment .post-card{
+            width: 100%;
+          }
+          .btn-group-xs > .btn, .btn-xs {
+            padding: .25rem .4rem;
+            font-size: .875rem;
+            line-height: .5;
+            border-radius: .2rem;
+          }
+          .post-card .btn{
+            border-radius:3px;
+          }
+          .comment-input-box{
+            width:100%;
+            text-align: right;
+          }
+          .comment-input{
+            width:100%;
+            text-align:left;
+            padding:10px;
+            border:none;
+            border-bottom: 1px solid white;
+            outline:none;
+          }
+
+          .comment-input-box .btn{
+            text-align:center;
+          }
+          [contenteditable=true]:empty:before{
+            content: attr(placeholder);
+            opacity:0.6;
+            display: block; /* For Firefox */
+          }

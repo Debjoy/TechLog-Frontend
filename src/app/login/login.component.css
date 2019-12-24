@@ -1,0 +1,32 @@
+.wrapper .row{
+    padding:30px;
+    
+    background: #272727;
+    margin:auto;
+    position: relative;
+/*    transform:translateY(-50%);*/
+}
+.wrapper .container{
+/*
+    position:absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+*/
+    margin-top:30px;
+    width:100%;
+}
+.confirm-pass{
+    padding:0px !important;
+}
+.confirm-pass .col{
+    padding:0px;
+}
+.form-wrap{
+    max-width:800px;
+    
+}
+.form-control{
+    border:none;
+    background:#171714;
+}
