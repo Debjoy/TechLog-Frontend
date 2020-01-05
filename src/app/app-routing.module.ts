@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { ProfileComponent } from './profile/profile.component';
-import { UserPostComponent } from './user-post/user-post.component';
-import { PostComponent } from './post/post.component';
+import { HomeComponent } from './main/home/home.component';
+import { ProfileComponent } from './main/profile/profile.component';
+import { UserPostComponent } from './main/user-post/user-post.component';
+import { PostComponent } from './main/post/post.component';
 import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
 
