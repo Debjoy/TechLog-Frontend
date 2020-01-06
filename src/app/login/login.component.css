@@ -31,7 +31,11 @@
 .form-control{
     border:none;
     background:#171714;
+    color:#a9aeb3;
 }
 .form-wrap .col-sm-6{
     margin:20px 0px;
+}
+.form-group .is-invalid {
+    border:1px solid #dc3545 !important;
 }
