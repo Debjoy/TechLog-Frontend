@@ -13,11 +13,17 @@ export class LoginService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  private dummyUrl = 'http://dummy.restapiexample.com/api/v1/employee/1';
+  private getUrl = 'http://techlog-backend.herokuapp.com/users/get';
+  private postUrl = 'http://techlog-backend.herokuapp.com/users/add';
 
   //usage - home, profile
   getResult(): Observable<any> {
     //dummy API
-    return this.http.get(this.dummyUrl);
+    return this.http.get(this.getUrl);
+  }
+
+  //usage - login
+  addUser(user: any): Observable<any>{
+    return this.http.post(this.postUrl,user);
   }
 }

@@ -18,7 +18,7 @@ export class ProfileComponent implements OnInit {
 
   getResult(){
     this.loginService.getResult().subscribe(res => {
-      this.name = res.employee_name;
+      this.name = res[1].username;
       //console.log(res.employee_name);
     });
   }

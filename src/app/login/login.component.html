@@ -44,21 +44,17 @@
 			<div class="">
 				<form >
 				  <div class="form-group">
-				    <label for="name">Full Name</label>
-					<input type="text" class="form-control" id="name" placeholder="Your name">
-				  </div>
-				  <div class="form-group">
 				    <label for="username">Username</label>
-					<input type="text" class="form-control" id="username" placeholder="Username">
+					<input type="text" class="form-control" name="username" [(ngModel)]="rusername" placeholder="Username">
 				  </div>
 				  <div class="form-group">
 				    <label for="email2">Email address</label>
-					<input type="email" class="form-control" id="email2" placeholder="Enter email">
+					<input type="email" class="form-control" name="email2" [(ngModel)]="remail" placeholder="Enter email">
 				  </div>
 				  <div class="row confirm-pass" >
                      <div class="col">
                       <label for="pwd"  class="mr-sm-2">Password:</label>
-                      <input type="password" class="form-control" placeholder="Enter password" id="pwd">
+                      <input type="password" class="form-control" name="password2" [(ngModel)]="rpassword"  placeholder="Enter password" id="pwd">
                     </div>&nbsp; &nbsp;
                      <div class=" col">
                       <label for="pwd"  class="mr-sm-2">Confirm Password:</label>
@@ -66,7 +62,7 @@
                      </div> 
                     </div>
 				  <br>
-				  <button type="submit" class="btn btn-warning " routerLink="/">Create an account</button>
+				  <button type="submit" class="btn btn-warning " (click)="onRegister()">Create an account</button>
 				</form>
 			</div>
 		  </div>
