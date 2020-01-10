@@ -26,4 +26,14 @@ export class LoginService {
   addUser(user: any): Observable<any>{
     return this.http.post(this.postUrl,user);
   }
+
+  //demo api call local stub for checking if username exists in database
+  checkUserExists(_username: string){
+    return this.http.get("http://localhost:8080/checkuser.php?user="+_username);//for testing local stub
+  }
+
+  //demo api call local stub for checking if email id exists in database
+  checkEmailExists(_email_id: string){
+    return this.http.get("http://localhost:8080/checkemail.php?email="+_email_id);//for testing local stub
+  }
 }
