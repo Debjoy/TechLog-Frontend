@@ -28,12 +28,12 @@ export class LoginService {
   }
 
   //demo api call local stub for checking if username exists in database
-  checkUserExists(_username: string){
-    return this.http.get("http://localhost:8080/checkuser.php?user="+_username);//for testing local stub
+  findByUsername(_username: string): Observable<any>{
+    return this.http.get("https://techlog-backend.herokuapp.com/users/findByUsername?username="+_username);//for testing local stub
   }
 
   //demo api call local stub for checking if email id exists in database
-  checkEmailExists(_email_id: string){
-    return this.http.get("http://localhost:8080/checkemail.php?email="+_email_id);//for testing local stub
+  checkEmailExists(_email_id: string): Observable<any>{
+    return this.http.get("https://techlog-backend.herokuapp.com/users/existsByEmail/"+_email_id);//for testing local stub
   }
 }

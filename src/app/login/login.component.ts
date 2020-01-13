@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../login.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/internal/operators';
+import { stringify } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-login',
@@ -36,11 +37,11 @@ export class LoginComponent implements OnInit {
         debounceTime(500),//change this value if required
         distinctUntilChanged(),
         switchMap(() =>{
-          return this.loginService.checkUserExists(this.form2.value.rusername)
+          return this.loginService.findByUsername(this.form2.value.rusername)
         }))
         .subscribe((res:any) => {
-          console.log(res);
-          if(res.code === 409) {
+          //console.log(res);
+          if(res.length > 0) {
             this.form2.controls.rusername.setErrors({'user_name_exists': true});
           }
         });
@@ -53,8 +54,8 @@ export class LoginComponent implements OnInit {
           return this.loginService.checkEmailExists(this.form2.value.remail)
         }))
         .subscribe((res:any) => {
-          console.log(res);
-          if(res.code === 409) {
+          //console.log(res);
+          if(res === true) {
             this.form2.controls.remail.setErrors({'email_id_exists': true});
           }
         });
