@@ -3,6 +3,8 @@ import { LoginService } from '../login.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/internal/operators';
 import { stringify } from '@angular/compiler/src/util';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -28,9 +30,15 @@ export class LoginComponent implements OnInit {
     rcpassword: new FormControl('', [Validators.required])
   }, this.pwdMatchValidator);
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService, private cookieService: CookieService, private router: Router) { }
 
   ngOnInit() {
+
+    // if user tries to be oversmart
+    if(this.cookieService.get('token') != ''){
+      this.router.navigate(['']);
+    }
+
     //added debounceTime to make sure http calls are fired once user stops typing.
     //custorm Validator for checking if username exists or not
     this.form2.controls.rusername.valueChanges.pipe(
@@ -68,6 +76,10 @@ export class LoginComponent implements OnInit {
 
   onLogin(){
     console.log(this.form1.value.email+" "+this.form1.value.password);
+    
+    this.cookieService.set('token','dejboybawal');
+
+    this.router.navigate(['']);
   }
 
   onRegister(){

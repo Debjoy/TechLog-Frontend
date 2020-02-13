@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  private cookieVal: any;
+
+  constructor(private cookieService: CookieService, private router: Router) { }
 
   ngOnInit() {
+    this.cookieVal = this.cookieService.get('token');
+    if(this.cookieVal == ''){
+      this.router.navigate(['login']);
+    }
   }
 
 }
