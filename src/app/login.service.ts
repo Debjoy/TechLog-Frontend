@@ -27,6 +27,11 @@ export class LoginService {
     return this.http.post(this.postUrl,user);
   }
 
+  //usage - login
+  existsByEmailAndPassword(body: any): Observable<any>{
+    return this.http.post("https://techlog-backend.herokuapp.com/users/existsByEmailAndPassword",body);
+  }
+
   //demo api call local stub for checking if username exists in database
   findByUsername(_username: string): Observable<any>{
     return this.http.get("https://techlog-backend.herokuapp.com/users/findByUsername?username="+_username);//for testing local stub

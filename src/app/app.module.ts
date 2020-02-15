@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule }    from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CookieService } from 'ngx-cookie-service';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +15,7 @@ import { PostComponent } from './main/post/post.component';
 import { UserPostComponent } from './main/user-post/user-post.component';
 import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
+import { SpinnerComponent } from './main/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -23,14 +26,17 @@ import { LoginComponent } from './login/login.component';
     PostComponent,
     UserPostComponent,
     MainComponent,
-    LoginComponent
+    LoginComponent,
+    SpinnerComponent
   ],
   imports: [
     HttpClientModule,
     FormsModule,
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    NgxSpinnerModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

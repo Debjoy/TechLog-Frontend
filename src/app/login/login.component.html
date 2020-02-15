@@ -37,6 +37,7 @@
 								enter a password</div>
 							<div class="invalid-feedback" *ngIf="form1.get('password').hasError('pattern')">Password
 								should be greater than 8 characters, atleast an alphabet and a digit</div>
+							<div class="invalid-feedback" *ngIf="form1.get('password').hasError('no_match')">Wrong email or password</div>
 						</div>
 						<br>
 						<button type="submit" class="btn btn-warning " [disabled]="form1.invalid"

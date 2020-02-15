@@ -75,11 +75,22 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(){
-    console.log(this.form1.value.email+" "+this.form1.value.password);
-    
-    this.cookieService.set('token','dejboybawal');
+    let body: any;
+    body = {
+      "email": this.form1.value.email,
+      "password": this.form1.value.password
+    }
 
-    this.router.navigate(['']);
+    this.loginService.existsByEmailAndPassword(body).subscribe(res=>{
+      if(res == true){
+        this.cookieService.set('token','dejboybawal');
+        this.router.navigate(['']);
+      }
+      else{
+        this.form1.controls.password.setErrors({'no_match': true});
+      }
+    });
+    
   }
 
   onRegister(){
@@ -89,7 +100,10 @@ export class LoginComponent implements OnInit {
       "username": this.form2.value.rusername
     }
     //console.log(this.user);
-    this.loginService.addUser(this.user).subscribe(res=>console.log('user registered'));
+    this.loginService.addUser(this.user).subscribe(res=>{
+      this.cookieService.set('token','dejboybawal');
+      this.router.navigate(['']);
+    });
   }
 
 }
