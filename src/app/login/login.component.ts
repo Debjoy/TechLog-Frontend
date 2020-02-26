@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../login.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/internal/operators';
-import { stringify } from '@angular/compiler/src/util';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 
@@ -82,12 +81,13 @@ export class LoginComponent implements OnInit {
     }
 
     this.loginService.existsByEmailAndPassword(body).subscribe(res=>{
-      if(res == true){
-        this.cookieService.set('token','dejboybawal');
+      if(res.exists == "true"){
+        this.cookieService.set("user",res.username);
+        this.cookieService.set("token",res.tokenTimestamp);
         this.router.navigate(['']);
       }
       else{
-        this.form1.controls.password.setErrors({'no_match': true});
+        console.error(res);
       }
     });
     

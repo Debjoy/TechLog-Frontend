@@ -15,7 +15,6 @@ import { PostComponent } from './main/post/post.component';
 import { UserPostComponent } from './main/user-post/user-post.component';
 import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
-import { SpinnerComponent } from './main/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -26,8 +25,7 @@ import { SpinnerComponent } from './main/spinner/spinner.component';
     PostComponent,
     UserPostComponent,
     MainComponent,
-    LoginComponent,
-    SpinnerComponent
+    LoginComponent
   ],
   imports: [
     HttpClientModule,
