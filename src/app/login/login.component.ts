@@ -99,10 +99,25 @@ export class LoginComponent implements OnInit {
       "password": this.form2.value.rpassword,
       "username": this.form2.value.rusername
     }
+    let loginInfo: any;//for logging in user after the Registration is over
+    loginInfo = {
+      "email": this.form2.value.remail,
+      "password": this.form2.value.rpassword
+    }
     //console.log(this.user);
     this.loginService.addUser(this.user).subscribe(res=>{
-      this.cookieService.set('token','dejboybawal');
-      this.router.navigate(['']);
+      
+      this.loginService.existsByEmailAndPassword(loginInfo).subscribe(res=>{
+        if(res.exists == "true"){
+          this.cookieService.set("user",res.username);
+          this.cookieService.set("token",res.tokenTimestamp);
+          this.router.navigate(['']);
+        }
+        else{
+          console.error(res);
+        }
+      });
+
     });
   }
 
