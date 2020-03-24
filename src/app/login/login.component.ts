@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
 
   //used for the registration validation
   form2 = new FormGroup({
+    rname: new FormControl ('', [Validators.required]),
     rusername: new FormControl('', [Validators.required]),
     remail: new FormControl('',[Validators.required, Validators.email]),
     rpassword: new FormControl('',[Validators.required,
@@ -95,6 +96,7 @@ export class LoginComponent implements OnInit {
 
   onRegister(){
     this.user = {
+      "name":this.form2.value.rname,
       "email": this.form2.value.remail,
       "password": this.form2.value.rpassword,
       "username": this.form2.value.rusername

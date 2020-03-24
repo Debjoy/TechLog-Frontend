@@ -17,3 +17,24 @@
           .profile-info .col-md-9 .simple-link{
             display: inline-block;
           }
+
+          #editProfile{
+            display:block;
+          }
+          #editProfile .modal-content{
+            background:#272727;
+            border:1px solid #eee;
+          }
+
+          #editProfile .modal-header{
+            border:none;
+          }
+
+          #editProfile .modal-footer{
+            border:none;
+          }
+
+          #editProfile {
+            position:absolute;
+          }
+          

@@ -39,3 +39,7 @@
 .form-group .is-invalid {
     border:1px solid #dc3545 !important;
 }
+
+.logo i{
+    font-size:3rem;
+}
