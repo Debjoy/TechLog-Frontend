@@ -132,7 +132,7 @@ body{
            }
            .simple-link{
                color:white;
-               
+               cursor: pointer;
                transition:all ease 0.3s;
            }
            .simple-link:hover{

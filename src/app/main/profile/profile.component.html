@@ -5,13 +5,27 @@
                     
                 </div>
                 <div class="profile-info">
-                  <div class="modal" id="editProfile" *ngIf="editProfileModal==1">
-                    <div class="modal-dialog">
+                  
+                  <div class="container row">
+                    <div class="col-md-3">
+                      <img src="assets/image/kamlesh.png" class="img-fluid" alt="Responsive image">
+                    </div>
+                    <div  [ngClass]="{'spinner-grow text-warning spinner-grow-lg': !userDetails}" style="align-self:center"></div>
+                    <div class="col-md-9" *ngIf="userDetails">
+                      <h3>{{userDetails.name}}</h3>
+                      <a href="#" class="simple-link"><h6>{{userDetails.username}}</h6></a> &nbsp;<i (click)="editProfileModal=1" class="fas fa-pen simple-link" ></i>
+                      <br><br>
+                      <button class="btn btn-sm btn-warning" routerLink="/user-post"><strong>Your posts</strong> 10+</button> &nbsp;
+                      <button (click)="editPasswordModal=1" class="btn btn-sm btn-light"><i class="fas fa-user-edit"></i></button>
+                    </div>
+                  </div>
+                  <div class="modal" id="editProfile" [ngClass]="{'show': editProfileModal==1}">
+                    <div class="modal-dialog modal-sm">
                       <div class="modal-content">
                       
                         <!-- Modal Header -->
                         <div class="modal-header">
-                          <h4 class="modal-title">Edit Profile</h4>
+                          <h4 class="modal-title">Edit Profile </h4>
                           <button type="button" class="close" data-dismiss="modal" (click)="editProfileModal=0" style="color:white">&times;</button>
                         </div>
                         
@@ -19,7 +33,8 @@
                         
                         <div class="modal-body" *ngIf="userDetails">
                         <form [formGroup]="form1">
-                        <div class="input-group">
+                          <label for="rname">Enter your name:</label> <div  [ngClass]="{'spinner-grow text-warning spinner-grow-sm': editNameLoading==1}"></div>
+                        <div class="input-group ">
                           <input type="text" class="form-control" [value]="userDetails.name" formControlName="rname"
                           [ngClass]="{'is-invalid': form1.get('rname').invalid}">
                           <div class="input-group-append">
@@ -30,7 +45,8 @@
                       </form>
                       <br>
                       <form [formGroup]="form2">
-                        <div class="input-group">
+                        <label for="rname">Enter a user name:</label><div  [ngClass]="{'spinner-grow text-warning spinner-grow-sm': editUsernameLoading==1}"></div>
+                        <div class="input-group form-group">
                           <input type="text" class="form-control" [value]="userDetails.username" formControlName="rusername"
                           [ngClass]="{'is-invalid':form2.get('rusername').touched && (form2.get('rusername').invalid || form2.get('rusername').hasError('user_name_exists'))}">
                           <div class="input-group-append">
@@ -47,7 +63,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="modal" id="editProfile" *ngIf="editPasswordModal==1">
+                  <div class="modal" [ngClass]="{'show': editPasswordModal==1}" id="editProfile">
                     <div class="modal-dialog modal-sm">
                       <div class="modal-content">
                       
@@ -60,9 +76,8 @@
                         <!-- Modal body -->
                         
                         <div class="modal-body" *ngIf="userDetails">
-                          <div class="row confirm-pass">
                             <form [formGroup]="form3">
-                            <div class="col form-group">
+                            <div class="form-group" style="margin-bottom:0em">
                               <label for="pwd" class="mr-sm-2">Password:</label>
                               <input autocomplete="on" type="text" class="form-control is-invalid" [value]="userDetails.password"
                                 formControlName="rpassword"
@@ -72,7 +87,7 @@
                               <div class="invalid-feedback" *ngIf="form3.get('rpassword').hasError('pattern')">
                                 Password should be greater than 8 characters, atleast an alphabet and a digit</div>
                             </div>&nbsp; &nbsp;
-                            <div class=" col form-group">
+                            <div class="  form-group">
                               <label for="pwd" class="mr-sm-2">Confirm Password:</label>
                               <input autocomplete="on" type="text" class="form-control is-invalid" [value]="userDetails.password"
                                 formControlName="rcpassword"
@@ -82,10 +97,10 @@
                               <div class="invalid-feedback" *ngIf="form3.errors?.mismatch">Passwords didn't match
                               </div>
                               <br>
-                              <button class="btn btn-warning" type="submit"  [disabled]="form2.invalid" (click)="updatePassword()">Update</button>
+                              <button class="btn btn-warning" type="submit"  [disabled]="form2.invalid" (click)="updatePassword()">Update</button><div  [ngClass]="{'spinner-grow text-warning spinner-grow-sm': editPasswordLoading==1}"></div>
                             </div>
                           </form>
-                          </div>
+                          
                     </div>
                         <!-- Modal footer -->
                         
@@ -93,18 +108,8 @@
                       </div>
                     </div>
                   </div>
-                  <div class="container row">
-                    <div class="col-md-3">
-                      <img src="assets/image/kamlesh.png" class="img-fluid" alt="Responsive image">
-                    </div>
-                    <div class="col-md-9" *ngIf="userDetails">
-                      <h3>{{userDetails.name}}</h3>
-                      <a href="#" class="simple-link"><h6>{{userDetails.username}}</h6></a> &nbsp;<i (click)="editProfileModal=1" class="fas fa-pen"></i>
-                      <br><br>
-                      <button class="btn btn-sm btn-warning" routerLink="/user-post"><strong>Your posts</strong> 10+</button> &nbsp;
-                      <button (click)="editPasswordModal=1" class="btn btn-sm btn-light"><i class="fas fa-user-edit"></i></button>
-                    </div>
-                  </div>
+
+
                   <br>
                   <div class="container">
                       <h4><p>Your Bio  &nbsp;<i class="fas fa-pen"></i></p></h4>
@@ -122,4 +127,5 @@
                         <button class="btn btn-warning"><strong><i class="fas fa-pen"></i> Create</strong></button>
                     </div>   
                 </div>
+                <div class="modal-backdrop show" *ngIf="editPasswordModal==1 || editProfileModal==1"  ></div>
                 

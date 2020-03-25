@@ -13,6 +13,12 @@ export class ProfileComponent implements OnInit {
   username: any;  
   editProfileModal=0;
   editPasswordModal=0;
+
+  editNameLoading=0;
+  editUsernameLoading=0;
+
+  editPasswordLoading=0;
+
   form1 : any;
     form2 :any;
     form3:any;
@@ -30,14 +36,14 @@ export class ProfileComponent implements OnInit {
    res=>{//this.user=res,
     this.userDetails=res[0];
     this.form1=new FormGroup({
-      rname: new FormControl (this.userDetails.name, [Validators.required])})
-      this.form2 =new FormGroup({
+        rname: new FormControl (this.userDetails.name, [Validators.required])})
+    this.form2 =new FormGroup({
         rusername: new FormControl (this.userDetails.username, [Validators.required])})
-        this.form3=new FormGroup({
+    this.form3=new FormGroup({
           rpassword:new FormControl(this.userDetails.password,[Validators.required,
             Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d@$!%*#?&!^]{8,}$')]),
-rcpassword: new FormControl(this.userDetails.password, [Validators.required])
-}, this.pwdMatchValidator);
+          rcpassword: new FormControl(this.userDetails.password, [Validators.required])
+          }, this.pwdMatchValidator);
 
     
     this.form2.controls.rusername.valueChanges.pipe(
@@ -70,37 +76,50 @@ rcpassword: new FormControl(this.userDetails.password, [Validators.required])
   }
 
   updateName()
-  { console.log("hello");
+  {
+    this.editNameLoading=1;
     let nameEmail={
     name:this.form1.value.rname,
     email:this.userDetails.email
   }
     this.loginService.updateNameByEmail(nameEmail).subscribe(
-      res=>{this.userDetails.name=this.form1.value.rname},
+      res=>{
+        this.userDetails.name=this.form1.value.rname;
+        this.editProfileModal=0;
+        this.editNameLoading=0;
+      },
       err=>console.error(err))
   }
   updateUserName()
   { 
-    console.log("hello");
+    this.editUsernameLoading=1;
     let userEmail={
       username:this.form2.value.rusername,
       email:this.userDetails.email
     }
       this.loginService.updateUserNameByEmail(userEmail).subscribe(
         res=>{console.log(res);
-        this.userDetails.username=this.form2.value.rusername;},
+        this.userDetails.username=this.form2.value.rusername;
+        this.editProfileModal=0;
+        this.editUsernameLoading=0;
+      },
         err=>console.error(err))
   }
 
   updatePassword()
   {
-    console.log("hello");
+    this.editPasswordLoading=1;
     let userPass={
       password:this.form3.value.rpassword,
       email:this.userDetails.email
     }
       this.loginService.updatePasswordByEmail(userPass).subscribe(
-        res=>{console.log(res),this.userDetails.password=this.form3.value.rpassword},
+        res=>{
+          console.log(res);
+          this.userDetails.password=this.form3.value.rpassword;
+          this.editPasswordModal=0;
+          this.editPasswordLoading=0;
+        },
         err=>console.error(err))
   }
 

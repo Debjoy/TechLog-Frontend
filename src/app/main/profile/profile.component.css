@@ -18,12 +18,9 @@
             display: inline-block;
           }
 
-          #editProfile{
-            display:block;
-          }
+         
           #editProfile .modal-content{
             background:#272727;
-            border:1px solid #eee;
           }
 
           #editProfile .modal-header{
@@ -38,3 +35,12 @@
             position:absolute;
           }
           
+          .modal.show{
+            display:block;
+          }
+
+          .form-control{
+            border:none;
+            background:#171714;
+            color:#a9aeb3;
+        }
