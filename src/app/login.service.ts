@@ -57,16 +57,16 @@ export class LoginService {
     return this.http.get("https://techlog-backend.herokuapp.com/users/existsByEmail/"+_email_id);//for testing local stub
   }
 
-  updateNameByEmail(body:any):Observable<any>
-  {return this.http.post("http://techlog-backend.herokuapp.com/users/updateNameByEmail",body)
-}
+  updateNameByEmail(body:any):Observable<any>{
+    return this.http.post("http://techlog-backend.herokuapp.com/users/updateNameByEmail",body)
+  }
 
-updateUserNameByEmail(body:any):Observable<any>
-  {return this.http.post("http://techlog-backend.herokuapp.com/users/updateUsernameByEmail",body)
-}
+  updateUserNameByEmail(body:any):Observable<any>{
+    return this.http.post("http://techlog-backend.herokuapp.com/users/updateUsernameByEmail",body)
+  }
 
-updatePasswordByEmail(body:any):Observable<any>
-  {return this.http.post("http://techlog-backend.herokuapp.com/users/updatePasswordByEmail",body)
-}
+  updatePasswordByEmail(body:any):Observable<any>
+    {return this.http.post("http://techlog-backend.herokuapp.com/users/updatePasswordByEmail",body)
+  }
 
 }

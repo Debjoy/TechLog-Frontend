@@ -29,17 +29,22 @@
 </div>
 <div class="container">
     <div class="container">
-        <h1 style="margin-top:20px">Heading <button (click)="editTitleModal=1" class="btn btn-sm btn-light"><i style="font-size: 1rem;" class="fas fa-pen"></i></button></h1>
-        <p class="">23/03/2020</p>
-        <h4>Type your post here :</h4>
+        <h1 style="margin-top:20px;opacity:0.8">Galaxy Fold is back and better <button (click)="editTitleModal=1" class="btn btn-sm btn-warning"><i style="font-size: 1rem;" class="fas fa-pen"></i></button></h1>
+        <p><span  style="opacity:0.6">last edited on 12th July, 2019</span></p>
+        <h4 style="opacity:0.7"> Type your post here :</h4>
         <br>
     </div>
     <div class="container">
-        <ckeditor data="<p>Hello, world!</p>"></ckeditor>
+        <ckeditor type="classic" 
+          [(data)]="editorData" 
+          [config]="{ 
+          'height': '270',
+           contentsCss : 'assets/editor_style.css'}"
+          ></ckeditor>
     </div>
     <br>
- <div class="container">
-     <button class="btn btn-warning">Save</button>
+ <div class="container" style="margin-bottom:20px"> 
+     <button class="btn btn-warning">Save <i class="fas fa-save"></i></button>
  </div>
 </div>
 <div class="modal-backdrop show" *ngIf="editTitleModal==1"  ></div>
