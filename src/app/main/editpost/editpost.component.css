@@ -1,0 +1,25 @@
+.modal.show{
+    display:block;
+  }
+
+  .form-control{
+    border:none;
+    background:#171714;
+    color:#a9aeb3;
+  }
+
+  #editTitle .modal-content{
+    background:#272727;
+  }
+
+  #editTitle .modal-header{
+    border:none;
+  }
+
+  #editTitle {
+    position:absolute;
+  }
+
+  .cke_contents {
+    height: 100% !important;
+}

@@ -15,6 +15,8 @@ import { PostComponent } from './main/post/post.component';
 import { UserPostComponent } from './main/user-post/user-post.component';
 import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
+import { EditpostComponent } from './main/editpost/editpost.component';
+import { CKEditorModule } from 'ckeditor4-angular';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { LoginComponent } from './login/login.component';
     PostComponent,
     UserPostComponent,
     MainComponent,
-    LoginComponent
+    LoginComponent,
+    EditpostComponent
   ],
   imports: [
     HttpClientModule,
@@ -34,7 +37,8 @@ import { LoginComponent } from './login/login.component';
     AppRoutingModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    CKEditorModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]
