@@ -123,8 +123,8 @@
                         <h4>Share an idea !</h4>
                         <br>
                         <h5 class="give-a-title">Give a title </h5>
-                        <input type="text" class="new-post-title" placeholder="eg. Snapdragon is bitchin!">
-                        <button routerLink='/edit' class="btn btn-warning"><strong><i class="fas fa-pen"></i> Create</strong></button>
+                        <input type="text" [(ngModel)]="title" class="new-post-title" placeholder="eg. Snapdragon is bitchin!">
+                        <button (click)="createPost()" class="btn btn-warning"><strong><i class="fas fa-pen"></i> Create</strong></button>
                     </div>   
                 </div>
                 <div class="modal-backdrop show" *ngIf="editPasswordModal==1 || editProfileModal==1"  ></div>

@@ -15,7 +15,7 @@ const routes: Routes = [
         { path: 'profile' , component: ProfileComponent},
         { path: 'user-post' , component: UserPostComponent},
         { path: 'post' , component: PostComponent},
-        {path:'edit',component: EditpostComponent},
+        {path:'edit/:id',component: EditpostComponent},
         { path: '',component: HomeComponent}
         
     ]},

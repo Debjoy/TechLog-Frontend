@@ -3,6 +3,8 @@ import { LoginService } from '../../login.service';
 import { CookieService } from 'ngx-cookie-service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { switchMap, distinctUntilChanged, debounceTime } from 'rxjs/internal/operators';
+import { PostService } from '../post.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -11,6 +13,7 @@ import { switchMap, distinctUntilChanged, debounceTime } from 'rxjs/internal/ope
 export class ProfileComponent implements OnInit {
 
   username: any;  
+  title:any;
   editProfileModal=0;
   editPasswordModal=0;
 
@@ -23,7 +26,7 @@ export class ProfileComponent implements OnInit {
     form2 :any;
     form3:any;
   
-  constructor(private loginService: LoginService,private cookieService:CookieService) { }
+  constructor(private router:Router,private loginService: LoginService,private postService:PostService,private cookieService:CookieService) { }
    userDetails:any
   ngOnInit() {
     //this.getResult();
@@ -121,6 +124,29 @@ export class ProfileComponent implements OnInit {
           this.editPasswordLoading=0;
         },
         err=>console.error(err))
+  }
+
+  createPost()
+  {
+  let  post={
+      image:"",
+      likes:0,
+      text:"",
+      timestamp:new Date().getTime(),
+      title:this.title,
+      username:this.userDetails.username
+    }
+
+  this.postService.createPosts(post).subscribe(
+    res=>{console.log(res);this.router.navigate(['edit',5])},
+    err=>console.error(err)
+
+  )
+
+  
+  /*this.postService.getPostById(2).subscribe(
+    res=>console.log(res)
+  )*/
   }
 
 }
