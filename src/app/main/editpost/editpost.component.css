@@ -19,5 +19,6 @@
   #editTitle {
     position:absolute;
   }
-
-  
+  .quil-background{
+    background: white;
+  }

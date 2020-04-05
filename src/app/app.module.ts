@@ -17,6 +17,7 @@ import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
 import { EditpostComponent } from './main/editpost/editpost.component';
 import { CKEditorModule } from 'ckeditor4-angular';
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { CKEditorModule } from 'ckeditor4-angular';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,
-    CKEditorModule
+    CKEditorModule,
+    QuillModule.forRoot(),
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

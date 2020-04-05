@@ -16,6 +16,7 @@ const routes: Routes = [
         { path: 'user-post' , component: UserPostComponent},
         { path: 'post' , component: PostComponent},
         {path:'edit/:id',component: EditpostComponent},
+        {path:'edit', redirectTo: ''},
         { path: '',component: HomeComponent}
         
     ]},

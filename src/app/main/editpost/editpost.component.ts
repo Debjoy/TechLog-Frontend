@@ -13,7 +13,14 @@ postDetails:any;
 editTitleModal=0;
 id:any;
 form1:any;
-editorData ='<p>This is a post have fun reading this post.</p>';
+
+editorForm:any;
+
+editorStyle = {
+  minHeight :'300px',
+  backgroundColor: "#272727",
+  border:'0'
+}
 
   constructor(private route:ActivatedRoute,private postService:PostService) { }
   
@@ -25,14 +32,15 @@ editorData ='<p>This is a post have fun reading this post.</p>';
             res=>{
               this.postDetails=res;
               console.log(this.postDetails);
-              this.editorData=this.postDetails.text;
+              this.editorForm=new FormGroup({
+                editorData:new FormControl(this.postDetails.title,null)
+              });
               this.form1=new FormGroup({
+                    
                     ptitle: new FormControl (this.postDetails.title, [Validators.required])
                   })
                 }
             )
-
-      
           }
       )
       }

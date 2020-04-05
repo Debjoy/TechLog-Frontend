@@ -35,12 +35,14 @@
         <br>
     </div>
     <div class="container">
-        <ckeditor type="classic" 
-          [(data)]="editorData" 
-          [config]="{ 
-          'height': '270',
-           contentsCss : '../assets/editor_style.css'}"
-          ></ckeditor>
+        <form class="quil-background" [formGroup]="editorForm" >
+
+          <quill-editor formControlName="editorData"
+          [styles]="editorStyle"
+          placeholder=""
+          ></quill-editor>
+          
+          </form>
     </div>
     <br>
  <div class="container" style="margin-bottom:20px"> 
