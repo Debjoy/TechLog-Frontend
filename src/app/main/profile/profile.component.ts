@@ -138,7 +138,7 @@ export class ProfileComponent implements OnInit {
     }
 
   this.postService.createPosts(post).subscribe(
-    res=>{console.log(res);this.router.navigate(['edit',5])},
+    res=>{console.log(res);this.router.navigate(['edit',res])},
     err=>console.error(err)
 
   )

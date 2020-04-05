@@ -11,15 +11,26 @@ export class PostService {
 
   httpOptions = {
     headers: new HttpHeaders({ 
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'authKey':'vbryg7aj@jh9gsd.AShgf%'
    })
   };
   createPosts(body:any):Observable<any>
   {
-    return this.http.post("https://techlog-backend.herokuapp.com/posts/create",body);
+    return this.http.post("https://techlog-backend.herokuapp.com/posts/create",body,this.httpOptions);
   }
   getPostById(body:any):Observable<any>
   {
-    return this.http.get("https://techlog-backend.herokuapp.com/posts/getById?id="+body);
+    return this.http.get("https://techlog-backend.herokuapp.com/posts/getById?id="+body,this.httpOptions);
+  }
+
+  saveTextById(body:any):Observable<any>
+  {
+    return this.http.post("https://techlog-backend.herokuapp.com/posts/updateTextById",body,this.httpOptions);
+  }
+
+  getAllByUsername(body:any):Observable<any>
+  {
+    return this.http.get("https://techlog-backend.herokuapp.com/posts/getAllByUsername?username="+body,this.httpOptions);
   }
 }

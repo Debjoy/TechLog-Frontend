@@ -44,4 +44,20 @@ editorStyle = {
           }
       )
       }
+
+
+      savePost()
+      {
+        const postData=
+        {
+          id:Number(this.id),
+          text:this.editorForm.value.editorData
+        }
+        console.log(typeof Number(this.id));
+        console.log(this.editorForm.value.editorData);
+        this.postService.saveTextById(postData).
+        subscribe(
+          res=>console.log(res)
+        )
+      }
 }
