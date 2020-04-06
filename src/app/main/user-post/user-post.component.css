@@ -5,3 +5,32 @@
           .top-posts{
             padding-top:0px;
           }
+          .read-more{
+            
+          }
+          .row{
+            padding:0;
+            margin:auto;
+          }
+          .col-md-5, .col-md-4, .col-md-3{
+            align-self:center;
+            text-align:center;
+          }
+          .col-md-3{
+            text-align:center;
+          }
+          .user-post-edit{
+            margin-right:10px;
+          }
+          .user-post-edit, .user-post-view{
+            margin-bottom:10px;
+          }
+          .user-simple-link{
+            color:#ffc107;
+          }
+          .user-simple-link:hover{
+            color:#ffc107;
+          }
+          .user-post-img{
+            object-fit:cover
+          }

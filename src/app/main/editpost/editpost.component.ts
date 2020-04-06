@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { PostService } from '../post.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-editpost',
@@ -22,7 +23,7 @@ editorStyle = {
   border:'0'
 }
 
-  constructor(private route:ActivatedRoute,private postService:PostService) { }
+  constructor(private route:ActivatedRoute,private postService:PostService,private sanitizer:DomSanitizer) { }
   
   ngOnInit() {
       this.route.paramMap.subscribe(
@@ -33,7 +34,7 @@ editorStyle = {
               this.postDetails=res;
               console.log(this.postDetails);
               this.editorForm=new FormGroup({
-                editorData:new FormControl(this.postDetails.title,null)
+                editorData:new FormControl(this.postDetails.text,null)
               });
               this.form1=new FormGroup({
                     
