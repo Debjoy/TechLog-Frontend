@@ -13,10 +13,10 @@
                     <div  [ngClass]="{'spinner-grow text-warning spinner-grow-lg': !userDetails}" style="align-self:center"></div>
                     <div class="col-md-9" *ngIf="userDetails">
                       <h3>{{userDetails.name}}</h3>
-                      <a href="#" class="simple-link"><h6>{{userDetails.username}}</h6></a> &nbsp;<i (click)="editProfileModal=1" class="fas fa-pen simple-link" ></i>
+                      <a href="#" class="simple-link"><h6>{{userDetails.username}}</h6></a> &nbsp;<button class="btn btn-sm btn-warning" (click)="editProfileModal=1" > <strong>Edit </strong><i class="fas fa-pen simple-link" style="color:black"></i></button>
                       <br><br>
-                      <button class="btn btn-sm btn-warning" routerLink="/user-post"><strong>Your posts</strong> 10+</button> &nbsp;
-                      <button (click)="editPasswordModal=1" class="btn btn-sm btn-light"><i class="fas fa-user-edit"></i></button>
+                      <button class="btn btn-sm btn-outline-warning" routerLink="/user-post"><strong>Your posts</strong> 10+</button> &nbsp;
+                      <a class="link" (click)="editPasswordModal=1"   >change password</a>
                     </div>
                   </div>
                   <div class="modal" id="editProfile" [ngClass]="{'show': editProfileModal==1}">

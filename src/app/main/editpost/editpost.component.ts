@@ -52,7 +52,7 @@ editorStyle = {
         const postData=
         {
           id:Number(this.id),
-          text:this.editorForm.value.editorData
+          text:this.editorForm.value.editorData+""
         }
         console.log(typeof Number(this.id));
         console.log(this.editorForm.value.editorData);
