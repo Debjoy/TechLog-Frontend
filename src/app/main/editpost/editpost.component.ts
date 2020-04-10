@@ -12,9 +12,11 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class EditpostComponent implements OnInit {
 postDetails:any;
 editTitleModal=0;
+editPicModal=0;
 id:any;
 form1:any;
-
+form2:any;
+url:any;
 editorForm:any;
 
 editorStyle = {
@@ -39,6 +41,13 @@ editorStyle = {
               this.form1=new FormGroup({
                     
                     ptitle: new FormControl (this.postDetails.title, [Validators.required])
+                  });
+                  if(this.postDetails.image=="" ||this.postDetails.image==null)
+                   this.postDetails.image="assets/no-image.png"
+                   
+                  this.form2=new FormGroup({
+                    
+                    pPic: new FormControl (this.postDetails.image, [Validators.required])
                   })
                 }
             )
@@ -61,4 +70,17 @@ editorStyle = {
           res=>console.log(res)
         )
       }
+
+    updatePostTitle()
+    {
+
+    }
+
+    updatePostPicUrl()
+    {this.postService.updateImageById({id:this.postDetails.id,image:this.form2.value.pPic})
+    .subscribe(
+      res=>{console.log('success'),this.postDetails.image=this.form2.value.pPic}
+    )
+
+    }
 }

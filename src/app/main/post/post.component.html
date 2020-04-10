@@ -3,28 +3,17 @@
                     <div class="search-box"><input type="text" placeholder="eg. Artificial"><button class="btn btn-warning search-btn"><i class="fas fa-search"></i> <strong>&nbsp;Search</strong></button> </div>
                     
                 </div>
+                <div *ngIf="postData">
                 <div class="bb-post-title">
-                  <h3>AMD Ryzen 5 2500X Benchmarks <i class="far fa-star"></i></h3>
-                  <p><span  style="opacity:0.6">posted on 12th July, 2019  ~</span><a routerLink="/profile" class="simple-link" style="opacity:1">kammy_boy</a></p>
+                  <h3>{{postData.title}} <i class="far fa-star"></i></h3>
+                  <p><span  style="opacity:0.6">posted on {{postData.timestamp | date: 'yyyy-MM-dd'}} ~</span><a routerLink="/profile" class="simple-link" style="opacity:1">{{postData.username}}</a></p>
                 </div>
                 <div class="bb-post-content">
                   <div class="post-card">
                     <div class="bb-post-image">
-                      <img src="https://images.hothardware.com/contentimages/newsitem/44807/content/Ryzen.jpg" class="img-fluid" alt="Responsive image" style="margin:auto;">
+                      <img src="{{postData.image}}" class="img-fluid" alt="Responsive image" style="margin:auto;">
                     </div>
-                    <div class="bb-post-text">
-                      <p>Right around two months ago, AMD rolled out its initial second generation Ryzen processor lineup consisting of four CPUS, including a pair of 6-core/12-thread SKUs and two 8-core/16-thread chips. That is less than half as many first generation Ryzen processors that are on the market, spanning from the Ryzen 3 1200 to the Ryzen 7 1800X (mainstream chips only). AMD is planning to launch more CPUs based on its second generation Ryzen architecture (Zen+), however, and there are some leaked benchmarks that give us an idea of what to expect.</p>
-                      <p>Two of the upcoming processors include the Ryzen 5 2500X and Ryzen 3 2300X. Both of these are quad-core parts, as AMD fleshes out its second generation Ryzen stack on the lower end. Here's how they fit in with the rest of the lineup:</p>
-                      
-                      <ul>
-                        <li>
-                        Ryzen 7 2700X: 8 cores / 16 threads, 3.7GHz to 4.3GHz, 20MB total cache, 105W TDP</li>
-                        <li>Ryzen 7 2700: 8 cores / 16 threads, 3.2GHz to 4.1GHz, 20MB total cache, 65W TDP</li>
-                        <li>Ryzen 5 2600X: 6 cores / 12 threads, 3.6GHz to 4.2GHz, 19MB total cache, 95W TDP</li>
-                        <li>Ryzen 5 2600: 6 cores / 12 threads, 3.4GHz to 3.9GHz, 19MB total cache, 65W TDP</li>
-                        <li>Ryzen 5 2500X: 4 cores / 8 threads, 3.6GHz to 4GHz, 18MB total cache, 65W TDP</li>
-                        <li>Ryzen 3 2300X: 4 cores / 4 threads, 3.5GHz to 4GHz, 10MB total cache, 65W TDP</li>
-                        </ul>
+                    <div class="bb-post-text" [innerHTML]="postData.text">
                       
                     </div>
                   </div>
@@ -32,7 +21,7 @@
                 <div class="bb-like-share">
                   <button class="btn btn-sm btn-warning">Like <i class="fas fa-thumbs-up"></i></button> &nbsp;
                   <button class="btn btn-sm btn-warning">Share <i class="fas fa-share"></i></button> &nbsp;
-                  <button class="btn btn-sm btn-warning">Edit this post <i class="fas fa-edit"></i></button>
+                  <button routerLink="/edit/{{id}}" class="btn btn-sm btn-warning">Edit this post <i class="fas fa-edit"></i></button>
                 </div>
                 <div class="bb-comment">
                   <img src="assets/image/kamlesh.png" width="80px" height="80px">
@@ -60,3 +49,4 @@ Scores S:- 4844 M:- 15781</pre>
                     <p style="opacity:0.6;margin:0;display:inline-block">12th July, 2019</p> &nbsp;<button class="btn btn-xs btn-warning"><i class="fas fa-thumbs-up"></i></button> 331 likes 
                   </div>
                 </div>
+              </div>

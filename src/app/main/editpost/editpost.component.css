@@ -23,3 +23,11 @@
     background: white;
   }
   
+  .image-url{
+    color:#ffc107;
+    text-decoration:none;
+    transition:all ease 0.3s;
+    }
+    .image-url:hover{
+    color:white;
+    }

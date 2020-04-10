@@ -33,4 +33,9 @@ export class PostService {
   {
     return this.http.get("https://techlog-backend.herokuapp.com/posts/getAllByUsername?username="+body,this.httpOptions);
   }
+
+  updateImageById(body:any):Observable<any>
+  {
+    return this.http.post("https://techlog-backend.herokuapp.com/posts/updateImageById",body,this.httpOptions);
+  }
 }

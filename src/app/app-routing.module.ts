@@ -14,9 +14,10 @@ const routes: Routes = [
         { path: 'home' , component: HomeComponent},
         { path: 'profile' , component: ProfileComponent},
         { path: 'user-post' , component: UserPostComponent},
-        { path: 'post' , component: PostComponent},
         {path:'edit/:id',component: EditpostComponent},
         {path:'edit', redirectTo: ''},
+        {path:'post/:id',component: PostComponent},
+        {path:'post', redirectTo: ''},
         { path: '',component: HomeComponent}
         
     ]},

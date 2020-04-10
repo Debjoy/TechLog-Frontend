@@ -27,10 +27,41 @@
 </div>
 </div>
 </div>
+
+<div class="modal"  id="editTitle" *ngIf="postDetails" [ngClass]="{'show': editPicModal==1}">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+     <!-- Modal header -->  
+<div class="modal-header">
+  <h4 class="modal-title">Edit Picture </h4>
+  <button type="button" class="close" data-dismiss="modal" (click)="editPicModal=0" style="color:white">&times;</button>
+</div>
+
+<!-- Modal body -->
+
+<div class="modal-body">
+<form [formGroup]="form2">
+  <label for="pPic">Enter the Picture url:</label> <div  [ngClass]="{'spinner-grow text-warning spinner-grow-sm': editNameLoading==1}"></div>
+<div class="input-group ">
+  <input type="text" class="form-control" formControlName="pPic"
+  [ngClass]="{'is-invalid': form2.get('pPic').invalid}">
+  <div class="input-group-append">
+    <button class="btn btn-warning" [disabled]="form2.invalid" type="submit" (click)="updatePostPicUrl()">Update</button>
+  </div>
+  <div class="invalid-feedback" *ngIf="form2.get('pPic').hasError('required')">Please enter an url</div>
+</div>
+</form>
+
+</div>
+</div>
+</div>
+</div>
 <div class="container" *ngIf="postDetails">
     <div class="container">
         <h1 style="margin-top:20px;opacity:0.8">{{postDetails.title}} <button (click)="editTitleModal=1" class="btn btn-sm btn-warning"><i style="font-size: 1rem;" class="fas fa-pen"></i></button></h1>
         <p><span  style="opacity:0.6">last edited on {{postDetails.timestamp | date: 'yyyy-MM-dd'}}</span></p>
+        <p>Image url : <a class="image-url" target="_blank" href="{{postDetails.image}}">{{postDetails.image}}</a>&nbsp;&nbsp;<button (click)="editPicModal=1" class="btn btn-sm btn-warning"><i style="font-size: 1rem;" class="fas fa-pen"></i></button></p>
         <h4 style="opacity:0.7"> Type your post here :</h4>
         <br>
     </div>
