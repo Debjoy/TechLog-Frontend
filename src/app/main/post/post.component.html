@@ -21,7 +21,7 @@
                 <div class="bb-like-share">
                   <button class="btn btn-sm btn-warning">Like <i class="fas fa-thumbs-up"></i></button> &nbsp;
                   <button class="btn btn-sm btn-warning">Share <i class="fas fa-share"></i></button> &nbsp;
-                  <button routerLink="/edit/{{id}}" class="btn btn-sm btn-warning">Edit this post <i class="fas fa-edit"></i></button>
+                  <button routerLink="/edit/{{id}}" *ngIf="postData.username==cookieUsername" class="btn btn-sm btn-warning">Edit this post <i class="fas fa-edit"></i></button>
                 </div>
                 <div class="bb-comment">
                   <img src="assets/image/kamlesh.png" width="80px" height="80px">

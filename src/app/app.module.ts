@@ -16,8 +16,8 @@ import { UserPostComponent } from './main/user-post/user-post.component';
 import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
 import { EditpostComponent } from './main/editpost/editpost.component';
-import { CKEditorModule } from 'ckeditor4-angular';
 import { QuillModule } from 'ngx-quill';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -39,8 +39,8 @@ import { QuillModule } from 'ngx-quill';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,
-    CKEditorModule,
     QuillModule.forRoot(),
+    ToastrModule.forRoot()
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

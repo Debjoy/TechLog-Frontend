@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PostService } from '../post.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-post',
@@ -9,8 +10,9 @@ import { PostService } from '../post.service';
 })
 export class PostComponent implements OnInit {
   id:any;
-  postData:any;
-  constructor(private route:ActivatedRoute,private postService:PostService) { }
+  postData:any;  
+  cookieUsername: any;
+  constructor(private route:ActivatedRoute,private postService:PostService,private cookieService: CookieService) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(
@@ -21,6 +23,9 @@ export class PostComponent implements OnInit {
           res=>{this.postData=res;console.log(this.postData);this.postData.text=unescape(this.postData.text)}
         )
       })
+      this.cookieUsername = this.cookieService.get('user');
+
+
   }
 
 }

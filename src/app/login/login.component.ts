@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/internal/operators';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -30,7 +31,7 @@ export class LoginComponent implements OnInit {
     rcpassword: new FormControl('', [Validators.required])
   }, this.pwdMatchValidator);
 
-  constructor(private loginService: LoginService, private cookieService: CookieService, private router: Router) { }
+  constructor(private loginService: LoginService, private cookieService: CookieService, private router: Router,private toastr:ToastrService) { }
 
   ngOnInit() {
 
@@ -89,6 +90,9 @@ export class LoginComponent implements OnInit {
       }
       else{
         console.error(res);
+        this.toastr.error('Invalid Email and Password', 'Error!',{
+          positionClass:'toast-top-center'
+        });
       }
     });
     
@@ -108,7 +112,9 @@ export class LoginComponent implements OnInit {
     }
     //console.log(this.user);
     this.loginService.addUser(this.user).subscribe(res=>{
-      
+      this.toastr.success('You have registered Successfully', 'Awesome!',{
+        positionClass:'toast-top-center'
+      });
       this.loginService.existsByEmailAndPassword(loginInfo).subscribe(res=>{
         if(res.exists == "true"){
           this.cookieService.set("user",res.username);
@@ -117,6 +123,9 @@ export class LoginComponent implements OnInit {
         }
         else{
           console.error(res);
+          this.toastr.error('Invalid Email and Password', 'Error!',{
+            positionClass:'toast-top-center'
+          });
         }
       });
 

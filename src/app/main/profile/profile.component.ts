@@ -5,6 +5,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { switchMap, distinctUntilChanged, debounceTime } from 'rxjs/internal/operators';
 import { PostService } from '../post.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -26,7 +27,7 @@ export class ProfileComponent implements OnInit {
     form2 :any;
     form3:any;
   
-  constructor(private router:Router,private loginService: LoginService,private postService:PostService,private cookieService:CookieService) { }
+  constructor(private router:Router,private loginService: LoginService,private postService:PostService,private cookieService:CookieService, private toastr: ToastrService) { }
    userDetails:any
   ngOnInit() {
     //this.getResult();
@@ -90,6 +91,9 @@ export class ProfileComponent implements OnInit {
         this.userDetails.name=this.form1.value.rname;
         this.editProfileModal=0;
         this.editNameLoading=0;
+        this.toastr.success('Name Updated', 'Awesome!',{
+          positionClass:'toast-top-center'
+        });
       },
       err=>console.error(err))
   }
@@ -105,6 +109,9 @@ export class ProfileComponent implements OnInit {
         this.userDetails.username=this.form2.value.rusername;
         this.editProfileModal=0;
         this.editUsernameLoading=0;
+        this.toastr.success('Username Updated', 'Awesome!',{
+          positionClass:'toast-top-center'
+        });
       },
         err=>console.error(err))
   }
@@ -122,6 +129,9 @@ export class ProfileComponent implements OnInit {
           this.userDetails.password=this.form3.value.rpassword;
           this.editPasswordModal=0;
           this.editPasswordLoading=0;
+          this.toastr.success('Password Updated', 'Awesome!',{
+            positionClass:'toast-top-center'
+          });
         },
         err=>console.error(err))
   }
@@ -138,7 +148,13 @@ export class ProfileComponent implements OnInit {
     }
 
   this.postService.createPosts(post).subscribe(
-    res=>{console.log(res);this.router.navigate(['edit',res])},
+    res=>{
+      console.log(res);
+      this.router.navigate(['edit',res]);
+      this.toastr.success('New Post Created', 'Awesome!',{
+        positionClass:'toast-top-center'
+      });
+    },
     err=>console.error(err)
 
   )

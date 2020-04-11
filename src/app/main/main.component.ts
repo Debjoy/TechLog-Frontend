@@ -3,6 +3,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { LoginService } from '../login.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class MainComponent implements OnInit {
   private cookieToken: any;
   private cookieUsername: any;
 
-  constructor(private cookieService: CookieService, private router: Router, private loginService:LoginService,private spinner: NgxSpinnerService) { }
+  constructor(private cookieService: CookieService, private router: Router, private loginService:LoginService,private spinner: NgxSpinnerService,private toastr:ToastrService) { }
 
   ngOnInit() {
     this.cookieToken = this.cookieService.get('token');
@@ -36,6 +37,9 @@ export class MainComponent implements OnInit {
           this.router.navigate(['login']);
         }else{
           console.log("Logged in Successfully");
+          this.toastr.success('Logged in Successfully', 'Awesome!',{
+            positionClass:'toast-top-right'
+          });
           this.spinner.hide("spinner1");
         }
       }
