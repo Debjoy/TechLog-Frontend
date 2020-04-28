@@ -112,4 +112,15 @@ editorStyle = {
 
 
     }
+
+    deletePost()
+    { let body={id:this.id}
+      this.postService.deletePostById(body)
+      .subscribe(
+        res=>{console.log("success");
+        this.router.navigate(["/user-post"])
+      },
+     // err=>console.error(err)
+      )
+    }
 }

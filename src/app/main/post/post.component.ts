@@ -12,6 +12,8 @@ export class PostComponent implements OnInit {
   id:any;
   postData:any;  
   cookieUsername: any;
+  liked=0;
+  likeId:any;
   constructor(private route:ActivatedRoute,private postService:PostService,private cookieService: CookieService) { }
 
   ngOnInit() {
@@ -25,7 +27,43 @@ export class PostComponent implements OnInit {
       })
       this.cookieUsername = this.cookieService.get('user');
 
+ this.postService.getLikeByPost(this.id)
+ .subscribe(
+   res=>{console.log(res);
+  res.forEach(element => {
+    if(element.username==this.cookieUsername)
+      { this.likeId=element.id;
+        this.liked=1;
+        return ;
+      }
+      
+  });
+  }
+ )
+  }
 
+  like()
+  {
+console.log("like pressed");
+this.postService.addLike({postid:this.id,username:this.cookieUsername})
+.subscribe(
+  res=>{
+    console.log('success');
+    this.likeId=res.id;
+    this.liked=1;
+  }
+)
+  }
+
+  unlike()
+  {
+    this.postService.deleteLike({id:this.likeId})
+    .subscribe(
+      res=>{
+        console.log('success');
+        this.liked=0;
+      }
+    )
   }
 
 }

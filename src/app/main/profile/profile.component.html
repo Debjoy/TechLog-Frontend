@@ -43,19 +43,7 @@
                           <div class="invalid-feedback" *ngIf="form1.get('rname').hasError('required')">Please enter your name</div>
                         </div>
                       </form>
-                      <br>
-                      <form [formGroup]="form2">
-                        <label for="rname">Enter a user name:</label><div  [ngClass]="{'spinner-grow text-warning spinner-grow-sm': editUsernameLoading==1}"></div>
-                        <div class="input-group form-group">
-                          <input type="text" class="form-control" [value]="userDetails.username" formControlName="rusername"
-                          [ngClass]="{'is-invalid':form2.get('rusername').touched && (form2.get('rusername').invalid || form2.get('rusername').hasError('user_name_exists'))}">
-                          <div class="input-group-append">
-                            <button class="btn btn-warning" type="submit"  [disabled]="form2.invalid" (click)="updateUserName()">Update</button>
-                          </div>
-                          <div class="invalid-feedback" *ngIf="form2.get('rusername').hasError('required')">Please enter an user name</div>
-                          <div class="invalid-feedback" *ngIf="form2.get('rusername').hasError('user_name_exists')">Username Exists</div>
-                        </div>
-                      </form>
+                      
                     </div>
                         <!-- Modal footer -->
                         
@@ -97,7 +85,7 @@
                               <div class="invalid-feedback" *ngIf="form3.errors?.mismatch">Passwords didn't match
                               </div>
                               <br>
-                              <button class="btn btn-warning" type="submit"  [disabled]="form2.invalid" (click)="updatePassword()">Update</button><div  [ngClass]="{'spinner-grow text-warning spinner-grow-sm': editPasswordLoading==1}"></div>
+                              <button class="btn btn-warning" type="submit"  [disabled]="form3.invalid" (click)="updatePassword()">Update</button><div  [ngClass]="{'spinner-grow text-warning spinner-grow-sm': editPasswordLoading==1}"></div>
                             </div>
                           </form>
                           

@@ -19,7 +19,8 @@
                   </div>
                 </div>
                 <div class="bb-like-share">
-                  <button class="btn btn-sm btn-warning">Like <i class="fas fa-thumbs-up"></i></button> &nbsp;
+                  <button class="btn btn-sm btn-warning" (click)="like()" *ngIf="liked==0">Like <i class="fas fa-thumbs-up"></i></button> &nbsp;
+                  <button (click)="unlike()" class="btn btn-sm btn-outline-warning" *ngIf="liked==1">Liked <i class="fas fa-thumbs-up"></i></button> &nbsp;
                   <button class="btn btn-sm btn-warning">Share <i class="fas fa-share"></i></button> &nbsp;
                   <button routerLink="/edit/{{id}}" *ngIf="postData.username==cookieUsername" class="btn btn-sm btn-warning">Edit this post <i class="fas fa-edit"></i></button>
                 </div>

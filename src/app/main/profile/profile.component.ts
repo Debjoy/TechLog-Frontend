@@ -41,27 +41,12 @@ export class ProfileComponent implements OnInit {
     this.userDetails=res[0];
     this.form1=new FormGroup({
         rname: new FormControl (this.userDetails.name, [Validators.required])})
-    this.form2 =new FormGroup({
-        rusername: new FormControl (this.userDetails.username, [Validators.required])})
     this.form3=new FormGroup({
           rpassword:new FormControl(this.userDetails.password,[Validators.required,
             Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d@$!%*#?&!^]{8,}$')]),
           rcpassword: new FormControl(this.userDetails.password, [Validators.required])
           }, this.pwdMatchValidator);
 
-    
-    this.form2.controls.rusername.valueChanges.pipe(
-          debounceTime(500),//change this value if required
-          distinctUntilChanged(),
-          switchMap(() =>{
-            return this.loginService.findByUsername(this.form2.value.rusername)
-          }))
-          .subscribe((res:any) => {
-            //console.log(res);
-            if(res.length > 0) {
-              this.form2.controls.rusername.setErrors({'user_name_exists': true});
-            }
-          });
           
  },
    err=>console.error(err)
@@ -97,24 +82,7 @@ export class ProfileComponent implements OnInit {
       },
       err=>console.error(err))
   }
-  updateUserName()
-  { 
-    this.editUsernameLoading=1;
-    let userEmail={
-      username:this.form2.value.rusername,
-      email:this.userDetails.email
-    }
-      this.loginService.updateUserNameByEmail(userEmail).subscribe(
-        res=>{console.log(res);
-        this.userDetails.username=this.form2.value.rusername;
-        this.editProfileModal=0;
-        this.editUsernameLoading=0;
-        this.toastr.success('Username Updated', 'Awesome!',{
-          positionClass:'toast-top-center'
-        });
-      },
-        err=>console.error(err))
-  }
+  
 
   updatePassword()
   {

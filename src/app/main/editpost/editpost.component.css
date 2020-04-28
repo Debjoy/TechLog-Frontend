@@ -31,3 +31,7 @@
     .image-url:hover{
     color:white;
     }
+
+    .modal-footer{
+      border:none;
+    }
