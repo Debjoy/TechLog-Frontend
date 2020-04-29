@@ -1,37 +1,38 @@
-.modal.show{
-    display:block;
-  }
+.modal.show {
+  display: block;
+}
 
-  .form-control{
-    border:none;
-    background:#171714;
-    color:#a9aeb3;
-  }
+.form-control {
+  border: none;
+  background: #171714;
+  color: #a9aeb3;
+}
 
-  #editTitle .modal-content{
-    background:#272727;
-  }
+#editTitle .modal-content {
+  background: #272727;
+}
 
-  #editTitle .modal-header{
-    border:none;
-  }
+#editTitle .modal-header {
+  border: none;
+}
 
-  #editTitle {
-    position:absolute;
-  }
-  .quil-background{
-    background: white;
-  }
-  
-  .image-url{
-    color:#ffc107;
-    text-decoration:none;
-    transition:all ease 0.3s;
-    }
-    .image-url:hover{
-    color:white;
-    }
+#editTitle {
+  position: absolute;
+}
+.quil-background {
+  background: white;
+}
 
-    .modal-footer{
-      border:none;
-    }
+.image-url {
+  color: #ffc107;
+  text-decoration: none;
+  word-break: break-all;
+  transition: all ease 0.3s;
+}
+.image-url:hover {
+  color: white;
+}
+
+.modal-footer {
+  border: none;
+}

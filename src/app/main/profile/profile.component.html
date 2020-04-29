@@ -1,119 +1,237 @@
-
 <div class="search">
-                    
-                    <div class="search-box"><input type="text" placeholder="eg. Artificial"><button class="btn btn-warning search-btn"><i class="fas fa-search"></i> <strong>&nbsp;Search</strong></button> </div>
-                    
-                </div>
-                <div class="profile-info">
-                  
-                  <div class="container row">
-                    <div class="col-md-3">
-                      <img src="assets/image/kamlesh.png" class="img-fluid" alt="Responsive image">
-                    </div>
-                    <div  [ngClass]="{'spinner-grow text-warning spinner-grow-lg': !userDetails}" style="align-self:center"></div>
-                    <div class="col-md-9" *ngIf="userDetails">
-                      <h3>{{userDetails.name}}</h3>
-                      <a href="#" class="simple-link"><h6>{{userDetails.username}}</h6></a> &nbsp;<button class="btn btn-sm btn-warning" (click)="editProfileModal=1" > <strong>Edit </strong><i class="fas fa-pen simple-link" style="color:black"></i></button>
-                      <br><br>
-                      <button class="btn btn-sm btn-outline-warning" routerLink="/user-post"><strong>Your posts</strong> 10+</button> &nbsp;
-                      <a class="link" (click)="editPasswordModal=1"   >change password</a>
-                    </div>
-                  </div>
-                  <div class="modal" id="editProfile" [ngClass]="{'show': editProfileModal==1}">
-                    <div class="modal-dialog modal-sm">
-                      <div class="modal-content">
-                      
-                        <!-- Modal Header -->
-                        <div class="modal-header">
-                          <h4 class="modal-title">Edit Profile </h4>
-                          <button type="button" class="close" data-dismiss="modal" (click)="editProfileModal=0" style="color:white">&times;</button>
-                        </div>
-                        
-                        <!-- Modal body -->
-                        
-                        <div class="modal-body" *ngIf="userDetails">
-                        <form [formGroup]="form1">
-                          <label for="rname">Enter your name:</label> <div  [ngClass]="{'spinner-grow text-warning spinner-grow-sm': editNameLoading==1}"></div>
-                        <div class="input-group ">
-                          <input type="text" class="form-control" [value]="userDetails.name" formControlName="rname"
-                          [ngClass]="{'is-invalid': form1.get('rname').invalid}">
-                          <div class="input-group-append">
-                            <button class="btn btn-warning" [disabled]="form1.invalid" type="submit" (click)="updateName()">Update</button>
-                          </div>
-                          <div class="invalid-feedback" *ngIf="form1.get('rname').hasError('required')">Please enter your name</div>
-                        </div>
-                      </form>
-                      
-                    </div>
-                        <!-- Modal footer -->
-                        
-                        
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal" [ngClass]="{'show': editPasswordModal==1}" id="editProfile">
-                    <div class="modal-dialog modal-sm">
-                      <div class="modal-content">
-                      
-                        <!-- Modal Header -->
-                        <div class="modal-header">
-                          <h4 class="modal-title">Edit Password</h4>
-                          <button type="button" class="close" (click)="editPasswordModal=0" style="color:white">&times;</button>
-                        </div>
-                        
-                        <!-- Modal body -->
-                        
-                        <div class="modal-body" *ngIf="userDetails">
-                            <form [formGroup]="form3">
-                            <div class="form-group" style="margin-bottom:0em">
-                              <label for="pwd" class="mr-sm-2">Password:</label>
-                              <input autocomplete="on" type="text" class="form-control is-invalid" [value]="userDetails.password"
-                                formControlName="rpassword"
-                                [ngClass]="{'is-invalid':form3.get('rpassword').touched && form3.get('rpassword').invalid}">
-                              <div class="invalid-feedback" *ngIf="form3.get('rpassword').hasError('required')">Please
-                                enter a password</div>
-                              <div class="invalid-feedback" *ngIf="form3.get('rpassword').hasError('pattern')">
-                                Password should be greater than 8 characters, atleast an alphabet and a digit</div>
-                            </div>&nbsp; &nbsp;
-                            <div class="  form-group">
-                              <label for="pwd" class="mr-sm-2">Confirm Password:</label>
-                              <input autocomplete="on" type="text" class="form-control is-invalid" [value]="userDetails.password"
-                                formControlName="rcpassword"
-                                [ngClass]="{'is-invalid':form3.get('rcpassword').touched && (form3.get('rcpassword').invalid || form3.errors?.mismatch) }">
-                              <div class="invalid-feedback" *ngIf="form3.get('rcpassword').hasError('required')">
-                                Password can not be empty!</div>
-                              <div class="invalid-feedback" *ngIf="form3.errors?.mismatch">Passwords didn't match
-                              </div>
-                              <br>
-                              <button class="btn btn-warning" type="submit"  [disabled]="form3.invalid" (click)="updatePassword()">Update</button><div  [ngClass]="{'spinner-grow text-warning spinner-grow-sm': editPasswordLoading==1}"></div>
-                            </div>
-                          </form>
-                          
-                    </div>
-                        <!-- Modal footer -->
-                        
-                        
-                      </div>
-                    </div>
-                  </div>
+  <div class="search-box">
+    <input type="text" placeholder="eg. Artificial" /><button
+      class="btn btn-warning search-btn"
+    >
+      <i class="fas fa-search"></i> <strong>&nbsp;Search</strong>
+    </button>
+  </div>
+</div>
+<div class="profile-info">
+  <div class="container row">
+    <div class="col-md-3">
+      <img
+        src="assets/image/kamlesh.png"
+        class="img-fluid"
+        alt="Responsive image"
+      />
+    </div>
+    <div
+      [ngClass]="{ 'spinner-grow text-warning spinner-grow-lg': !userDetails }"
+      style="align-self: center;"
+    ></div>
+    <div class="col-md-9" *ngIf="userDetails">
+      <h3>
+        {{ userDetails.name }}
+        <button class="btn btn-sm btn-warning" (click)="editProfileModal = 1">
+          <strong>Edit </strong
+          ><i class="fas fa-pen simple-link" style="color: black;"></i>
+        </button>
+      </h3>
+      <a class="simple-link"
+        ><h6>{{ userDetails.username }}</h6></a
+      >
+      &nbsp; <br /><br />
+      <button class="btn btn-sm btn-outline-warning" routerLink="/user-post">
+        <strong>Your posts</strong> 10+
+      </button>
+      &nbsp;
+      <a class="link" (click)="editPasswordModal = 1">change password</a>
+    </div>
+  </div>
+  <div
+    class="modal"
+    id="editProfile"
+    [ngClass]="{ show: editProfileModal == 1 }"
+  >
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Edit Profile</h4>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            (click)="editProfileModal = 0"
+            style="color: white;"
+          >
+            &times;
+          </button>
+        </div>
 
+        <!-- Modal body -->
 
-                  <br>
-                  <div class="container">
-                      <h4><p>Your Bio  &nbsp;<i class="fas fa-pen"></i></p></h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                  </div>
+        <div class="modal-body" *ngIf="userDetails">
+          <form [formGroup]="form1">
+            <label for="rname">Enter your name:</label>
+            <div
+              [ngClass]="{
+                'spinner-grow text-warning spinner-grow-sm':
+                  editNameLoading == 1
+              }"
+            ></div>
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                [value]="userDetails.name"
+                formControlName="rname"
+                [ngClass]="{ 'is-invalid': form1.get('rname').invalid }"
+              />
+              <div class="input-group-append">
+                <button
+                  class="btn btn-warning"
+                  [disabled]="form1.invalid"
+                  type="submit"
+                  (click)="updateName()"
+                >
+                  Update
+                </button>
+              </div>
+              <div
+                class="invalid-feedback"
+                *ngIf="form1.get('rname').hasError('required')"
+              >
+                Please enter your name
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- Modal footer -->
+      </div>
+    </div>
+  </div>
+  <div
+    class="modal"
+    [ngClass]="{ show: editPasswordModal == 1 }"
+    id="editProfile"
+  >
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Edit Password</h4>
+          <button
+            type="button"
+            class="close"
+            (click)="editPasswordModal = 0"
+            style="color: white;"
+          >
+            &times;
+          </button>
+        </div>
 
-                </div>
+        <!-- Modal body -->
 
-                <div class="new-post">
-                    <div class="post-card ">
-                        <h4>Share an idea !</h4>
-                        <br>
-                        <h5 class="give-a-title">Give a title </h5>
-                        <input type="text" [(ngModel)]="title" class="new-post-title" placeholder="eg. Snapdragon is bitchin!">
-                        <button (click)="createPost()" class="btn btn-warning"><strong><i class="fas fa-pen"></i> Create</strong></button>
-                    </div>   
-                </div>
-                <div class="modal-backdrop show" *ngIf="editPasswordModal==1 || editProfileModal==1"  ></div>
-                
+        <div class="modal-body" *ngIf="userDetails">
+          <form [formGroup]="form3">
+            <div class="form-group" style="margin-bottom: 0em;">
+              <label for="pwd" class="mr-sm-2">Password:</label>
+              <input
+                autocomplete="on"
+                type="text"
+                class="form-control is-invalid"
+                [value]="userDetails.password"
+                formControlName="rpassword"
+                [ngClass]="{
+                  'is-invalid':
+                    form3.get('rpassword').touched &&
+                    form3.get('rpassword').invalid
+                }"
+              />
+              <div
+                class="invalid-feedback"
+                *ngIf="form3.get('rpassword').hasError('required')"
+              >
+                Please enter a password
+              </div>
+              <div
+                class="invalid-feedback"
+                *ngIf="form3.get('rpassword').hasError('pattern')"
+              >
+                Password should be greater than 8 characters, atleast an
+                alphabet and a digit
+              </div>
+            </div>
+            &nbsp; &nbsp;
+            <div class="form-group">
+              <label for="pwd" class="mr-sm-2">Confirm Password:</label>
+              <input
+                autocomplete="on"
+                type="text"
+                class="form-control is-invalid"
+                [value]="userDetails.password"
+                formControlName="rcpassword"
+                [ngClass]="{
+                  'is-invalid':
+                    form3.get('rcpassword').touched &&
+                    (form3.get('rcpassword').invalid || form3.errors?.mismatch)
+                }"
+              />
+              <div
+                class="invalid-feedback"
+                *ngIf="form3.get('rcpassword').hasError('required')"
+              >
+                Password can not be empty!
+              </div>
+              <div class="invalid-feedback" *ngIf="form3.errors?.mismatch">
+                Passwords didn't match
+              </div>
+              <br />
+              <button
+                class="btn btn-warning"
+                type="submit"
+                [disabled]="form3.invalid"
+                (click)="updatePassword()"
+              >
+                Update
+              </button>
+              <div
+                [ngClass]="{
+                  'spinner-grow text-warning spinner-grow-sm':
+                    editPasswordLoading == 1
+                }"
+              ></div>
+            </div>
+          </form>
+        </div>
+        <!-- Modal footer -->
+      </div>
+    </div>
+  </div>
+
+  <br />
+  <div class="container">
+    <h4>
+      <p>Your Bio &nbsp;<i class="fas fa-pen"></i></p>
+    </h4>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat.
+    </p>
+  </div>
+</div>
+
+<div class="new-post">
+  <div class="post-card">
+    <h4>Share an idea !</h4>
+    <br />
+    <h5 class="give-a-title">Give a title</h5>
+    <input
+      type="text"
+      [(ngModel)]="title"
+      class="new-post-title"
+      placeholder="eg. Snapdragon is bitchin!"
+    />
+    <button (click)="createPost()" class="btn btn-warning">
+      <strong><i class="fas fa-pen"></i> Create</strong>
+    </button>
+  </div>
+</div>
+<div
+  class="modal-backdrop show"
+  *ngIf="editPasswordModal == 1 || editProfileModal == 1"
+></div>

@@ -1,53 +1,100 @@
 <div class="search">
-                    
-                    <div class="search-box"><input type="text" placeholder="eg. Artificial"><button class="btn btn-warning search-btn"><i class="fas fa-search"></i> <strong>&nbsp;Search</strong></button> </div>
-                    
-                </div>
-                <div *ngIf="postData">
-                <div class="bb-post-title">
-                  <h3>{{postData.title}} <i class="far fa-star"></i></h3>
-                  <p><span  style="opacity:0.6">posted on {{postData.timestamp | date: 'yyyy-MM-dd'}} ~</span><a routerLink="/profile" class="simple-link" style="opacity:1">{{postData.username}}</a></p>
-                </div>
-                <div class="bb-post-content">
-                  <div class="post-card">
-                    <div class="bb-post-image">
-                      <img src="{{postData.image}}" class="img-fluid" alt="Responsive image" style="margin:auto;">
-                    </div>
-                    <div class="bb-post-text" [innerHTML]="postData.text">
-                      
-                    </div>
-                  </div>
-                </div>
-                <div class="bb-like-share">
-                  <button class="btn btn-sm btn-warning" (click)="like()" *ngIf="liked==0">Like <i class="fas fa-thumbs-up"></i></button> &nbsp;
-                  <button (click)="unlike()" class="btn btn-sm btn-outline-warning" *ngIf="liked==1">Liked <i class="fas fa-thumbs-up"></i></button> &nbsp;
-                  <button class="btn btn-sm btn-warning">Share <i class="fas fa-share"></i></button> &nbsp;
-                  <button routerLink="/edit/{{id}}" *ngIf="postData.username==cookieUsername" class="btn btn-sm btn-warning">Edit this post <i class="fas fa-edit"></i></button>
-                </div>
-                <div class="bb-comment">
-                  <img src="assets/image/kamlesh.png" width="80px" height="80px">
-                  <div class="post-card comment-input-box">
-                    <div class="comment-input" contenteditable="true" placeholder="share your comment here!"></div>
-                    <button class="btn btn-warning btn-sm" style="margin-top:10px">Comment</button>
-                  </div>
-                </div>
-                <div class="bb-comment">
-                  <img src="assets/image/kamlesh.png" width="80px" height="80px">
-                  <div class="post-card">
-                    <h5><a routerLink="/profile" class="simple-link">kammy_boy</a></h5>
-                    <pre>Superb! really impressive single-core performance.
+  <div class="search-box">
+    <input type="text" placeholder="eg. Artificial" /><button
+      class="btn btn-warning search-btn"
+    >
+      <i class="fas fa-search"></i> <strong>&nbsp;Search</strong>
+    </button>
+  </div>
+</div>
+<div *ngIf="postData">
+  <div class="bb-post-title">
+    <h3>{{ postData.title }} <i class="far fa-star"></i></h3>
+    <p>
+      <span style="opacity: 0.6;"
+        >posted on {{ postData.timestamp | date: "yyyy-MM-dd" }} ~</span
+      ><a routerLink="/profile" class="simple-link" style="opacity: 1;">{{
+        postData.username
+      }}</a>
+    </p>
+  </div>
+  <div class="bb-post-content">
+    <div class="post-card">
+      <div class="bb-post-image">
+        <img
+          src="{{ postData.image }}"
+          class="img-fluid"
+          alt="Responsive image"
+          style="margin: auto;"
+        />
+      </div>
+      <div class="bb-post-text" [innerHTML]="postData.text"></div>
+    </div>
+  </div>
+  <div class="bb-like-share">
+    <i class="fas fa-heart unlike" (click)="unlike()" *ngIf="liked == 1"></i>
+    <i class="far fa-heart like" (click)="like()" *ngIf="liked == 0"></i>&nbsp;
+    <span *ngIf="likesList">{{ likesList.length }} likes</span>
+    <!-- <button class="btn btn-sm btn-warning">
+      Share <i class="fas fa-share"></i>
+    </button> -->
+    &nbsp;
+    <button
+      routerLink="/edit/{{ id }}"
+      *ngIf="postData.username == cookieUsername"
+      class="btn btn-sm btn-warning"
+    >
+      <strong>Edit this post </strong> <i class="fas fa-edit"></i>
+    </button>
+  </div>
+  <div class="bb-comment">
+    <img src="assets/image/kamlesh.png" width="80px" height="80px" />
+    <div class="post-card comment-input-box">
+      <div
+        class="comment-input"
+        contenteditable="true"
+        placeholder="share your comment here!"
+      ></div>
+      <button class="btn btn-warning btn-sm" style="margin-top: 10px;">
+        Comment
+      </button>
+    </div>
+  </div>
+  <div class="bb-comment">
+    <img src="assets/image/kamlesh.png" width="80px" height="80px" />
+    <div class="post-card">
+      <h5><a routerLink="/profile" class="simple-link">kammy_boy</a></h5>
+      <pre>
+Superb! really impressive single-core performance.
 Amazing value for ~$150 (if true).
 It even beats (multi-core score) i7-7700 non-K that goes for around ~$270
-Scores S:- 4844 M:- 15781</pre>
-                    <p style="opacity:0.6;margin:0;display:inline-block">12th July, 2019</p> &nbsp;<button class="btn btn-xs btn-warning"><i class="fas fa-thumbs-up"></i></button>  432 likes 
-                  </div>
-                </div>
-                <div class="bb-comment">
-                  <img src="assets/image/kamlesh.png" width="80px" height="80px">
-                  <div class="post-card">
-                    <h5><a routerLink="/profile" class="simple-link">kammy_boy_is_angy</a></h5>
-                    <pre>What an ugly cpu, OMG! Ewww. I vomited in my mouth reading this post. I feel like I am ugly inside now that I have seen this stinky piece of metal.</pre>
-                    <p style="opacity:0.6;margin:0;display:inline-block">12th July, 2019</p> &nbsp;<button class="btn btn-xs btn-warning"><i class="fas fa-thumbs-up"></i></button> 331 likes 
-                  </div>
-                </div>
-              </div>
+Scores S:- 4844 M:- 15781</pre
+      >
+      <p style="opacity: 0.6; margin: 0; display: inline-block;">
+        12th July, 2019
+      </p>
+      &nbsp;<button class="btn btn-xs btn-warning">
+        <i class="fas fa-thumbs-up"></i>
+      </button>
+      432 likes
+    </div>
+  </div>
+  <div class="bb-comment">
+    <img src="assets/image/kamlesh.png" width="80px" height="80px" />
+    <div class="post-card">
+      <h5>
+        <a routerLink="/profile" class="simple-link">kammy_boy_is_angy</a>
+      </h5>
+      <pre>
+What an ugly cpu, OMG! Ewww. I vomited in my mouth reading this post. I feel like I am ugly inside now that I have seen this stinky piece of metal.</pre
+      >
+      <p style="opacity: 0.6; margin: 0; display: inline-block;">
+        12th July, 2019
+      </p>
+      &nbsp;<button class="btn btn-xs btn-warning">
+        <i class="fas fa-thumbs-up"></i>
+      </button>
+      331 likes
+    </div>
+  </div>
+</div>
