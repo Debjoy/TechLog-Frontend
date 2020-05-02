@@ -1,12 +1,55 @@
 <!-- <app-spinner></app-spinner> -->
-<ngx-spinner color="#f9a825" name="spinner1">
-    
-</ngx-spinner>
-
+<ngx-spinner color="#f9a825" name="spinner1"> </ngx-spinner>
+<div class="black-space"></div>
 <div class="container-fluid view row">
-    <app-nav class="col-md-4 side-content"></app-nav>
-
-    <div class="col-md-8 content">
-    <router-outlet class="main" ></router-outlet>
+  <div class="col-md-4 side-content">
+    <div class="logo-main">
+      <div class="logo">
+        <i class="fas fa-stream"></i>
+      </div>
+      <h1>TechLog</h1>
     </div>
+
+    <app-nav class=""></app-nav>
+  </div>
+
+  <div class="col-md-8 content">
+    <div class="search">
+      <!--Main LOGO starts-->
+      <div class="logo-main">
+        <div class="logo">
+          <i class="fas fa-stream"></i>
+        </div>
+        <h1 [ngClass]="{ expand: search_expand }">TechLog</h1>
+      </div>
+      <!--Main LOGO ends-->
+
+      <div class="top-filler"></div>
+      <!--SEARCH BAR starts-->
+      <div class="search-box">
+        <input
+          type="text"
+          [ngClass]="{ expand: search_expand }"
+          placeholder="eg. Artificial"
+        /><button
+          class="btn btn-warning search-btn"
+          (click)="search_expand = !search_expand"
+        >
+          <i class="fas fa-search"></i>
+          <strong><span class="search-title">&nbsp;Search</span></strong>
+        </button>
+      </div>
+      <div class="option-menu" (click)="openned = !openned">
+        <i class="fas" [ngClass]="openned ? 'fa-times' : 'fa-ellipsis-h'"></i>
+      </div>
+    </div>
+    <!--SEARCH BAR ENDS-->
+    <app-nav
+      class="responsive-nav"
+      [ngClass]="{ open: openned }"
+      (click)="openned = !openned"
+    ></app-nav>
+
+    <router-outlet class="main"></router-outlet>
+  </div>
 </div>
