@@ -4,9 +4,12 @@
     <p>
       <span style="opacity: 0.6;"
         >posted on {{ postData.timestamp | date: "yyyy-MM-dd" }} ~</span
-      ><a routerLink="/profile" class="simple-link" style="opacity: 1;">{{
-        postData.username
-      }}</a>
+      ><a
+        routerLink="/profile/{{ postData.username }}"
+        class="simple-link"
+        style="opacity: 1;"
+        >{{ postData.username }}</a
+      >
     </p>
   </div>
   <div class="bb-post-content">

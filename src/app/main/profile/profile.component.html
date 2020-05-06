@@ -14,20 +14,32 @@
     <div class="col-md-9" *ngIf="userDetails">
       <h3>
         {{ userDetails.name }}
-        <button class="btn btn-sm btn-warning" (click)="editProfileModal = 1">
+        <button
+          class="btn btn-sm btn-warning"
+          (click)="editProfileModal = 1"
+          *ngIf="!foreignUser"
+        >
           <strong>Edit </strong
           ><i class="fas fa-pen simple-link" style="color: black;"></i>
         </button>
       </h3>
-      <a class="simple-link"
+      <a class="simple-link" style="display: block;"
         ><h6>{{ userDetails.username }}</h6></a
       >
-      &nbsp; <br /><br />
-      <button class="btn btn-sm btn-outline-warning" routerLink="/user-post">
-        <strong>Your posts</strong> 10+
-      </button>
       &nbsp;
-      <a class="link" (click)="editPasswordModal = 1">change password</a>
+      <div style="display: block;">
+        <button
+          class="btn btn-sm btn-outline-warning"
+          routerLink="/user-post"
+          *ngIf="!foreignUser"
+        >
+          <strong>Your posts</strong> 10+
+        </button>
+        &nbsp;
+        <a class="link" (click)="editPasswordModal = 1" *ngIf="!foreignUser"
+          >change password</a
+        >
+      </div>
     </div>
   </div>
   <div
@@ -195,7 +207,7 @@
   <br />
   <div class="container">
     <h4>
-      <p>Your Bio &nbsp;<i class="fas fa-pen"></i></p>
+      <p>About &nbsp;<i class="fas fa-pen" *ngIf="!foreignUser"></i></p>
     </h4>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
