@@ -1,60 +1,62 @@
-.profile-info{
-              margin:20px;
-          }
-          .profile-info .col-md-9{
-            padding:20px;
-          }
-          .profile-info .col-md-3{
-            padding:20px;
-            text-align:center;
-          }
-          .profile-info .col-md-3 .img-fluid{
-            max-height: 200px;
-          }
-          .profile-info .row{
-            margin:auto;
-          }
-          .profile-info .col-md-9 .simple-link{
-            display: inline-block;
-          }
+.profile-info {
+  margin: 20px;
+}
+.profile-info .col-md-9 {
+  padding: 20px;
+}
+.profile-info .col-md-3 {
+  padding: 20px;
+  text-align: center;
+}
+.profile-info .col-md-3 .img-fluid {
+  max-height: 200px;
+}
+.profile-info .row {
+  margin: auto;
+}
+.profile-info .col-md-9 .simple-link {
+  display: inline-block;
+}
 
-         
-          #editProfile .modal-content{
-            background:#272727;
-          }
+#editProfile .modal-content {
+  background: #272727;
+}
 
-          #editProfile .modal-header{
-            border:none;
-          }
+#editProfile .modal-header {
+  border: none;
+}
 
-          #editProfile .modal-footer{
-            border:none;
-          }
+#editProfile .modal-footer {
+  border: none;
+}
 
-          #editProfile {
-            position:absolute;
-          }
-          
-          .modal.show{
-            display:block;
-          }
+#editProfile {
+  position: absolute;
+}
 
-          .form-control{
-            border:none;
-            background:#171714;
-            color:#a9aeb3;
-        }
-        .link{
-          cursor:pointer;
-          transition: all 0.3s ease;
-        }
-        .link:hover{
-          color:#f9a825
-        }
+.modal.show {
+  display: block;
+}
 
-        .user-simple-link {
-          color: #ffc107;
-        }
-        .user-simple-link:hover {
-          color: #ffc107;
-        }
+.form-control {
+  border: none;
+  background: #171714;
+  color: #a9aeb3;
+}
+.link {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.link:hover {
+  color: #f9a825;
+}
+
+.user-simple-link {
+  color: #ffc107;
+}
+.user-simple-link:hover {
+  color: #ffc107;
+}
+.post-card {
+  margin: 0px 20px 20px 20px;
+}
