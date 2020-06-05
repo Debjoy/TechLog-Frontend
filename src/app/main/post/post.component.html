@@ -41,31 +41,28 @@
       <strong>Edit this post </strong> <i class="fas fa-edit"></i>
     </button>
   </div>
+  
   <div class="bb-comment">
     <img src="assets/image/kamlesh.png" width="80px" height="80px" />
     <div class="post-card comment-input-box">
-      <div
+      <input type="text"
         class="comment-input"
-        contenteditable="true"
         placeholder="share your comment here!"
-      ></div>
-      <button class="btn btn-warning btn-sm" style="margin-top: 10px;">
+        [formControl]="commentText"
+        required>
+      <button [disabled]="commentText.invalid" class="btn btn-warning btn-sm" style="margin-top: 10px;" (click)="addComment()">
         Comment
       </button>
     </div>
   </div>
-  <div class="bb-comment">
+  <div class="bb-comment" *ngFor="let comment of comments?.reverse()">
     <img src="assets/image/kamlesh.png" width="80px" height="80px" />
     <div class="post-card">
-      <h5><a routerLink="/profile" class="simple-link">kammy_boy</a></h5>
-      <pre>
-Superb! really impressive single-core performance.
-Amazing value for ~$150 (if true).
-It even beats (multi-core score) i7-7700 non-K that goes for around ~$270
-Scores S:- 4844 M:- 15781</pre
+      <h5><a routerLink="/profile" class="simple-link">{{comment.username}}</a></h5>
+      <pre>{{comment.text}}</pre
       >
       <p style="opacity: 0.6; margin: 0; display: inline-block;">
-        12th July, 2019
+        {{comment.timestamp | date: "yyyy-MM-dd"}}
       </p>
       &nbsp;<button class="btn btn-xs btn-warning">
         <i class="fas fa-thumbs-up"></i>
@@ -73,22 +70,5 @@ Scores S:- 4844 M:- 15781</pre
       432 likes
     </div>
   </div>
-  <div class="bb-comment">
-    <img src="assets/image/kamlesh.png" width="80px" height="80px" />
-    <div class="post-card">
-      <h5>
-        <a routerLink="/profile" class="simple-link">kammy_boy_is_angy</a>
-      </h5>
-      <pre>
-What an ugly cpu, OMG! Ewww. I vomited in my mouth reading this post. I feel like I am ugly inside now that I have seen this stinky piece of metal.</pre
-      >
-      <p style="opacity: 0.6; margin: 0; display: inline-block;">
-        12th July, 2019
-      </p>
-      &nbsp;<button class="btn btn-xs btn-warning">
-        <i class="fas fa-thumbs-up"></i>
-      </button>
-      331 likes
-    </div>
-  </div>
+  
 </div>

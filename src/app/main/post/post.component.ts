@@ -3,6 +3,7 @@ import { ActivatedRoute } from "@angular/router";
 import { PostService } from "../post.service";
 import { CookieService } from "ngx-cookie-service";
 import { ToastrService } from "ngx-toastr";
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: "app-post",
@@ -12,10 +13,13 @@ import { ToastrService } from "ngx-toastr";
 export class PostComponent implements OnInit {
   id: any;
   postData: any;
+  comments: any
   cookieUsername: any;
   liked = 0;
   likeId: any;
   likesList: any;
+  commentText = new FormControl('',[Validators.required]);
+
   constructor(
     private route: ActivatedRoute,
     private postService: PostService,
@@ -45,6 +49,9 @@ export class PostComponent implements OnInit {
         }
       });
     });
+
+    this.postService.getCommentsByPostid(this.id).subscribe(res => this.comments=res );
+
   }
 
   like() {
@@ -89,6 +96,21 @@ export class PostComponent implements OnInit {
   removeFromLikedList(id_value: number) {
     this.likesList = this.likesList.filter((element) => {
       return element.id !== id_value;
+    });
+  }
+
+  addComment(){
+    let date = new Date();
+    let body = {
+      'username': this.cookieUsername,
+      'postid': this.id,
+      'timestamp': date.getTime(),
+      'text': this.commentText.value
+    }
+    console.log(body);
+    this.postService.addComment(body).subscribe(res => {
+      console.log('comment added');
+      this.postService.getCommentsByPostid(this.id).subscribe(res => this.comments=res );
     });
   }
 }

@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class PostService {
 
+  api_prefix = "https://techlog-backend.herokuapp.com/";
+
   constructor(private http: HttpClient) { }
 
   httpOptions = {
@@ -19,31 +21,31 @@ export class PostService {
  
   createPosts(body:any):Observable<any>
   {
-    return this.http.post("https://techlog-backend.herokuapp.com/posts/create",body,this.httpOptions);
+    return this.http.post(this.api_prefix + "posts/create",body,this.httpOptions);
   }
   getPostById(body:any):Observable<any>
   {
-    return this.http.get("https://techlog-backend.herokuapp.com/posts/getById?id="+body,this.httpOptions);
+    return this.http.get(this.api_prefix + "posts/getById?id="+body,this.httpOptions);
   }
 
   saveTextById(body:any):Observable<any>
   {
-    return this.http.post("https://techlog-backend.herokuapp.com/posts/updateTextById",body,this.httpOptions);
+    return this.http.post(this.api_prefix + "posts/updateTextById",body,this.httpOptions);
   }
 
   getAllByUsername(body:any):Observable<any>
   {
-    return this.http.get("https://techlog-backend.herokuapp.com/posts/getAllByUsername?username="+body,this.httpOptions);
+    return this.http.get(this.api_prefix + "posts/getAllByUsername?username="+body,this.httpOptions);
   }
 
   updateImageById(body:any):Observable<any>
   {
-    return this.http.post("https://techlog-backend.herokuapp.com/posts/updateImageById",body,this.httpOptions);
+    return this.http.post(this.api_prefix + "posts/updateImageById",body,this.httpOptions);
   }
 
   deletePostById(body:any):Observable<any>
   {
-    return this.http.post("https://techlog-backend.herokuapp.com/posts/deletePostById",body,{headers: new HttpHeaders({ 
+    return this.http.post(this.api_prefix + "posts/deletePostById",body,{headers: new HttpHeaders({ 
       'Content-Type': 'application/json',
       'authKey':'vbryg7aj@jh9gsd.AShgf%'
    }),
@@ -52,20 +54,28 @@ export class PostService {
 
   addLike(body:any):Observable<any>
   {
-    return this.http.post("https://techlog-backend.herokuapp.com/likes/add",body,this.httpOptions);
+    return this.http.post(this.api_prefix + "likes/add",body,this.httpOptions);
   }
   getLikeByPost(body:any):Observable<any>
   {
-    return this.http.get("https://techlog-backend.herokuapp.com/likes/getAllByPostid?postid="+body,this.httpOptions);
+    return this.http.get(this.api_prefix + "likes/getAllByPostid?postid="+body,this.httpOptions);
   }
 
   deleteLike(body:any):Observable<any>
   {
-    return this.http.post("https://techlog-backend.herokuapp.com/likes/deleteLikeById",body,{headers: new HttpHeaders({ 
+    return this.http.post(this.api_prefix + "likes/deleteLikeById",body,{headers: new HttpHeaders({ 
       'Content-Type': 'application/json',
       'authKey':'vbryg7aj@jh9gsd.AShgf%'
    }),
   responseType:'text'});
+  }
+
+  addComment(body: any): Observable<any>{
+    return this.http.post(this.api_prefix + "comments/add", body, this.httpOptions);
+  }
+
+  getCommentsByPostid(postid: any): Observable<any>{
+    return this.http.get(this.api_prefix + "comments/getAllByPostid?postid=" + postid, this.httpOptions);
   }
 
 }
