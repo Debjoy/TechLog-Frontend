@@ -218,7 +218,7 @@
   </div>
 </div>
 
-<div class="new-post">
+<div class="new-post" *ngIf="!foreignUser">
   <div class="post-card">
     <h4>Share an idea !</h4>
     <br />
@@ -234,6 +234,55 @@
     </button>
   </div>
 </div>
+
+<!-- loading posts of foreign user -->
+<div *ngFor="let post of postData?.reverse()">
+  <div class="post-card post">
+    <div class="container row">
+      <div class="col-md-4">
+        <img
+          src="{{
+            post.image != null && post.image != ''
+              ? post.image
+              : 'assets/no-image.png'
+          }}"
+          onError="this.src='assets/no-image.png'"
+          class="img-fluid img-responsive user-post-img"
+          alt="Responsive image"
+        />
+      </div>
+      <div class="col-md-5">
+        <div class="inner-content">
+          <h4 style="margin-bottom: 0.5rem;">
+            <a class="user-simple-link" routerLink="/post/{{ post.id }}">{{
+              post.title
+            }}</a>
+          </h4>
+          <p>
+            <span style="opacity: 0.6;">
+              posted on {{ post.timestamp | date: "yyyy-MM-dd h:mm a" }} </span> 
+          </p>
+          <p>
+            {{post.likes}}
+            <i class="fas fa-thumbs-up"></i>&nbsp; &nbsp; 1k
+            <i class="fas fa-comment"></i> &nbsp; &nbsp; 146
+            <i class="fas fa-share"></i>
+          </p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <button
+          class="btn btn-warning read-more btn-sm user-post-view"
+          routerLink="/post/{{ post.id }}"
+        >
+          View <i class="fas fa-glasses"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <br />
+</div>
+
 <div
   class="modal-backdrop show"
   *ngIf="editPasswordModal == 1 || editProfileModal == 1"

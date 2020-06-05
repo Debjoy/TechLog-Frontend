@@ -28,6 +28,10 @@ export class PostService {
     return this.http.get(this.api_prefix + "posts/getById?id="+body,this.httpOptions);
   }
 
+  getAllPosts(): Observable<any>{
+    return this.http.get(this.api_prefix + "posts/getAll", this.httpOptions);
+  }
+
   saveTextById(body:any):Observable<any>
   {
     return this.http.post(this.api_prefix + "posts/updateTextById",body,this.httpOptions);

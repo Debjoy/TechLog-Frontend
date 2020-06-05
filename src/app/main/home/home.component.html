@@ -25,84 +25,45 @@
     </h4>
   </div>
 
-  <div class="post-card post" routerLink="/post">
+  <div *ngFor="let post of posts?.reverse()" class="post-card post" routerLink="/post/{{post.id}}">
     <div class="container row">
       <div class="col-md-4">
         <img
-          src="https://www.itprotoday.com/sites/itprotoday.com/files/styles/article_featured_retina/public/ai-kishore%20kumar.jpg?itok=zEACWRA3"
+          src="{{
+            post.image != null && post.image != ''
+              ? post.image
+              : 'assets/no-image.png'
+          }}"
+          onError="this.src='assets/no-image.png'"
           class="img-fluid"
           alt="Responsive image"
         />
       </div>
       <div class="col-md-8 inner-content">
         <h4 style="margin-bottom: 0.5rem;">
-          <a class="simple-link">The AI Impact on Business</a>
+          <a class="simple-link" routerLink="/post/{{ post.id }}">{{post.title}}</a>
         </h4>
         <p>
-          Artificial intelligence has gone from the stuff of science fiction to
-          our everyday lives. Automation..
+          <span style="opacity: 0.6;"
+            >posted on {{ post.timestamp | date: "yyyy-MM-dd h:mm a" }} ~</span
+          ><a
+            routerLink="/profile/{{ post.username }}"
+            class="simple-link"
+            style="opacity: 1;"
+            >{{ post.username }}</a
+          >
         </p>
+        <div class="bb-post-text" [innerHTML]="post.text"></div>
         <p>
-          4k <i class="fas fa-thumbs-up"></i>&nbsp; &nbsp; 1k
+          {{post.likes}} <i class="fas fa-thumbs-up"></i>&nbsp; &nbsp; 1k
           <i class="fas fa-comment"></i> &nbsp; &nbsp; 146
           <i class="fas fa-share"></i>
         </p>
       </div>
     </div>
+    <br>
   </div>
-  <br />
-  <div class="post-card post" routerLink="/post">
-    <div class="container row">
-      <div class="col-md-4">
-        <img
-          src="https://images.hothardware.com/contentimages/newsitem/44807/content/Ryzen.jpg"
-          class="img-fluid"
-          alt="Responsive image"
-        />
-      </div>
-      <div class="col-md-8">
-        <h4 style="margin-bottom: 0.5rem;">
-          <a class="simple-link">AMD Ryzen 5 2500X Benchmarks</a>
-        </h4>
-        <p>
-          Right around two months ago, AMD rolled out its initial second
-          generation Ryzen processor lineup..
-        </p>
-        <p>
-          4k <i class="fas fa-thumbs-up"></i>&nbsp; &nbsp; 1k
-          <i class="fas fa-comment"></i> &nbsp; &nbsp; 146
-          <i class="fas fa-share"></i>
-        </p>
-      </div>
-    </div>
-  </div>
-  <br />
-  <div class="post-card post" routerLink="/post">
-    <div class="container row">
-      <div class="col-md-4">
-        <img
-          src="https://c.ndtvimg.com/2019-11/ubephfos_elon-musk-accidentally-breaks-tesla-cybertrucks-unbreakable-glass_625x300_22_November_19.jpg"
-          class="img-fluid"
-          alt="Responsive image"
-        />
-      </div>
-      <div class="col-md-8">
-        <h4 style="margin-bottom: 0.5rem;">
-          <a class="simple-link">A 'smashing' success?</a>
-        </h4>
-        <p>
-          It was a strange and yet somehow familiar scene. Awkward Elon standing
-          in front of his followers, ..
-        </p>
-        <p>
-          4k <i class="fas fa-thumbs-up"></i>&nbsp; &nbsp; 1k
-          <i class="fas fa-comment"></i> &nbsp; &nbsp; 146
-          <i class="fas fa-share"></i>
-        </p>
-      </div>
-    </div>
-  </div>
-  <br />
+  
   <p class="load-more-posts lead">
     <a class="simple-link" href="#">load more</a>
   </p>

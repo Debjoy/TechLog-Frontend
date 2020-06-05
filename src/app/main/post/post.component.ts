@@ -107,9 +107,7 @@ export class PostComponent implements OnInit {
       'timestamp': date.getTime(),
       'text': this.commentText.value
     }
-    console.log(body);
     this.postService.addComment(body).subscribe(res => {
-      console.log('comment added');
       this.postService.getCommentsByPostid(this.id).subscribe(res => this.comments=res );
     });
   }

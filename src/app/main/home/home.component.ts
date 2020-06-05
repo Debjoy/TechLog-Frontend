@@ -12,9 +12,13 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
 
   constructor(private loginService: LoginService,private router:Router,private cookieService: CookieService,private postService:PostService) { }
+
   title:any;
+  posts: any;
+
   ngOnInit() {
     //this.getResult();
+    this.postService.getAllPosts().subscribe(res => this.posts=res);
   }
 
   getResult() {

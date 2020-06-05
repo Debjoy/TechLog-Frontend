@@ -3,7 +3,7 @@
     <h3>{{ postData.title }} <i class="far fa-star"></i></h3>
     <p>
       <span style="opacity: 0.6;"
-        >posted on {{ postData.timestamp | date: "yyyy-MM-dd" }} ~</span
+        >posted on {{ postData.timestamp | date: "yyyy-MM-dd h:mm a" }} ~</span
       ><a
         routerLink="/profile/{{ postData.username }}"
         class="simple-link"
@@ -16,7 +16,12 @@
     <div class="post-card">
       <div class="bb-post-image">
         <img
-          src="{{ postData.image }}"
+          src="{{
+            postData.image != null && postData.image != ''
+              ? postData.image
+              : 'assets/no-image.png'
+          }}"
+          onError="this.src='assets/no-image.png'"
           class="img-fluid"
           alt="Responsive image"
           style="margin: auto;"
@@ -62,7 +67,7 @@
       <pre>{{comment.text}}</pre
       >
       <p style="opacity: 0.6; margin: 0; display: inline-block;">
-        {{comment.timestamp | date: "yyyy-MM-dd"}}
+        {{comment.timestamp | date: "yyyy-MM-dd h:mm a"}}
       </p>
       &nbsp;<button class="btn btn-xs btn-warning">
         <i class="fas fa-thumbs-up"></i>

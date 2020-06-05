@@ -38,6 +38,7 @@ export class ProfileComponent implements OnInit {
   cookieUserName: any;
   foreignUser = true;
   loadUser: any;
+  postData: any;
   ngOnInit() {
     //this.getResult();
     this.cookieUserName = this.cookieService.get("user");
@@ -51,6 +52,11 @@ export class ProfileComponent implements OnInit {
         } else {
           this.loadUser = paramUser;
           this.foreignUser = true;
+          //load foreign user's post
+          this.postService.getAllByUsername(this.loadUser)
+          .subscribe(
+            res=>{this.postData=res;}
+          )
         }
       } else {
         console.log("inside");

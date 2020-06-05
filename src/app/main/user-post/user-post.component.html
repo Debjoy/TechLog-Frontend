@@ -27,9 +27,13 @@
                 post.title
               }}</a>
             </h4>
-
             <p>
-              4k <i class="fas fa-thumbs-up"></i>&nbsp; &nbsp; 1k
+              <span style="opacity: 0.6;">
+                posted on {{ post.timestamp | date: "yyyy-MM-dd h:mm a" }} </span> 
+            </p>
+            <p>
+              {{post.likes}}
+              <i class="fas fa-thumbs-up"></i>&nbsp; &nbsp; 1k
               <i class="fas fa-comment"></i> &nbsp; &nbsp; 146
               <i class="fas fa-share"></i>
             </p>

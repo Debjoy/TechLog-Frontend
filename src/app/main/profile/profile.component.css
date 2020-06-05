@@ -51,3 +51,10 @@
         .link:hover{
           color:#f9a825
         }
+
+        .user-simple-link {
+          color: #ffc107;
+        }
+        .user-simple-link:hover {
+          color: #ffc107;
+        }
