@@ -1,11 +1,14 @@
 <div class="side-user">
-  <a routerLink="/"
+  <a
+    routerLink="/"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }"
     ><h4><i class="fas fa-home"></i> &nbsp;Home</h4></a
   >
-  <a routerLink="/profile"
+  <a routerLink="/profile" routerLinkActive="active-link"
     ><h4><i class="fas fa-user"></i> &nbsp;Profile</h4></a
   >
-  <a routerLink="/user-post"
+  <a routerLink="/user-post" routerLinkActive="active-link"
     ><h4><i class="far fa-list-alt"></i> &nbsp;Your Posts</h4></a
   >
   <a (click)="onLogout()"
