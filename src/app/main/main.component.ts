@@ -13,7 +13,8 @@ import { ToastrService } from "ngx-toastr";
 export class MainComponent implements OnInit {
   private cookieToken: any;
   private cookieUsername: any;
-  private search_expand = false;
+  search_expand = false;
+  openned = false;
 
   constructor(
     private cookieService: CookieService,

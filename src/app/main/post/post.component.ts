@@ -108,6 +108,7 @@ export class PostComponent implements OnInit {
       'text': this.commentText.value
     }
     this.postService.addComment(body).subscribe(res => {
+      this.commentText.reset();
       this.postService.getCommentsByPostid(this.id).subscribe(res => this.comments=res );
     });
   }

@@ -14,6 +14,7 @@ export class EditpostComponent implements OnInit {
 postDetails:any;
 editTitleModal=0;
 editPicModal=0;
+deletePostModal=0
 id:any;
 form1:any;
 form2:any;
