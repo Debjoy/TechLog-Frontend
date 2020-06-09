@@ -63,3 +63,71 @@
 .post-card {
   margin: 0px 20px 20px 20px;
 }
+
+.profile-img {
+  border-radius: 160px;
+}
+.view-overlay {
+  position: relative;
+  display: inline-block;
+}
+
+.view-overlay .img-overlay {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  display: grid;
+  place-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(31, 31, 29, 0.5);
+  opacity: 0;
+  transition: all ease 0.3s;
+}
+.view-overlay:hover .img-overlay {
+  opacity: 1;
+}
+.picker-body {
+  max-height: 65vh;
+  overflow-y: auto;
+  text-align: center;
+}
+.picker-element-body {
+  display: inline-block;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  position: relative;
+}
+.picker-img {
+  max-width: 100px;
+  border-radius: 50px;
+  transition: opacity 0.3s;
+}
+.picker-img:hover {
+  opacity: 0.3;
+  cursor: pointer;
+}
+
+.selected .picker-img {
+  opacity: 0.3;
+}
+.selected.picker-element-body {
+  border: 5px solid white;
+  border-radius: 70px;
+}
+.ticked {
+  display: none;
+}
+.selected .ticked {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  font-size: 2rem;
+}
+.selected .picker-img {
+  max-width: 90px;
+}

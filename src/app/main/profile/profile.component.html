@@ -1,11 +1,18 @@
 <div class="profile-info">
   <div class="container row">
     <div class="col-md-3">
-      <img
-        src="assets/image/kamlesh.png"
-        class="img-fluid"
-        alt="Responsive image"
-      />
+      <div class="view-overlay">
+        <img
+          src="assets/image/{{ userImg }}"
+          class="img-fluid profile-img"
+          alt="Responsive image"
+        />
+        <div class="img-overlay" *ngIf="!foreignUser">
+          <button class="btn btn-light" (click)="openImagePickerModal()">
+            <i class="fas fa-pen"></i>
+          </button>
+        </div>
+      </div>
     </div>
     <div
       [ngClass]="{ 'spinner-grow text-warning spinner-grow-lg': !userDetails }"
@@ -204,6 +211,44 @@
     </div>
   </div>
 
+  <div class="modal" [ngClass]="{ show: editProfilePic == 1 }" id="editProfile">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Choose an Avatar</h4>
+          <button
+            type="button"
+            class="close"
+            (click)="editProfilePic = 0"
+            style="color: white;"
+          >
+            &times;
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <div class="picker-body">
+            <div
+              class="picker-element-body"
+              *ngFor="let avatar of allImg"
+              [ngClass]="{ selected: avatar == selectedImg }"
+              (click)="selectedImg = avatar"
+            >
+              <img src="assets/image/{{ avatar }}" class="picker-img" />
+              <div class="ticked"><i class="fas fa-check-circle"></i></div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-warning" (click)="saveImagePickerImg()">
+            Save <i class="fas fa-save"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <br />
   <div class="container">
     <h4>
@@ -283,5 +328,5 @@
 
 <div
   class="modal-backdrop show"
-  *ngIf="editPasswordModal == 1 || editProfileModal == 1"
+  *ngIf="editPasswordModal == 1 || editProfileModal == 1 || editProfilePic == 1"
 ></div>

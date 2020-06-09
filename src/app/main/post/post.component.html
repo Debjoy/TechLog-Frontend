@@ -46,28 +46,36 @@
       <strong>Edit this post </strong> <i class="fas fa-edit"></i>
     </button>
   </div>
-  
+
   <div class="bb-comment">
-    <img src="assets/image/kamlesh.png" width="80px" height="80px" />
+    <img src="assets/image/01.png" width="80px" height="80px" />
     <div class="post-card comment-input-box">
-      <input type="text"
+      <input
+        type="text"
         class="comment-input"
         placeholder="share your comment here!"
         [formControl]="commentText"
-        required>
-      <button [disabled]="commentText.invalid" class="btn btn-warning btn-sm" style="margin-top: 10px;" (click)="addComment()">
+        required
+      />
+      <button
+        [disabled]="commentText.invalid"
+        class="btn btn-warning btn-sm"
+        style="margin-top: 10px;"
+        (click)="addComment()"
+      >
         Comment
       </button>
     </div>
   </div>
   <div class="bb-comment" *ngFor="let comment of comments?.reverse()">
-    <img src="assets/image/kamlesh.png" width="80px" height="80px" />
+    <img src="assets/image/01.png" width="80px" height="80px" />
     <div class="post-card">
-      <h5><a routerLink="/profile" class="simple-link">{{comment.username}}</a></h5>
-      <pre>{{comment.text}}</pre
-      >
+      <h5>
+        <a routerLink="/profile" class="simple-link">{{ comment.username }}</a>
+      </h5>
+      <pre>{{ comment.text }}</pre>
       <p style="opacity: 0.6; margin: 0; display: inline-block;">
-        {{comment.timestamp | date: "yyyy-MM-dd h:mm a"}}
+        {{ comment.timestamp | date: "yyyy-MM-dd h:mm a" }}
       </p>
       &nbsp;<button class="btn btn-xs btn-warning">
         <i class="fas fa-thumbs-up"></i>
@@ -75,5 +83,4 @@
       432 likes
     </div>
   </div>
-  
 </div>
