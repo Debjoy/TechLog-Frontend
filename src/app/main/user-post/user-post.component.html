@@ -1,9 +1,11 @@
 <div class="your-post-title">
   <h3>Your Posts</h3>
-  <p>You have published 14 posts and contributed in 26 posts</p>
+  <p>You have published {{ postData?.length }} posts.</p>
 </div>
 <div class="top-posts" *ngIf="postData">
-  <h5>Posts <span class="badge badge-warning">14</span></h5>
+  <h5>
+    Posts <span class="badge badge-warning">{{ postData?.length }}</span>
+  </h5>
 
   <div *ngFor="let post of postData?.reverse()">
     <div class="post-card post">
@@ -23,16 +25,17 @@
         <div class="col-md-5">
           <div class="inner-content">
             <h4 style="margin-bottom: 0.5rem;">
-              <a class="user-simple-link" routerLink="/post/{{ post.id }}">{{
+              <a class="simple-link" routerLink="/post/{{ post.id }}">{{
                 post.title
               }}</a>
             </h4>
             <p>
               <span style="opacity: 0.6;">
-                posted on {{ post.timestamp | date: "yyyy-MM-dd h:mm a" }} </span> 
+                posted on {{ post.timestamp | date: "yyyy-MM-dd h:mm a" }}
+              </span>
             </p>
             <p>
-              {{post.likes}}
+              {{ post.likes }}
               <i class="fas fa-thumbs-up"></i>&nbsp; &nbsp; 1k
               <i class="fas fa-comment"></i> &nbsp; &nbsp; 146
               <i class="fas fa-share"></i>

@@ -30,8 +30,11 @@
   border: none;
 }
 
-#editProfile {
-  position: absolute;
+#editProfile.show {
+  display: flex;
+}
+#editProfile .modal-dialog {
+  margin: auto;
 }
 
 .modal.show {

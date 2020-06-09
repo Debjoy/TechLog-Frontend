@@ -15,7 +15,9 @@
   </div>
 </div>
 <div class="top-posts">
-  <h5>Recent posts <span class="badge badge-warning">25</span></h5>
+  <h5>
+    Recent posts <span class="badge badge-warning">{{ posts?.length }}</span>
+  </h5>
   <div class="post-filters">
     <h4>
       <span class="badge badge-dark">#all</span
@@ -25,7 +27,10 @@
     </h4>
   </div>
   <div *ngFor="let post of posts?.reverse()">
-    <div class="post-card post" routerLink="/post/{{ post.id }}">
+    <div
+      class="post-card post post-selectable"
+      routerLink="/post/{{ post.id }}"
+    >
       <div class="container row">
         <div class="col-md-4">
           <img
@@ -56,7 +61,10 @@
               >{{ post.username }}</a
             >
           </p>
-          <!-- <div class="bb-post-text" [innerHTML]="post.text"></div> -->
+          <div class="post-content">
+            <div class="bb-post-text" [innerHTML]="post.text"></div>
+            <div class="overlay"></div>
+          </div>
           <p>
             {{ post.likes }} <i class="fas fa-thumbs-up"></i>&nbsp; &nbsp; 1k
             <i class="fas fa-comment"></i> &nbsp; &nbsp; 146
@@ -68,7 +76,7 @@
     <br />
   </div>
 
-  <p class="load-more-posts lead">
+  <!-- <p class="load-more-posts lead">
     <a class="simple-link" href="#">load more</a>
-  </p>
+  </p> -->
 </div>

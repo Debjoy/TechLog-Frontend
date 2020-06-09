@@ -142,9 +142,11 @@ h4 {
   color: #f9a825;
   text-decoration: none;
 }
-.post:hover .simple-link {
-  color: #f9a825;
-  text-decoration: none;
+.post-selectable {
+  transition: all ease 0.3s;
+}
+.post-selectable:hover {
+  box-shadow: 0px 0px 10px #444;
 }
 .post:hover {
   cursor: pointer;

@@ -16,8 +16,11 @@
   border: none;
 }
 
-#editTitle {
-  position: absolute;
+#editTitle.show {
+  display: flex;
+}
+#editTitle .modal-dialog {
+  margin: auto;
 }
 .quil-background {
   background: white;

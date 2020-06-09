@@ -33,7 +33,7 @@
           routerLink="/user-post"
           *ngIf="!foreignUser"
         >
-          <strong>Your posts</strong> 10+
+          <strong>Your posts</strong>
         </button>
         &nbsp;
         <a class="link" (click)="editPasswordModal = 1" *ngIf="!foreignUser"
@@ -237,7 +237,7 @@
 
 <!-- loading posts of foreign user -->
 <div *ngFor="let post of postData?.reverse()">
-  <div class="post-card post">
+  <div class="post-card post post-selectable" routerLink="/post/{{ post.id }}">
     <div class="container row">
       <div class="col-md-4">
         <img
@@ -254,9 +254,7 @@
       <div class="col-md-5">
         <div class="inner-content">
           <h4 style="margin-bottom: 0.5rem;">
-            <a class="user-simple-link" routerLink="/post/{{ post.id }}">{{
-              post.title
-            }}</a>
+            <a class="simple-link">{{ post.title }}</a>
           </h4>
           <p>
             <span style="opacity: 0.6;">
