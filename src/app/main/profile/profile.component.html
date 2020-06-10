@@ -1,6 +1,6 @@
 <div class="profile-info">
   <div class="container row">
-    <div class="col-md-3">
+    <div class="col-md-3" *ngIf="userDetails">
       <div class="view-overlay">
         <img
           src="assets/image/{{ userImg }}"
@@ -15,8 +15,9 @@
       </div>
     </div>
     <div
+      *ngIf="!userDetails"
       [ngClass]="{ 'spinner-grow text-warning spinner-grow-lg': !userDetails }"
-      style="align-self: center;"
+      style="align-self: center; margin: 80px;"
     ></div>
     <div class="col-md-9" *ngIf="userDetails">
       <h3>
