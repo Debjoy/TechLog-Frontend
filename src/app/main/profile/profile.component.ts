@@ -162,6 +162,11 @@ export class ProfileComponent implements OnInit {
             return;
           }
           this.userDetails = res[0];
+
+          // setting user image
+          this.userImg = (this.userDetails.image!= null)? this.userDetails.image: this.allImg[0];
+          this.selectedImg = this.userImg;
+
           this.form1 = new FormGroup({
             rname: new FormControl(this.userDetails.name, [
               Validators.required,
@@ -270,9 +275,23 @@ export class ProfileComponent implements OnInit {
     this.editProfilePic = 1;
   }
   saveImagePickerImg() {
-    console.log(this.selectedImg);
+    // console.log(this.selectedImg);
 
-    //after transation is over
+    let body = {
+      email : this.userDetails.email,
+      image : this.selectedImg
+    }
+
+    this.loginService.updateUserImageByEmail(body).subscribe(res => {
+      // load the new image
+      this.userImg = this.selectedImg;
+      this.editProfilePic = 0;
+      this.toastr.success("Profile picture updated", "Awesome!", {
+        positionClass: "toast-top-center",
+      });
+    }, error => {
+      console.log("some error occured");
+    });
 
     /*this.editProfilePic = 1;*/
   }

@@ -48,7 +48,7 @@
   </div>
 
   <div class="bb-comment">
-    <img src="assets/image/01.png" width="80px" height="80px" />
+    <img src="assets/image/{{currentUserImg}}" width="80px" height="80px" />
     <div class="post-card comment-input-box">
       <input
         type="text"
@@ -68,7 +68,7 @@
     </div>
   </div>
   <div class="bb-comment" *ngFor="let comment of comments?.reverse()">
-    <img src="assets/image/01.png" width="80px" height="80px" />
+    <img src="assets/image/{{ (comment.userimage == null)? '01.png': comment.userimage }}" width="80px" height="80px" />
     <div class="post-card">
       <h5>
         <a routerLink="/profile" class="simple-link">{{ comment.username }}</a>

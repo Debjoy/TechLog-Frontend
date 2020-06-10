@@ -15,6 +15,8 @@ export class LoginService {
     }),
   };
 
+  api_prefix = "https://techlog-backend.herokuapp.com/";
+
   private getUrl = "http://techlog-backend.herokuapp.com/users/get";
   private postUrl = "https://techlog-backend.herokuapp.com/users/add";
 
@@ -32,7 +34,7 @@ export class LoginService {
   //usage - login
   existsByEmailAndPassword(body: any): Observable<any> {
     return this.http.post(
-      "https://techlog-backend.herokuapp.com/users/existsByEmailAndPassword",
+      this.api_prefix + "users/existsByEmailAndPassword",
       body,
       this.httpOptions
     );
@@ -40,7 +42,7 @@ export class LoginService {
 
   existsByUsernameAndToken(body: any): Observable<any> {
     return this.http.post(
-      "https://techlog-backend.herokuapp.com/users/existsByUsernameAndToken",
+      this.api_prefix + "users/existsByUsernameAndToken",
       body,
       this.httpOptions
     );
@@ -49,7 +51,7 @@ export class LoginService {
   //demo api call local stub for checking if username exists in database
   findByUsername(_username: string): Observable<any> {
     return this.http.get(
-      "https://techlog-backend.herokuapp.com/users/findByUsername?username=" +
+      this.api_prefix + "users/findByUsername?username=" +
         _username,
       this.httpOptions
     );
@@ -58,14 +60,14 @@ export class LoginService {
   //demo api call local stub for checking if email id exists in database
   checkEmailExists(_email_id: string): Observable<any> {
     return this.http.get(
-      "https://techlog-backend.herokuapp.com/users/existsByEmail/" + _email_id,
+      this.api_prefix + "users/existsByEmail/" + _email_id,
       this.httpOptions
     ); //for testing local stub
   }
 
   updateNameByEmail(body: any): Observable<any> {
     return this.http.post(
-      "http://techlog-backend.herokuapp.com/users/updateNameByEmail",
+      this.api_prefix + "users/updateNameByEmail",
       body,
       this.httpOptions
     );
@@ -73,7 +75,7 @@ export class LoginService {
 
   updateUserNameByEmail(body: any): Observable<any> {
     return this.http.post(
-      "http://techlog-backend.herokuapp.com/users/updateUsernameByEmail",
+      this.api_prefix + "users/updateUsernameByEmail",
       body,
       this.httpOptions
     );
@@ -81,9 +83,17 @@ export class LoginService {
 
   updatePasswordByEmail(body: any): Observable<any> {
     return this.http.post(
-      "http://techlog-backend.herokuapp.com/users/updatePasswordByEmail",
+      this.api_prefix + "users/updatePasswordByEmail",
       body,
       this.httpOptions
     );
+  }
+
+  updateUserImageByEmail(body: any): Observable<any>{
+    return this.http.post(this.api_prefix + "users/updateUserImageByEmail", body, this.httpOptions);
+  }
+
+  getImageByUsername(username: any): Observable<any>{
+    return this.http.get(this.api_prefix + "users/getImageByUsername?username=" + username, this.httpOptions);
   }
 }

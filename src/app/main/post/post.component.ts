@@ -4,6 +4,7 @@ import { PostService } from "../post.service";
 import { CookieService } from "ngx-cookie-service";
 import { ToastrService } from "ngx-toastr";
 import { FormControl, Validators } from '@angular/forms';
+import { LoginService } from 'src/app/login.service';
 
 @Component({
   selector: "app-post",
@@ -19,12 +20,14 @@ export class PostComponent implements OnInit {
   likeId: any;
   likesList: any;
   commentText = new FormControl('',[Validators.required]);
+  currentUserImg = "01.png"
 
   constructor(
     private route: ActivatedRoute,
     private postService: PostService,
     private cookieService: CookieService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private loginService: LoginService
   ) {}
 
   ngOnInit() {
@@ -38,6 +41,11 @@ export class PostComponent implements OnInit {
     });
     this.cookieUsername = this.cookieService.get("user");
 
+    // get the image of current user
+    this.loginService.getImageByUsername(this.cookieUsername).subscribe(res => {
+      this.currentUserImg = (res.image != null)? res.image: "01.png" ;
+    });
+
     this.postService.getLikeByPost(this.id).subscribe((res) => {
       console.log(res);
       this.likesList = res;
@@ -50,7 +58,9 @@ export class PostComponent implements OnInit {
       });
     });
 
-    this.postService.getCommentsByPostid(this.id).subscribe(res => this.comments=res );
+    this.postService.getCommentsByPostid(this.id).subscribe(res => {
+      this.comments=res;
+    });
 
   }
 
@@ -103,6 +113,7 @@ export class PostComponent implements OnInit {
     let date = new Date();
     let body = {
       'username': this.cookieUsername,
+      'userimage': this.currentUserImg,
       'postid': this.id,
       'timestamp': date.getTime(),
       'text': this.commentText.value
