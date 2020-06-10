@@ -256,10 +256,7 @@
       <p>About &nbsp;<i class="fas fa-pen" *ngIf="!foreignUser"></i></p>
     </h4>
     <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat.
+      {{ (userDetails.about==null)? 'Hi, I am a human being! This is about me, but I am too lazy to update it.' : userDetails.about }}
     </p>
   </div>
 </div>
@@ -309,7 +306,8 @@
           </p>
           <p>
             {{ post.likes }}
-            <i class="fas fa-thumbs-up"></i>&nbsp; &nbsp; 1k
+            <i class="fas fa-thumbs-up"></i>&nbsp; &nbsp;
+            {{ post.comments }}
             <i class="fas fa-comment"></i> &nbsp; &nbsp; 146
             <i class="fas fa-share"></i>
           </p>

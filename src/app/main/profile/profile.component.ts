@@ -248,6 +248,7 @@ export class ProfileComponent implements OnInit {
     let post = {
       image: "",
       likes: 0,
+      comments: 0,
       text: "",
       timestamp: new Date().getTime(),
       title: this.title,
