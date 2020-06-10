@@ -90,3 +90,32 @@
   color: #ffc107;
   transform: scale(1.1);
 }
+.delete-icon {
+  color: #dc3545;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.delete-icon:hover {
+  color: #ff5263;
+}
+.modal.show {
+  display: block;
+}
+
+#editTitle .modal-content {
+  background: #272727;
+}
+
+#editTitle .modal-header {
+  border: none;
+}
+
+#editTitle.show {
+  display: flex;
+}
+#editTitle .modal-dialog {
+  margin: auto;
+}
+.modal-footer {
+  border: none;
+}

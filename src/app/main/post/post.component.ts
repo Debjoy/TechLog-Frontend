@@ -3,8 +3,8 @@ import { ActivatedRoute } from "@angular/router";
 import { PostService } from "../post.service";
 import { CookieService } from "ngx-cookie-service";
 import { ToastrService } from "ngx-toastr";
-import { FormControl, Validators } from '@angular/forms';
-import { LoginService } from 'src/app/login.service';
+import { FormControl, Validators } from "@angular/forms";
+import { LoginService } from "src/app/login.service";
 
 @Component({
   selector: "app-post",
@@ -14,13 +14,15 @@ import { LoginService } from 'src/app/login.service';
 export class PostComponent implements OnInit {
   id: any;
   postData: any;
-  comments: any
+  comments: any;
+  deleteCommentId: any;
   cookieUsername: any;
   liked = 0;
   likeId: any;
   likesList: any;
-  commentText = new FormControl('',[Validators.required]);
-  currentUserImg = "01.png"
+  commentText = new FormControl("", [Validators.required]);
+  currentUserImg = "01.png";
+  deleteCommentModal = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,16 +37,17 @@ export class PostComponent implements OnInit {
       this.id = param.get("id");
       this.postService.getPostById(this.id).subscribe((res) => {
         this.postData = res;
-        console.log(this.postData);
         this.postData.text = unescape(this.postData.text);
       });
     });
     this.cookieUsername = this.cookieService.get("user");
 
     // get the image of current user
-    this.loginService.getImageByUsername(this.cookieUsername).subscribe(res => {
-      this.currentUserImg = (res.image != null)? res.image: "01.png" ;
-    });
+    this.loginService
+      .getImageByUsername(this.cookieUsername)
+      .subscribe((res) => {
+        this.currentUserImg = res.image != null ? res.image : "01.png";
+      });
 
     this.postService.getLikeByPost(this.id).subscribe((res) => {
       console.log(res);
@@ -58,10 +61,9 @@ export class PostComponent implements OnInit {
       });
     });
 
-    this.postService.getCommentsByPostid(this.id).subscribe(res => {
-      this.comments=res;
+    this.postService.getCommentsByPostid(this.id).subscribe((res) => {
+      this.comments = res;
     });
-
   }
 
   like() {
@@ -109,18 +111,44 @@ export class PostComponent implements OnInit {
     });
   }
 
-  addComment(){
+  addComment() {
     let date = new Date();
     let body = {
-      'username': this.cookieUsername,
-      'userimage': this.currentUserImg,
-      'postid': this.id,
-      'timestamp': date.getTime(),
-      'text': this.commentText.value
-    }
-    this.postService.addComment(body).subscribe(res => {
+      username: this.cookieUsername,
+      userimage: this.currentUserImg,
+      postid: this.id,
+      timestamp: date.getTime(),
+      text: this.commentText.value,
+    };
+    this.postService.addComment(body).subscribe((res) => {
       this.commentText.reset();
-      this.postService.getCommentsByPostid(this.id).subscribe(res => this.comments=res );
+      this.postService
+        .getCommentsByPostid(this.id)
+        .subscribe((res) => (this.comments = res));
+    });
+  }
+
+  openDeleteModal() {
+    this.deleteCommentModal = 1;
+  }
+
+  deleteComment() {
+    let data = {
+      id: this.deleteCommentId,
+    };
+    this.postService.deleteComment(data).subscribe((res) => {
+      if (res == "Comment removed") {
+        this.toastr.info("Comment Removed", "Removed", {
+          positionClass: "toast-top-right",
+        });
+        this.removeFromCommentList(data.id);
+      }
+      this.deleteCommentModal = 0;
+    });
+  }
+  removeFromCommentList(id_value: number) {
+    this.comments = this.comments.filter((element) => {
+      return element.id !== id_value;
     });
   }
 }

@@ -148,3 +148,11 @@
   background-color: #171717;
   cursor: pointer;
 }
+.edit-about {
+  color: white;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.edit-about:hover {
+  color: #ffc107;
+}

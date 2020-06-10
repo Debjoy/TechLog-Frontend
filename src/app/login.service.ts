@@ -51,8 +51,7 @@ export class LoginService {
   //demo api call local stub for checking if username exists in database
   findByUsername(_username: string): Observable<any> {
     return this.http.get(
-      this.api_prefix + "users/findByUsername?username=" +
-        _username,
+      this.api_prefix + "users/findByUsername?username=" + _username,
       this.httpOptions
     );
   }
@@ -89,11 +88,26 @@ export class LoginService {
     );
   }
 
-  updateUserImageByEmail(body: any): Observable<any>{
-    return this.http.post(this.api_prefix + "users/updateUserImageByEmail", body, this.httpOptions);
+  updateUserImageByEmail(body: any): Observable<any> {
+    return this.http.post(
+      this.api_prefix + "users/updateUserImageByEmail",
+      body,
+      this.httpOptions
+    );
   }
 
-  getImageByUsername(username: any): Observable<any>{
-    return this.http.get(this.api_prefix + "users/getImageByUsername?username=" + username, this.httpOptions);
+  getImageByUsername(username: any): Observable<any> {
+    return this.http.get(
+      this.api_prefix + "users/getImageByUsername?username=" + username,
+      this.httpOptions
+    );
+  }
+
+  updateAboutByEmail(body: any): Observable<any> {
+    return this.http.post(
+      this.api_prefix + "users/updateAboutByEmail",
+      body,
+      this.httpOptions
+    );
   }
 }

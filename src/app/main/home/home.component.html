@@ -5,7 +5,7 @@
     <h5 class="give-a-title">Give a title</h5>
     <input
       type="text"
-      [(ngModel)]="title"
+      [(ngModel)]="title_create"
       class="new-post-title"
       placeholder="eg. Snapdragon is bitchin!"
     />
@@ -14,7 +14,7 @@
     </button>
   </div>
 </div>
-<div class="top-posts">
+<div class="top-posts" *ngIf="posts">
   <h5>
     Recent posts <span class="badge badge-warning">{{ posts?.length }}</span>
   </h5>
@@ -26,7 +26,7 @@
       ><span class="badge badge-dark">#cloud</span>
     </h4>
   </div>
-  <div *ngFor="let post of posts?.reverse()">
+  <div *ngFor="let post of posts">
     <div
       class="post-card post post-selectable"
       routerLink="/post/{{ post.id }}"
@@ -80,4 +80,10 @@
   <!-- <p class="load-more-posts lead">
     <a class="simple-link" href="#">load more</a>
   </p> -->
+</div>
+<div *ngIf="!posts" style="width: 100%; text-align: center;">
+  <div
+    class="spinner-grow text-warning spinner-grow-lg"
+    style="align-self: center; margin: 80px;"
+  ></div>
 </div>

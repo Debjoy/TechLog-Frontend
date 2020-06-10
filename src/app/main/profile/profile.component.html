@@ -250,13 +250,82 @@
     </div>
   </div>
 
+  <!--Modal for About-->
+  <div
+    class="modal"
+    [ngClass]="{ show: editAboutModal == 1 }"
+    id="editProfile"
+    *ngIf="userDetails"
+  >
+    <div class="modal-dialog modal-md" style="width: 100%;">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Edit your about</h4>
+          <button
+            type="button"
+            class="close"
+            (click)="editAboutModal = 0"
+            style="color: white;"
+          >
+            &times;
+          </button>
+        </div>
+        <form [formGroup]="formAbout">
+          <div class="modal-body">
+            <textarea
+              class="form-control"
+              rows="5"
+              cols="10"
+              formControlName="rabout"
+              [ngClass]="{
+                'is-invalid':
+                  formAbout.get('rabout').touched &&
+                  formAbout.get('rabout').invalid
+              }"
+              id="edit-about"
+            ></textarea>
+            <div
+              class="invalid-feedback"
+              *ngIf="
+                formAbout.get('rabout').touched &&
+                formAbout.get('rabout').invalid
+              "
+            >
+              About can not be empty!
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              class="btn btn-warning"
+              [disabled]="formAbout.invalid"
+              (click)="updateAbout()"
+            >
+              Save <i class="fas fa-save"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <br />
-  <div class="container">
+  <div class="container" *ngIf="userDetails">
     <h4>
-      <p>About &nbsp;<i class="fas fa-pen" *ngIf="!foreignUser"></i></p>
+      <p>
+        About &nbsp;<i
+          class="fas fa-pen edit-about"
+          (click)="editAboutModal = 1"
+          *ngIf="!foreignUser"
+        ></i>
+      </p>
     </h4>
     <p>
-      {{ (userDetails.about==null)? 'Hi, I am a human being! This is about me, but I am too lazy to update it.' : userDetails.about }}
+      {{
+        !userDetails.about
+          ? "Hi, I am a human being! This is about me, but I am too lazy to update it."
+          : userDetails.about
+      }}
     </p>
   </div>
 </div>

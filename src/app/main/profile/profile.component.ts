@@ -17,6 +17,7 @@ export class ProfileComponent implements OnInit {
   editProfileModal = 0;
   editPasswordModal = 0;
   editProfilePic = 0;
+  editAboutModal = 0;
 
   editNameLoading = 0;
   editUsernameLoading = 0;
@@ -26,6 +27,7 @@ export class ProfileComponent implements OnInit {
   form1: any;
   form2: any;
   form3: any;
+  formAbout: any;
 
   selectedImg: string;
   userImg: string;
@@ -162,9 +164,12 @@ export class ProfileComponent implements OnInit {
             return;
           }
           this.userDetails = res[0];
-
+          console.log(this.userDetails);
           // setting user image
-          this.userImg = (this.userDetails.image!= null)? this.userDetails.image: this.allImg[0];
+          this.userImg =
+            this.userDetails.image != null
+              ? this.userDetails.image
+              : this.allImg[0];
           this.selectedImg = this.userImg;
 
           this.form1 = new FormGroup({
@@ -186,6 +191,11 @@ export class ProfileComponent implements OnInit {
             },
             this.pwdMatchValidator
           );
+          this.formAbout = new FormGroup({
+            rabout: new FormControl(this.userDetails.about, [
+              Validators.required,
+            ]),
+          });
         },
         (err) => console.error(err)
       );
@@ -244,6 +254,22 @@ export class ProfileComponent implements OnInit {
     );
   }
 
+  updateAbout() {
+    let data = {
+      about: this.formAbout.value.rabout,
+      email: this.userDetails.email,
+    };
+    this.loginService.updateAboutByEmail(data).subscribe((res) => {
+      if (res == 1) {
+        this.toastr.success("Abouts Updated", "Awesome!", {
+          positionClass: "toast-top-center",
+        });
+        this.userDetails.about = data.about;
+        this.editAboutModal = 0;
+      }
+    });
+  }
+
   createPost() {
     let post = {
       image: "",
@@ -279,20 +305,23 @@ export class ProfileComponent implements OnInit {
     // console.log(this.selectedImg);
 
     let body = {
-      email : this.userDetails.email,
-      image : this.selectedImg
-    }
+      email: this.userDetails.email,
+      image: this.selectedImg,
+    };
 
-    this.loginService.updateUserImageByEmail(body).subscribe(res => {
-      // load the new image
-      this.userImg = this.selectedImg;
-      this.editProfilePic = 0;
-      this.toastr.success("Profile picture updated", "Awesome!", {
-        positionClass: "toast-top-center",
-      });
-    }, error => {
-      console.log("some error occured");
-    });
+    this.loginService.updateUserImageByEmail(body).subscribe(
+      (res) => {
+        // load the new image
+        this.userImg = this.selectedImg;
+        this.editProfilePic = 0;
+        this.toastr.success("Profile picture updated", "Awesome!", {
+          positionClass: "toast-top-center",
+        });
+      },
+      (error) => {
+        console.log("some error occured");
+      }
+    );
 
     /*this.editProfilePic = 1;*/
   }
