@@ -27,17 +27,17 @@
       <div class="top-filler"></div>
       <!--SEARCH BAR starts-->
       <div class="search-box">
-        <input
-          type="text"
-          [ngClass]="{ expand: search_expand }"
-          placeholder="eg. Artificial"
-        /><button
-          class="btn btn-warning search-btn"
-          (click)="search_expand = !search_expand"
-        >
-          <i class="fas fa-search"></i>
-          <strong><span class="search-title">&nbsp;Search</span></strong>
-        </button>
+        <form>
+          <input
+            type="text"
+            #search_query
+            [ngClass]="{ expand: search_expand }"
+            placeholder="eg. Artificial"
+          /><button class="btn btn-warning search-btn" (click)="onSearch()">
+            <i class="fas fa-search"></i>
+            <strong><span class="search-title">&nbsp;Search</span></strong>
+          </button>
+        </form>
       </div>
       <div class="option-menu" (click)="openned = !openned">
         <i class="fas" [ngClass]="openned ? 'fa-times' : 'fa-ellipsis-h'"></i>

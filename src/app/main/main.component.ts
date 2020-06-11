@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { CookieService } from "ngx-cookie-service";
 import { Router } from "@angular/router";
 import { LoginService } from "../login.service";
@@ -15,6 +15,7 @@ export class MainComponent implements OnInit {
   private cookieUsername: any;
   search_expand = false;
   openned = false;
+  @ViewChild("search_query", { static: false }) searh_query: ElementRef;
 
   constructor(
     private cookieService: CookieService,
@@ -50,5 +51,14 @@ export class MainComponent implements OnInit {
         }
       });
     }
+  }
+
+  onSearch() {
+    if (window.innerWidth >= 494 || this.search_expand) {
+      let query = this.searh_query.nativeElement.value;
+      query = query.trim();
+      if (query.length > 0) this.router.navigate(["search", query]);
+    }
+    this.search_expand = !this.search_expand;
   }
 }

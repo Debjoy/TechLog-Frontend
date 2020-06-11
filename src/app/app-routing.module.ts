@@ -7,6 +7,7 @@ import { PostComponent } from "./main/post/post.component";
 import { MainComponent } from "./main/main.component";
 import { LoginComponent } from "./login/login.component";
 import { EditpostComponent } from "./main/editpost/editpost.component";
+import { SearchComponent } from "./main/search/search.component";
 
 const routes: Routes = [
   {
@@ -21,6 +22,8 @@ const routes: Routes = [
       { path: "edit", redirectTo: "" },
       { path: "post/:id", component: PostComponent },
       { path: "post", redirectTo: "" },
+      { path: "search/:q", component: SearchComponent },
+      { path: "search", redirectTo: "" },
       { path: "", component: HomeComponent },
     ],
   },

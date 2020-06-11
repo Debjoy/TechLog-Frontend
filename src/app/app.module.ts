@@ -18,6 +18,7 @@ import { LoginComponent } from './login/login.component';
 import { EditpostComponent } from './main/editpost/editpost.component';
 import { QuillModule } from 'ngx-quill';
 import { ToastrModule } from 'ngx-toastr';
+import { SearchComponent } from './main/search/search.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ToastrModule } from 'ngx-toastr';
     UserPostComponent,
     MainComponent,
     LoginComponent,
-    EditpostComponent
+    EditpostComponent,
+    SearchComponent
   ],
   imports: [
     HttpClientModule,

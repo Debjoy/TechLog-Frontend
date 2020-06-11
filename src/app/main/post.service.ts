@@ -123,8 +123,8 @@ export class PostService {
 
   getSearchResult(word: any): Observable<any> {
     return this.http.get(
-      this.api_prefix + "posts/search?=" + word,
+      this.api_prefix + "posts/search?word=" + word,
       this.httpOptions
-    )
+    );
   }
 }

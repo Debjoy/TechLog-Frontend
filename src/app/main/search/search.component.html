@@ -1,0 +1,76 @@
+<div class="search-body">
+  <div class="search-heading">
+    <h3>
+      Search Results
+      <span class="badge badge-warning search-length" *ngIf="postData">{{
+        postData.length
+      }}</span>
+    </h3>
+    <p *ngIf="query">You have searched : "{{ query }}"</p>
+  </div>
+  <div class="search-results">
+    <div *ngFor="let post of postData">
+      <div
+        class="post-card post post-selectable"
+        routerLink="/post/{{ post.id }}"
+      >
+        <div class="container row">
+          <div class="col-md-4">
+            <img
+              src="{{
+                post.image != null && post.image != ''
+                  ? post.image
+                  : 'assets/no-image.png'
+              }}"
+              onError="this.src='assets/no-image.png'"
+              class="img-fluid"
+              alt="Responsive image"
+            />
+          </div>
+          <div class="col-md-8 inner-content">
+            <h4 style="margin-bottom: 0.5rem;">
+              <a class="simple-link" routerLink="/post/{{ post.id }}">{{
+                post.title
+              }}</a>
+            </h4>
+            <p>
+              <span style="opacity: 0.6;"
+                >posted on
+                {{ post.timestamp | date: "yyyy-MM-dd h:mm a" }} ~</span
+              ><a
+                routerLink="/profile/{{ post.username }}"
+                class="simple-link"
+                style="opacity: 1;"
+                >{{ post.username }}</a
+              >
+            </p>
+            <div class="post-content">
+              <div class="bb-post-text" [innerHTML]="post.text"></div>
+              <div class="overlay"></div>
+            </div>
+            <p>
+              {{ post.likes }} <i class="fas fa-thumbs-up"></i>&nbsp; &nbsp;
+              {{ post.comments }}
+              <i class="fas fa-comment"></i> &nbsp; &nbsp; 146
+              <i class="fas fa-share"></i>
+            </p>
+          </div>
+        </div>
+      </div>
+      <br />
+    </div>
+
+    <div class="no-results" *ngIf="postData?.length == 0">
+      <div class="sad-results"><i class="fas fa-heart-broken"></i></div>
+      <h5>No matching post</h5>
+      <p>Unfortunately there are no post matching your search.</p>
+      <p>Try searching something else.</p>
+    </div>
+  </div>
+</div>
+<div *ngIf="!postData" style="width: 100%; text-align: center;">
+  <div
+    class="spinner-grow text-warning spinner-grow-lg"
+    style="align-self: center; margin: 80px;"
+  ></div>
+</div>
