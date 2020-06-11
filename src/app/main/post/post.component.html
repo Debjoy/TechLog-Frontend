@@ -45,6 +45,10 @@
     >
       <strong>Edit this post </strong> <i class="fas fa-edit"></i>
     </button>
+    &nbsp;
+    <button class="btn btn-sm btn-light" (click)="sharePostModal = 1">
+      <strong>Share </strong> <i class="fas fa-share"></i>
+    </button>
   </div>
 
   <div class="bb-comment">
@@ -98,6 +102,8 @@
     </div>
   </div>
 </div>
+
+<!--Modal for deleting comment-->
 <div
   class="modal"
   id="editTitle"
@@ -132,6 +138,88 @@
     </div>
   </div>
 </div>
+<!--Modal for sharing article-->
+<div
+  class="modal"
+  id="editTitle"
+  *ngIf="postData"
+  [ngClass]="{ show: sharePostModal == 1 }"
+>
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <!-- Modal header -->
+      <div class="modal-header">
+        <h4 class="modal-title">
+          Share This Post <i class="fas fa-share"></i>
+        </h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          (click)="sharePostModal = 0"
+          style="color: white;"
+        >
+          &times;
+        </button>
+      </div>
+
+      <!-- Modal body -->
+
+      <div class="modal-body" *ngIf="baseLocation">
+        <a
+          href="{{
+            'https://www.facebook.com/sharer/sharer.php?u=' +
+              baseLocation +
+              '/post/' +
+              id
+          }}"
+          target="_blank"
+          ><button class="social-media share-facebook">
+            <i class="fab fa-facebook"></i></button
+        ></a>
+        <a
+          href="{{
+            'https://pinterest.com/pin/create/button/?url=' +
+              baseLocation +
+              '/post/' +
+              id +
+              '&media=&description=Check out the article.
+            '
+          }}"
+          target="_blank"
+          ><button class="social-media share-pinterest">
+            <i class="fab fa-pinterest"></i></button
+        ></a>
+        <a
+          href="{{
+            'https://twitter.com/intent/tweet?text=Checkout this article. ' +
+              baseLocation +
+              '/post/' +
+              id
+          }}"
+          target="_blank"
+          ><button class="social-media share-twitter">
+            <i class="fab fa-twitter"></i></button
+        ></a>
+        <a
+          href="{{
+            'https://www.linkedin.com/shareArticle?mini=true&url=' +
+              baseLocation +
+              '/post/' +
+              id
+          }}"
+          target="_blank"
+          ><button class="social-media share-linkedin">
+            <i class="fab fa-linkedin-in"></i></button
+        ></a>
+        <a
+          ><button class="social-media" (click)="copyTextAreaToClipBoard()">
+            <i class="fas fa-copy"></i></button
+        ></a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div *ngIf="!postData" style="width: 100%; text-align: center;">
   <div
@@ -139,4 +227,7 @@
     style="align-self: center; margin: 80px;"
   ></div>
 </div>
-<div class="modal-backdrop show" *ngIf="deleteCommentModal == 1"></div>
+<div
+  class="modal-backdrop show"
+  *ngIf="deleteCommentModal == 1 || sharePostModal == 1"
+></div>

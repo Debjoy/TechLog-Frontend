@@ -56,6 +56,8 @@
   width: 100%;
   text-align: left;
   padding: 10px;
+  background-color: #171714;
+  color: white;
   border: none;
   border-bottom: 1px solid white;
   outline: none;
@@ -119,3 +121,52 @@
 .modal-footer {
   border: none;
 }
+.social-media {
+  background-color: #3a3a3a;
+  /* background: #1877f2; */
+  border: none;
+  border-radius: 30px;
+  padding: 10px 15px;
+  color: white;
+  margin: 0rem 1rem 1rem 0rem;
+  outline: none;
+}
+.social-media:hover {
+  background-color: #3a3a3a;
+  color: white;
+}
+.modal-title i {
+  font-size: 1.2rem;
+}
+.share-facebook {
+  background-color: #1877f2;
+  transition: all 0.3s ease;
+}
+/* .share-facebook:hover {
+  background-color: #3a3a3a;
+  color: #1877f2;
+} */
+.share-pinterest {
+  background-color: #e60023;
+  transition: all 0.3s ease;
+}
+/* .share-pinterest:hover {
+  background-color: #3a3a3a;
+  color: #e60023;
+} */
+.share-twitter {
+  background-color: #1da1f2;
+  transition: all 0.3s ease;
+}
+/* .share-twitter:hover {
+  background-color: #3a3a3a;
+  color: #1da1f2;
+} */
+.share-linkedin {
+  background-color: #0073b1;
+  transition: all 0.3s ease;
+}
+/* .share-linkedin:hover {
+  background-color: #3a3a3a;
+  color: #0073b1;
+} */

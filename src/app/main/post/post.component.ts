@@ -17,6 +17,7 @@ export class PostComponent implements OnInit {
   comments: any;
   deleteCommentId: any;
   cookieUsername: any;
+  baseLocation: any;
   liked = 0;
   likeId: any;
   likesList: any;
@@ -33,6 +34,7 @@ export class PostComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.baseLocation = window.location.origin;
     this.route.paramMap.subscribe((param) => {
       this.id = param.get("id");
       this.postService.getPostById(this.id).subscribe((res) => {
@@ -149,6 +151,19 @@ export class PostComponent implements OnInit {
   removeFromCommentList(id_value: number) {
     this.comments = this.comments.filter((element) => {
       return element.id !== id_value;
+    });
+  }
+  copyTextAreaToClipBoard() {
+    const cleanText =
+      "Checkout this article. \n" + this.baseLocation + "/post/" + this.id;
+    const x = document.createElement("TEXTAREA") as HTMLTextAreaElement;
+    x.value = cleanText;
+    document.body.appendChild(x);
+    x.select();
+    document.execCommand("copy");
+    document.body.removeChild(x);
+    this.toastr.info("Link Copied to Clipboard", "Copied", {
+      positionClass: "toast-top-right",
     });
   }
 }
