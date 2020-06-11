@@ -120,4 +120,11 @@ export class PostService {
       this.httpOptions
     );
   }
+
+  getSearchResult(word: any): Observable<any> {
+    return this.http.get(
+      this.api_prefix + "posts/search?=" + word,
+      this.httpOptions
+    )
+  }
 }
