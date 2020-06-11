@@ -53,3 +53,85 @@
     <router-outlet class="main"></router-outlet>
   </div>
 </div>
+
+<!--Modal for about of NavComponent-->
+<div
+  class="modal"
+  id="about"
+  [ngClass]="{ show: aboutModal == 1 }"
+>
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <!-- Modal header -->
+      <div class="modal-header">
+        <h4 class="modal-title">About</h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          (click)="aboutModal = 0"
+          style="color: white;"
+        >
+          &times;
+        </button>
+      </div>
+
+      <!-- Modal body -->
+
+      <div class="modal-body">
+        <p>Kichu ekta hobe 
+        </p>
+      </div>
+
+      <!-- <div class="modal-footer">
+        <button (click)="showAbout()" class="btn btn-danger">DELETE</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+<!--Modal for Terms of service of NavComponent-->
+<div
+  class="modal"
+  id="about"
+  [ngClass]="{ show: tosModal == 1 }"
+>
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <!-- Modal header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Terms of service</h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          (click)="tosModal = 0"
+          style="color: white;"
+        >
+          &times;
+        </button>
+      </div>
+
+      <!-- Modal body -->
+
+      <div class="modal-body">
+        <p>This a website has similar colour combination of a holy place. If you don't recognize the colours, I believe heaven is the right place for you.
+          Three developers tried to build this website with a motive which was never implemented. Every bug has been successfully turned into a feature.
+          In this website you can post anything once you are registered. Trust us, there is no checker for valid or invalid email.
+          The guy on the server didn't even put any security for password, its just string.
+          Your privacy is protected as long heroku (a free home for this site) permits.
+          There is no ads because no body actually visits this site unless told by the developers.
+        </p>
+      </div>
+
+      <!-- <div class="modal-footer">
+        <button (click)="showAbout()" class="btn btn-danger">DELETE</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal-backdrop show"
+  *ngIf="aboutModal == 1 || tosModal == 1"
+></div>

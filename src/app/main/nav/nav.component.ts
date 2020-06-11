@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import { MainComponent } from '../main.component';
 
 @Component({
   selector: 'app-nav',
@@ -9,7 +10,8 @@ import { Router } from '@angular/router';
 })
 export class NavComponent implements OnInit {
 
-  constructor(private cookieService: CookieService, private route: Router) { }
+
+  constructor(private cookieService: CookieService, private route: Router, private mainComp: MainComponent) { }
 
   ngOnInit() {
   }
@@ -17,6 +19,13 @@ export class NavComponent implements OnInit {
   onLogout(){
     this.cookieService.delete('token');
     this.route.navigate(['/login']);
+  }
+
+  showAbout(){
+    this.mainComp.showAboutMain();
+  }
+  showTOS(){
+    this.mainComp.showTOSMain();
   }
 
 }

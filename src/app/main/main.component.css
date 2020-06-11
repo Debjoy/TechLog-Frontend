@@ -99,3 +99,26 @@
     width: 140px;
   }
 }
+
+
+.modal.show {
+  display: block;
+}
+
+#about .modal-content {
+  background: #272727;
+}
+
+#about .modal-header {
+  border: none;
+}
+
+#about.show {
+  display: flex;
+}
+#about .modal-dialog {
+  margin: auto;
+}
+.modal-footer {
+  border: none;
+}

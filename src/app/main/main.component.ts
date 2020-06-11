@@ -15,6 +15,9 @@ export class MainComponent implements OnInit {
   private cookieUsername: any;
   search_expand = false;
   openned = false;
+  aboutModal = 0;
+  tosModal = 0
+  
   @ViewChild("search_query", { static: false }) searh_query: ElementRef;
 
   constructor(
@@ -60,5 +63,12 @@ export class MainComponent implements OnInit {
       if (query.length > 0) this.router.navigate(["search", query]);
     }
     this.search_expand = !this.search_expand;
+  }
+
+  showAboutMain(){
+    this.aboutModal = 1;
+  }
+  showTOSMain(){
+    this.tosModal = 1;
   }
 }
