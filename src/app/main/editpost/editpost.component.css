@@ -27,7 +27,7 @@
 }
 
 .image-url {
-  color: #ffc107;
+  color: var(--primary-color);
   text-decoration: none;
   word-break: break-all;
   transition: all ease 0.3s;

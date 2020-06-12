@@ -75,7 +75,7 @@
 .unlike {
   font-size: 1.5em;
   vertical-align: middle;
-  color: #ffc107;
+  color: var(--primary-color);
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -89,7 +89,7 @@
   transition: all 0.3s ease;
 }
 .like:hover {
-  color: #ffc107;
+  color: var(--primary-color);
   transform: scale(1.1);
 }
 .delete-icon {

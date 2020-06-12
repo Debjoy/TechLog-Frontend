@@ -1,11 +1,14 @@
 <!-- <app-spinner></app-spinner> -->
-<ngx-spinner color="#f9a825" name="spinner1"> </ngx-spinner>
+<ngx-spinner color="var(--primary-color)" name="spinner1"> </ngx-spinner>
 <div class="black-space"></div>
 <div class="container-fluid view row">
   <div class="col-md-4 side-content">
     <div class="logo-main">
       <div class="logo">
-        <i class="fas fa-stream"></i>
+        <img
+          src="assets/log.png"
+          style="height: 35px; vertical-align: text-top;"
+        />
       </div>
       <h1>TechLog</h1>
     </div>
@@ -18,7 +21,10 @@
       <!--Main LOGO starts-->
       <div class="logo-main">
         <div class="logo">
-          <i class="fas fa-stream"></i>
+          <img
+            src="assets/log.png"
+            style="height: 25px; vertical-align: text-top;"
+          />
         </div>
         <h1 [ngClass]="{ expand: search_expand }">TechLog</h1>
       </div>
@@ -56,7 +62,7 @@
 
 <!--Modal for about of NavComponent-->
 <div class="modal" id="about" [ngClass]="{ show: aboutModal == 1 }">
-  <div class="modal-dialog modal-sm">
+  <div class="modal-dialog modal-md">
     <div class="modal-content">
       <!-- Modal header -->
       <div class="modal-header">
@@ -74,8 +80,41 @@
 
       <!-- Modal body -->
 
-      <div class="modal-body">
-        <p>Kichu ekta hobe</p>
+      <div class="modal-body" style="padding-top: 0;">
+        <p style="text-align: justify; opacity: 0.8;">
+          Techlog is a forum where you can write about articles related to
+          technology in general. You will be able to create posts as well as see
+          new posts by others and comment on them to share your views and give
+          likes. You can customise your profile by selecting your favourite
+          avatar and writing about yourself.
+        </p>
+        <div class="dev-credits">
+          <h6>
+            By the unpaid folks
+            <i class="fas fa-heart-broken" style="color: #dc3545;"></i>
+          </h6>
+          <a href="https://debadri.com/" target="_blank" class="simple-link"
+            ><div class="dev-block">
+              <i class="fas fa-award"></i>
+              Debadri
+            </div></a
+          >
+          <a href="https://atdebjoy.com/" target="_blank" class="simple-link"
+            ><div class="dev-block">
+              <i class="fas fa-award"></i>
+              Debjoy
+            </div></a
+          >
+          <a
+            href="https://github.com/dchak001"
+            target="_blank"
+            class="simple-link"
+            ><div class="dev-block">
+              <i class="fas fa-award"></i>
+              Dipan
+            </div></a
+          >
+        </div>
       </div>
 
       <!-- <div class="modal-footer">

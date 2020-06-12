@@ -18,6 +18,7 @@ export class PostComponent implements OnInit {
   deleteCommentId: any;
   cookieUsername: any;
   baseLocation: any;
+  sharePostModal = 0;
   liked = 0;
   likeId: any;
   likesList: any;

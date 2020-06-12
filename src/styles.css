@@ -1,9 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --primary-color: #f9a825;
+  /* #f9a825; */
+}
 body {
   background: #171714;
   color: white;
   height: 100%;
 }
+
 .view {
   max-width: 1300px;
   margin: auto;
@@ -25,7 +30,7 @@ body {
 .logo {
   display: inline-block;
   font-size: 2rem;
-  color: #f9a825;
+  color: var(--primary-color);
 }
 .logo-main h1 {
   display: inline-block;
@@ -128,7 +133,7 @@ h4 {
   transition: all ease 0.3s;
 }
 .side-user h4:hover {
-  background: #f9a825;
+  background: var(--primary-color);
 }
 .side-tech p {
   padding: 0px 10px;
@@ -140,7 +145,7 @@ h4 {
   transition: all ease 0.3s;
 }
 .simple-link:hover {
-  color: #f9a825;
+  color: var(--primary-color);
   text-decoration: none;
 }
 .post-selectable {
