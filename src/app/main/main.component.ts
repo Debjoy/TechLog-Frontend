@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { LoginService } from "../login.service";
 import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from "ngx-toastr";
+import { WebSocketAPI } from '../WebSocketApi';
 
 @Component({
   selector: "app-main",
@@ -18,6 +19,10 @@ export class MainComponent implements OnInit {
   aboutModal = 0;
   tosModal = 0
   
+  notifications : any
+  socket_connected = false;
+  webSocketAPI: WebSocketAPI;
+
   @ViewChild("search_query", { static: false }) searh_query: ElementRef;
 
   constructor(
@@ -25,10 +30,13 @@ export class MainComponent implements OnInit {
     private router: Router,
     private loginService: LoginService,
     private spinner: NgxSpinnerService,
-    private toastr: ToastrService
-  ) {}
+    private toastr: ToastrService,
+  ) { }
 
   ngOnInit() {
+
+    this.notifications = 0;
+
     this.cookieToken = this.cookieService.get("token");
     this.cookieUsername = this.cookieService.get("user");
     let LoginData: any;
@@ -40,6 +48,11 @@ export class MainComponent implements OnInit {
     if (this.cookieToken == "") {
       this.router.navigate(["login"]);
     } else {
+      // start socket client otherwise ngOnDestroy will be called first
+      this.webSocketAPI = new WebSocketAPI(this);
+      this.connect();
+      ////////////
+
       this.loginService.existsByUsernameAndToken(LoginData).subscribe((res) => {
         if (res != true) {
           this.cookieService.set("token", "");
@@ -56,6 +69,34 @@ export class MainComponent implements OnInit {
     }
   }
 
+  // websocket /////////////////
+  ngOnDestroy(){
+    if(this.socket_connected === true){
+      this.disconnect();
+      this.socket_connected = false;
+    }
+  }
+
+  connect(){
+    this.webSocketAPI._connect();
+    this.socket_connected = true;
+  }
+
+  disconnect(){
+    this.webSocketAPI._disconnect();
+  }
+
+  sendMessage(notifyMsg){
+    this.webSocketAPI._send(notifyMsg);
+  }
+
+  handleMessage(message){
+    if(message.receiver == this.cookieUsername && message.sender != this.cookieUsername)
+      this.notifications = this.notifications + 1;
+  }
+
+  /////////////////////////////////
+
   onSearch() {
     if (window.innerWidth >= 494 || this.search_expand) {
       let query = this.searh_query.nativeElement.value;
@@ -71,4 +112,5 @@ export class MainComponent implements OnInit {
   showTOSMain(){
     this.tosModal = 1;
   }
+
 }

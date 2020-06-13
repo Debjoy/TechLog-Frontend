@@ -5,6 +5,7 @@ import { CookieService } from "ngx-cookie-service";
 import { ToastrService } from "ngx-toastr";
 import { FormControl, Validators } from "@angular/forms";
 import { LoginService } from "src/app/login.service";
+import { MainComponent } from '../main.component';
 
 @Component({
   selector: "app-post",
@@ -31,7 +32,8 @@ export class PostComponent implements OnInit {
     private postService: PostService,
     private cookieService: CookieService,
     private toastr: ToastrService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private mainComp: MainComponent
   ) {}
 
   ngOnInit() {
@@ -82,6 +84,9 @@ export class PostComponent implements OnInit {
         });
         this.addToLikedList(this.likeId, this.id, this.cookieUsername);
         console.log(this.likesList);
+
+        // notify websocket
+        this.mainComp.sendMessage({ sender: this.cookieUsername, receiver: this.postData.username, type: "like" });
       });
   }
 
@@ -125,6 +130,9 @@ export class PostComponent implements OnInit {
     };
     this.postService.addComment(body).subscribe((res) => {
       this.commentText.reset();
+      // notify websocket
+      this.mainComp.sendMessage({ sender: this.cookieUsername, receiver: this.postData.username, type: "comment" });
+
       this.postService
         .getCommentsByPostid(this.id)
         .subscribe((res) => (this.comments = res));
