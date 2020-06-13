@@ -121,7 +121,13 @@ export class LoginService {
     return this.http.post(
       this.api_prefix + "notifications/deleteByReceiver",
       body,
-      this.httpOptions
+      {
+        headers: new HttpHeaders({
+          "Content-Type": "application/json",
+          authKey: "vbryg7aj@jh9gsd.AShgf%",
+        }),
+        responseType: "text",
+      }
     );
   }
 }
