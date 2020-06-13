@@ -86,7 +86,7 @@ export class PostComponent implements OnInit {
         console.log(this.likesList);
 
         // notify websocket
-        this.mainComp.sendMessage({ sender: this.cookieUsername, receiver: this.postData.username, type: "like" });
+        this.mainComp.sendMessage({ sender: this.cookieUsername, receiver: this.postData.username, postid: this.id, type: "like" });
       });
   }
 
@@ -131,7 +131,7 @@ export class PostComponent implements OnInit {
     this.postService.addComment(body).subscribe((res) => {
       this.commentText.reset();
       // notify websocket
-      this.mainComp.sendMessage({ sender: this.cookieUsername, receiver: this.postData.username, type: "comment" });
+      this.mainComp.sendMessage({ sender: this.cookieUsername, receiver: this.postData.username, postid: this.id, type: "comment" });
 
       this.postService
         .getCommentsByPostid(this.id)
