@@ -110,4 +110,18 @@ export class LoginService {
       this.httpOptions
     );
   }
+
+  getAllByReceiver(body: any): Observable<any> {
+    return this.http.get(
+      this.api_prefix + "notifications/getAllByReceiver?receiver=" + body,
+      this.httpOptions
+    );
+  }
+  deleteByReceiver(body: any): Observable<any> {
+    return this.http.post(
+      this.api_prefix + "notifications/deleteByReceiver",
+      body,
+      this.httpOptions
+    );
+  }
 }
