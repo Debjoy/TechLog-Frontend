@@ -1,6 +1,6 @@
 <div *ngIf="postData">
   <div class="bb-post-title">
-    <h3>{{ postData.title }} <i class="far fa-star"></i></h3>
+    <h3>{{ postData.title }}</h3>
     <p>
       <span style="opacity: 0.6;"
         >posted on {{ postData.timestamp | date: "yyyy-MM-dd h:mm a" }} ~</span
@@ -58,7 +58,7 @@
         type="text"
         class="comment-input"
         placeholder="share your comment here!"
-        [formControl]="commentText"
+        #commentText
         required
       />
       <button
@@ -71,7 +71,7 @@
       </button>
     </div>
   </div>
-  <div class="bb-comment" *ngFor="let comment of comments?.reverse()">
+  <div class="bb-comment" *ngFor="let comment of comments">
     <img
       src="assets/image/{{
         comment.userimage == null ? '01.png' : comment.userimage

@@ -1,11 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { PostService } from "../post.service";
 import { CookieService } from "ngx-cookie-service";
 import { ToastrService } from "ngx-toastr";
 import { FormControl, Validators } from "@angular/forms";
 import { LoginService } from "src/app/login.service";
-import { MainComponent } from '../main.component';
+import { MainComponent } from "../main.component";
 
 @Component({
   selector: "app-post",
@@ -23,9 +23,9 @@ export class PostComponent implements OnInit {
   liked = 0;
   likeId: any;
   likesList: any;
-  commentText = new FormControl("", [Validators.required]);
   currentUserImg = "01.png";
   deleteCommentModal = 0;
+  @ViewChild("commentText", { static: false }) commentText: ElementRef;
 
   constructor(
     private route: ActivatedRoute,
@@ -67,7 +67,7 @@ export class PostComponent implements OnInit {
     });
 
     this.postService.getCommentsByPostid(this.id).subscribe((res) => {
-      this.comments = res;
+      this.comments = res.reverse();
     });
   }
 
@@ -86,7 +86,12 @@ export class PostComponent implements OnInit {
         console.log(this.likesList);
 
         // notify websocket
-        this.mainComp.sendMessage({ sender: this.cookieUsername, receiver: this.postData.username, postid: this.id, type: "like" });
+        this.mainComp.sendMessage({
+          sender: this.cookieUsername,
+          receiver: this.postData.username,
+          postid: this.id,
+          type: "like",
+        });
       });
   }
 
@@ -126,16 +131,21 @@ export class PostComponent implements OnInit {
       userimage: this.currentUserImg,
       postid: this.id,
       timestamp: date.getTime(),
-      text: this.commentText.value,
+      text: this.commentText.nativeElement.value,
     };
     this.postService.addComment(body).subscribe((res) => {
-      this.commentText.reset();
+      this.commentText.nativeElement.value = "";
       // notify websocket
-      this.mainComp.sendMessage({ sender: this.cookieUsername, receiver: this.postData.username, postid: this.id, type: "comment" });
+      this.mainComp.sendMessage({
+        sender: this.cookieUsername,
+        receiver: this.postData.username,
+        postid: this.id,
+        type: "comment",
+      });
 
-      this.postService
-        .getCommentsByPostid(this.id)
-        .subscribe((res) => (this.comments = res));
+      this.postService.getCommentsByPostid(this.id).subscribe((res) => {
+        this.comments = res.reverse();
+      });
     });
   }
 

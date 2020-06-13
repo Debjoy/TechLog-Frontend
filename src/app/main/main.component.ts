@@ -25,7 +25,7 @@ export class MainComponent implements OnInit {
   socket_connected = false;
   webSocketAPI: WebSocketAPI;
 
-  @ViewChild("search_query", { static: false }) searh_query: ElementRef;
+  @ViewChild("search_query", { static: false }) search_query: ElementRef;
 
   constructor(
     private cookieService: CookieService,
@@ -177,7 +177,7 @@ export class MainComponent implements OnInit {
 
   onSearch() {
     if (window.innerWidth >= 494 || this.search_expand) {
-      let query = this.searh_query.nativeElement.value;
+      let query = this.search_query.nativeElement.value;
       query = query.trim();
       if (query.length > 0) this.router.navigate(["search", query]);
     }
