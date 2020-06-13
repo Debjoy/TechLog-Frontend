@@ -72,6 +72,39 @@
   display: block; /* For Firefox */
 }
 
+.like-parent {
+  position: relative;
+  display: inline;
+}
+.list-likes {
+  position: absolute;
+  bottom: 27px;
+  display: none;
+  background: rgb(17, 16, 16);
+  left: -10px;
+  padding: 5px 10px;
+}
+.list-likes .user-like {
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+.list-likes .user-like:hover {
+  text-decoration: underline;
+}
+.like-parent:focus .list-likes {
+  display: block;
+}
+.like-parent:focus {
+  outline: none;
+}
+.list-likes:hover {
+  display: block;
+}
+.list-likes i {
+  position: absolute;
+  color: rgb(17, 16, 16);
+  bottom: -10px;
+}
 .unlike {
   font-size: 1.5em;
   vertical-align: middle;

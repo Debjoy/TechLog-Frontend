@@ -33,7 +33,21 @@
   <div class="bb-like-share">
     <i class="fas fa-heart unlike" (click)="unlike()" *ngIf="liked == 1"></i>
     <i class="far fa-heart like" (click)="like()" *ngIf="liked == 0"></i>&nbsp;
-    <span *ngIf="likesList">{{ likesList.length }} likes</span>
+    <div class="like-parent" tabindex="1234">
+      <span *ngIf="likesList" style="cursor: pointer;"
+        >{{ likesList.length }} likes</span
+      >
+      <div class="list-likes" *ngIf="likesList">
+        <div
+          class="user-like"
+          *ngFor="let like of likesList"
+          routerLink="/profile/{{ like.username }}"
+        >
+          {{ like.username }}
+        </div>
+        <i class="fas fa-caret-down"></i>
+      </div>
+    </div>
     <!-- <button class="btn btn-sm btn-warning">
       Share <i class="fas fa-share"></i>
     </button> -->
