@@ -53,7 +53,7 @@
 
       <div class="notification" (click)="toggleNotificationPanel()">
         <i class="fas fa-bell"></i>
-        <div class="badge badge-warning" *ngIf="notifications?.length > 0">
+        <div class="badge badge-warning" *ngIf="notifications_count > 0">
           {{ notifications_count }}
         </div>
       </div>
@@ -67,7 +67,7 @@
         <div
           class="notification-item"
           *ngFor="let notification of notifications"
-          routerLink="/post/{{notification.postid}}"
+          routerLink="/post/{{ notification.postid }}"
         >
           <div class="notification-logo">
             <i

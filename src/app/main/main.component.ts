@@ -68,11 +68,13 @@ export class MainComponent implements OnInit {
         }
       });
 
-      this.loginService.getAllByReceiver(this.cookieUsername).subscribe(res => {
-        res.forEach(element => {
-          this.handleMessage(element);
+      this.loginService
+        .getAllByReceiver(this.cookieUsername)
+        .subscribe((res) => {
+          res.forEach((element) => {
+            this.handleMessage(element);
+          });
         });
-      });
     }
   }
 
@@ -153,9 +155,9 @@ export class MainComponent implements OnInit {
         this.notifications.reverse();
         this.notifications.push(notify);
         this.notifications.reverse();
+        this.notifications_count = this.notifications_count + 1;
       }
-      
-      this.notifications_count = this.notifications_count + 1;
+
       // console.log(
       //   "notifications are as follows \n" + JSON.stringify(this.notifications)
       // );
@@ -165,10 +167,10 @@ export class MainComponent implements OnInit {
   toggleNotificationPanel() {
     this.openNotificationPanel = !this.openNotificationPanel;
     this.notifications_count = 0;
-    if(this.openNotificationPanel == false)
-      this.loginService.deleteByReceiver(this.cookieUsername).subscribe(res => {
-
-    });
+    if (this.openNotificationPanel == false)
+      this.loginService
+        .deleteByReceiver(this.cookieUsername)
+        .subscribe((res) => {});
   }
 
   /////////////////////////////////
