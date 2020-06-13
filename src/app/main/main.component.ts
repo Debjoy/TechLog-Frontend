@@ -67,6 +67,12 @@ export class MainComponent implements OnInit {
           this.spinner.hide("spinner1");
         }
       });
+
+      this.loginService.getAllByReceiver(this.cookieUsername).subscribe(res => {
+        res.array.forEach(element => {
+          this.handleMessage(element);
+        });
+      });
     }
   }
 
@@ -156,6 +162,9 @@ export class MainComponent implements OnInit {
   toggleNotificationPanel() {
     this.openNotificationPanel = !this.openNotificationPanel;
     this.notifications_count = 0;
+    this.loginService.deleteByReceiver(this.cookieUsername).subscribe(res => {
+      
+    });
   }
 
   /////////////////////////////////
