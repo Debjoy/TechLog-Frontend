@@ -4,7 +4,7 @@ import { Router } from "@angular/router";
 import { LoginService } from "../login.service";
 import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from "ngx-toastr";
-import { WebSocketAPI } from '../WebSocketApi';
+import { WebSocketAPI } from "../WebSocketApi";
 
 @Component({
   selector: "app-main",
@@ -17,9 +17,11 @@ export class MainComponent implements OnInit {
   search_expand = false;
   openned = false;
   aboutModal = 0;
-  tosModal = 0
-  
-  notifications : any
+  tosModal = 0;
+  openNotificationPanel = false;
+
+  notifications = [];
+  notifications_count: any;
   socket_connected = false;
   webSocketAPI: WebSocketAPI;
 
@@ -30,12 +32,11 @@ export class MainComponent implements OnInit {
     private router: Router,
     private loginService: LoginService,
     private spinner: NgxSpinnerService,
-    private toastr: ToastrService,
-  ) { }
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit() {
-
-    this.notifications = 0;
+    this.notifications_count = 0;
 
     this.cookieToken = this.cookieService.get("token");
     this.cookieUsername = this.cookieService.get("user");
@@ -70,29 +71,91 @@ export class MainComponent implements OnInit {
   }
 
   // websocket /////////////////
-  ngOnDestroy(){
-    if(this.socket_connected === true){
+  ngOnDestroy() {
+    if (this.socket_connected === true) {
       this.disconnect();
       this.socket_connected = false;
     }
   }
 
-  connect(){
+  connect() {
     this.webSocketAPI._connect();
     this.socket_connected = true;
   }
 
-  disconnect(){
+  disconnect() {
     this.webSocketAPI._disconnect();
   }
 
-  sendMessage(notifyMsg){
+  sendMessage(notifyMsg) {
     this.webSocketAPI._send(notifyMsg);
   }
 
-  handleMessage(message){
-    if(message.receiver == this.cookieUsername && message.sender != this.cookieUsername)
-      this.notifications = this.notifications + 1;
+  handleMessage(message) {
+    //checking if notification is for user or not
+    if (
+      message.receiver == this.cookieUsername &&
+      message.sender != this.cookieUsername
+    ) {
+      let present_in_notification_menu = false;
+      let notification_items = [];
+      //to check if local list of notification contains some data or not
+      if (this.notifications.length > 0) {
+        //looping notifiactions for checking if notification of type and post id exsits or not
+        this.notifications.forEach(function (notification) {
+          if (
+            notification.type === message.type &&
+            notification.postid === message.postid
+          ) {
+            present_in_notification_menu = true;
+            let same_post_notification = false;
+            let notification_senders = notification.sender;
+
+            //checking if same user has already liked before
+            notification_senders.forEach(function (element) {
+              if (element === message.sender) {
+                same_post_notification = true;
+              }
+            });
+
+            //if same user has already liked before then ignore that like or.. else add the like.
+            if (!same_post_notification) {
+              notification_senders.push(message.sender);
+            }
+            let notify = {
+              sender: notification_senders,
+              postid: notification.postid,
+              type: notification.type,
+            };
+            notification_items.push(notify);
+          } else {
+            notification_items.push(notification);
+          }
+        });
+        //updating global notifications array with updated local notification list.
+        this.notifications = notification_items;
+      }
+
+      //if there is no common notifications present. then simply add the
+      //notification in the global notification array
+      if (!present_in_notification_menu) {
+        let notify = {
+          sender: [message.sender],
+          postid: message.postid,
+          type: message.type,
+        };
+        this.notifications.push(notify);
+      }
+      this.notifications_count = this.notifications_count + 1;
+      // console.log(
+      //   "notifications are as follows \n" + JSON.stringify(this.notifications)
+      // );
+    }
+  }
+
+  toggleNotificationPanel() {
+    this.openNotificationPanel = !this.openNotificationPanel;
+    this.notifications_count = 0;
   }
 
   /////////////////////////////////
@@ -106,11 +169,10 @@ export class MainComponent implements OnInit {
     this.search_expand = !this.search_expand;
   }
 
-  showAboutMain(){
+  showAboutMain() {
     this.aboutModal = 1;
   }
-  showTOSMain(){
+  showTOSMain() {
     this.tosModal = 1;
   }
-
 }

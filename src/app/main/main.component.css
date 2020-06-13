@@ -6,11 +6,18 @@
   z-index: 8;
   background-color: #171714;
 }
+.full-name-title {
+  display: inline;
+}
+.short-name-title {
+  display: none;
+}
 .search-box input {
   outline: none;
 }
 .option-menu {
   display: none;
+  padding: 0 5px;
 }
 .search .logo-main {
   display: none;
@@ -20,6 +27,90 @@
 }
 .responsive-nav {
   display: none;
+  overflow: hidden;
+}
+.notification {
+  font-size: 1.7rem;
+  position: relative;
+  padding: 0 5px;
+  cursor: pointer;
+  float: right;
+}
+.search-box form {
+  display: inline;
+}
+.search-box {
+  display: inline;
+}
+.notification .badge {
+  font-size: 0.8rem;
+  position: absolute;
+  right: 2px;
+}
+.marin-area {
+  position: relative;
+}
+.notification-box {
+  position: absolute;
+  top: 61px;
+  right: 0px;
+  max-height: 0px; /*To be changed later*/
+  background: #171714;
+  overflow-y: auto;
+  max-width: 300px;
+  margin: 0 5px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+.search {
+  z-index: 10;
+}
+.notification-box.open {
+  max-height: 400px;
+  outline: 1px solid #454545;
+}
+.notification-box::-webkit-scrollbar {
+  width: 5px;
+  cursor: pointer;
+}
+.notification-box::-webkit-scrollbar-thumb {
+  background-color: rgb(73, 72, 71);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.notification-box::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(94, 93, 93);
+}
+.notification-box::-webkit-scrollbar-track {
+  background-color: #171717;
+  cursor: pointer;
+}
+.notification-item {
+  border-bottom: 1px solid #3d3d3d;
+  padding: 10px;
+  display: flex;
+  max-width: 300px;
+  cursor: pointer;
+  background-color: #23221f;
+  transition: all 0.3s ease;
+}
+.notification-item:hover {
+  background-color: #2b2a27;
+}
+.no-notification {
+  padding: 2rem;
+  text-align: center;
+  opacity: 0.8;
+}
+.notification-logo {
+  font-size: 2rem;
+  padding: 0 10px;
+  color: var(--primary-color);
+}
+.notification-content {
+  display: grid;
+  font-size: 0.9rem;
 }
 @media screen and (max-width: 767px) {
   .side-content {
@@ -31,9 +122,6 @@
   }
   .search-title {
     display: none;
-  }
-  .search-box input {
-    transition: width 0.5s ease;
   }
   .search {
     display: inline-flex;
@@ -57,7 +145,7 @@
   .search .logo-main {
     display: block;
   }
-  .option-menu {
+  /* .option-menu {
     display: block;
     font-size: 1.5em;
     background-color: white;
@@ -66,7 +154,13 @@
     border-radius: 50px;
     padding: 0px 10px;
     cursor: pointer;
+  } */
+  .option-menu {
+    display: block;
+    font-size: 1.7rem;
+    cursor: pointer;
   }
+
   .responsive-nav {
     display: block;
     width: 0%;
@@ -82,21 +176,26 @@
     width: 100%;
   }
   .search-box input.expand {
+    transition: width 0.5s ease;
     width: 210px;
   }
 }
-@media screen and (max-width: 493px) {
+@media screen and (max-width: 530px) {
   .search .logo-main h1.expand {
     display: none;
   }
   .search-box input {
     width: 0px;
-    transition: width 0.5s ease;
   }
 }
-@media screen and (max-width: 392px) {
+@media screen and (max-width: 420px) {
+  .search-box form {
+    text-align: right;
+    float: right;
+  }
   .search-box input.expand {
-    width: 140px;
+    width: calc(100% - 60px);
+    transition: width 0.5s ease;
   }
 }
 
@@ -132,4 +231,12 @@
 }
 .dev-credits {
   text-align: center;
+}
+@media screen and (max-width: 360px) {
+  .short-name-title {
+    display: inline;
+  }
+  .full-name-title {
+    display: none;
+  }
 }

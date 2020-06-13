@@ -26,7 +26,12 @@
             style="height: 25px; vertical-align: text-top;"
           />
         </div>
-        <h1 [ngClass]="{ expand: search_expand }">TechLog</h1>
+        <h1 class="full-name-title" [ngClass]="{ expand: search_expand }">
+          TechLog
+        </h1>
+        <h1 class="short-name-title" [ngClass]="{ expand: search_expand }">
+          TL
+        </h1>
       </div>
       <!--Main LOGO ends-->
 
@@ -43,11 +48,60 @@
             <i class="fas fa-search"></i>
             <strong><span class="search-title">&nbsp;Search</span></strong>
           </button>
-          <span class="badge badge-warning" style="margin-left: 20px;">{{ notifications }}</span>
         </form>
       </div>
+
+      <div class="notification" (click)="toggleNotificationPanel()">
+        <i class="fas fa-bell"></i>
+        <div class="badge badge-warning" *ngIf="notifications?.length > 0">
+          {{ notifications_count }}
+        </div>
+      </div>
       <div class="option-menu" (click)="openned = !openned">
-        <i class="fas" [ngClass]="openned ? 'fa-times' : 'fa-ellipsis-h'"></i>
+        <i class="fas" [ngClass]="openned ? 'fa-times' : 'fas fa-stream'"></i>
+      </div>
+      <div
+        class="notification-box"
+        [ngClass]="openNotificationPanel ? 'open' : ''"
+      >
+        <div
+          class="notification-item"
+          *ngFor="let notification of notifications"
+        >
+          <div class="notification-logo">
+            <i
+              [ngClass]="
+                notification.type === 'comment'
+                  ? 'fas fa-comment-dots'
+                  : 'fas fa-heart'
+              "
+            ></i>
+          </div>
+          <div class="notification-content">
+            <strong>
+              <span
+                class="simple-link"
+                *ngFor="let user of notification.sender; let i = index"
+                >{{ i < 2 ? user : "" }}
+                {{ notification.sender.length == 2 && i == 0 ? " and " : ""
+                }}{{ notification.sender.length > 2 && i == 0 ? " , " : "" }}
+                {{
+                  notification.sender.length > 2 && i == 1
+                    ? " and " + (notification.sender.length - 2) + " others"
+                    : ""
+                }}
+              </span></strong
+            >
+            has
+            {{ notification.type == "comment" ? "commented on " : "liked " }}
+            your post
+          </div>
+        </div>
+
+        <div class="no-notification" *ngIf="notifications.length == 0">
+          <i class="fas fa-bell-slash"></i>
+          <p>There are no notifications for now</p>
+        </div>
       </div>
     </div>
     <!--SEARCH BAR ENDS-->
@@ -56,8 +110,9 @@
       [ngClass]="{ open: openned }"
       (click)="openned = !openned"
     ></app-nav>
-
-    <router-outlet class="main"></router-outlet>
+    <div class="main-area">
+      <router-outlet class="main"></router-outlet>
+    </div>
   </div>
 </div>
 
