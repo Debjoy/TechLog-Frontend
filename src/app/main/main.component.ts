@@ -150,7 +150,9 @@ export class MainComponent implements OnInit {
           postid: message.postid,
           type: message.type,
         };
+        this.notifications.reverse();
         this.notifications.push(notify);
+        this.notifications.reverse();
       }
       this.notifications_count = this.notifications_count + 1;
       // console.log(
@@ -163,7 +165,7 @@ export class MainComponent implements OnInit {
     this.openNotificationPanel = !this.openNotificationPanel;
     this.notifications_count = 0;
     this.loginService.deleteByReceiver(this.cookieUsername).subscribe(res => {
-      
+
     });
   }
 
