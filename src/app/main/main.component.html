@@ -67,6 +67,7 @@
         <div
           class="notification-item"
           *ngFor="let notification of notifications"
+          routerLink="/post/{{notification.postid}}"
         >
           <div class="notification-logo">
             <i

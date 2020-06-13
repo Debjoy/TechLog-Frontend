@@ -154,6 +154,7 @@ export class MainComponent implements OnInit {
         this.notifications.push(notify);
         this.notifications.reverse();
       }
+      
       this.notifications_count = this.notifications_count + 1;
       // console.log(
       //   "notifications are as follows \n" + JSON.stringify(this.notifications)
