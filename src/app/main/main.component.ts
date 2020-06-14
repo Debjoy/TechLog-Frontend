@@ -155,6 +155,9 @@ export class MainComponent implements OnInit {
         this.notifications.reverse();
         this.notifications.push(notify);
         this.notifications.reverse();
+
+        let audio = new Audio("assets/audio/pop.mp3");
+        audio.play().catch(onRejected => {});
         this.notifications_count = this.notifications_count + 1;
       }
 

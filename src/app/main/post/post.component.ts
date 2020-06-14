@@ -55,7 +55,7 @@ export class PostComponent implements OnInit {
       });
 
     this.postService.getLikeByPost(this.id).subscribe((res) => {
-      console.log(res);
+      // console.log(res);
       this.likesList = res;
       res.forEach((element) => {
         if (element.username == this.cookieUsername) {
@@ -72,18 +72,18 @@ export class PostComponent implements OnInit {
   }
 
   like() {
-    console.log("like pressed");
+    // console.log("like pressed");
     this.postService
       .addLike({ postid: this.id, username: this.cookieUsername })
       .subscribe((res) => {
-        console.log("success");
+        // console.log("success");
         this.likeId = res.id;
         this.liked = 1;
         this.toastr.info("You have liked this post", "Liked!", {
           positionClass: "toast-top-right",
         });
         this.addToLikedList(this.likeId, this.id, this.cookieUsername);
-        console.log(this.likesList);
+        // console.log(this.likesList);
 
         // notify websocket
         this.mainComp.sendMessage({
@@ -97,7 +97,7 @@ export class PostComponent implements OnInit {
 
   unlike() {
     this.postService.deleteLike({ id: this.likeId }).subscribe((res) => {
-      console.log("success");
+      // console.log("success");
       this.liked = 0;
       this.toastr.info("You have disliked this post", "Disliked!", {
         positionClass: "toast-top-right",
