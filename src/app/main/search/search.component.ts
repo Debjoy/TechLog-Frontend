@@ -21,7 +21,7 @@ export class SearchComponent implements OnInit {
       this.query = param.get("q");
       this.postData = undefined;
       this.postService.getSearchResult(this.query).subscribe((res) => {
-        console.log(res);
+        // console.log(res);
         this.postData = res;
         this.postData.sort(
           (a, b) =>

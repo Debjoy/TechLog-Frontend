@@ -60,7 +60,7 @@ export class MainComponent implements OnInit {
           this.cookieService.set("user", "");
           this.router.navigate(["login"]);
         } else {
-          console.log("Logged in Successfully");
+          // console.log("Logged in Successfully");
           this.toastr.success("Logged in Successfully", "Awesome!", {
             positionClass: "toast-top-right",
           });
@@ -157,7 +157,7 @@ export class MainComponent implements OnInit {
         this.notifications.reverse();
 
         let audio = new Audio("assets/audio/pop.mp3");
-        audio.play().catch(onRejected => {});
+        audio.play().catch((onRejected) => {});
         this.notifications_count = this.notifications_count + 1;
       }
 

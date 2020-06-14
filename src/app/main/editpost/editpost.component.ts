@@ -76,10 +76,10 @@ export class EditpostComponent implements OnInit {
       id: Number(this.id),
       text: this.editorForm.value.editorData + "",
     };
-    console.log(typeof Number(this.id));
-    console.log(this.editorForm.value.editorData);
+    // console.log(typeof Number(this.id));
+    // console.log(this.editorForm.value.editorData);
     this.postService.saveTextById(postData).subscribe((res) => {
-      console.log(res);
+      // console.log(res);
       this.savePostTextLoad = 0;
       this.toastr.success("Post saved ", "Awesome!");
     });
@@ -99,7 +99,7 @@ export class EditpostComponent implements OnInit {
         image: this.form2.value.pPic,
       })
       .subscribe((res) => {
-        console.log("success");
+        // console.log("success");
         this.editModalLoading = 0;
         this.postDetails.image = this.form2.value.pPic;
         this.toastr.success("Post Image Updated", "Awesome!", {
@@ -112,7 +112,7 @@ export class EditpostComponent implements OnInit {
     let body = { id: this.id };
     this.postService.deletePostById(body).subscribe(
       (res) => {
-        console.log("success");
+        // console.log("success");
         this.router.navigate(["/user-post"]);
       }
       // err=>console.error(err)

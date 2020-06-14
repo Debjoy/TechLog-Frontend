@@ -151,7 +151,7 @@ export class ProfileComponent implements OnInit {
           });
         }
       } else {
-        console.log("inside");
+        // console.log("inside");
         this.loadUser = this.cookieUserName;
         this.foreignUser = false;
       }
@@ -164,7 +164,7 @@ export class ProfileComponent implements OnInit {
             return;
           }
           this.userDetails = res[0];
-          console.log(this.userDetails);
+          // console.log(this.userDetails);
           // setting user image
           this.userImg =
             this.userDetails.image != null
@@ -196,8 +196,8 @@ export class ProfileComponent implements OnInit {
               Validators.required,
             ]),
           });
-        },
-        (err) => console.error(err)
+        }
+        // (err) => console.error(err)
       );
     });
   }
@@ -229,8 +229,8 @@ export class ProfileComponent implements OnInit {
         this.toastr.success("Name Updated", "Awesome!", {
           positionClass: "toast-top-center",
         });
-      },
-      (err) => console.error(err)
+      }
+      // (err) => console.error(err)
     );
   }
 
@@ -242,15 +242,15 @@ export class ProfileComponent implements OnInit {
     };
     this.loginService.updatePasswordByEmail(userPass).subscribe(
       (res) => {
-        console.log(res);
+        // console.log(res);
         this.userDetails.password = this.form3.value.rpassword;
         this.editPasswordModal = 0;
         this.editPasswordLoading = 0;
         this.toastr.success("Password Updated", "Awesome!", {
           positionClass: "toast-top-center",
         });
-      },
-      (err) => console.error(err)
+      }
+      // (err) => console.error(err)
     );
   }
 
@@ -283,13 +283,13 @@ export class ProfileComponent implements OnInit {
 
     this.postService.createPosts(post).subscribe(
       (res) => {
-        console.log(res);
+        // console.log(res);
         this.router.navigate(["edit", res]);
         this.toastr.success("New Post Created", "Awesome!", {
           positionClass: "toast-top-center",
         });
-      },
-      (err) => console.error(err)
+      }
+      // (err) => console.error(err)
     );
 
     /*this.postService.getPostById(2).subscribe(
@@ -319,7 +319,7 @@ export class ProfileComponent implements OnInit {
         });
       },
       (error) => {
-        console.log("some error occured");
+        // console.log("some error occured");
       }
     );
 

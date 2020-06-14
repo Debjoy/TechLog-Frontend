@@ -31,9 +31,9 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  getResult() {
-    this.loginService.getResult().subscribe((res) => console.log(res));
-  }
+  // getResult() {
+  //   this.loginService.getResult().subscribe((res) => console.log(res));
+  // }
 
   createPost() {
     let post = {
@@ -48,10 +48,10 @@ export class HomeComponent implements OnInit {
 
     this.postService.createPosts(post).subscribe(
       (res) => {
-        console.log(res);
+        // console.log(res);
         this.router.navigate(["edit", res]);
-      },
-      (err) => console.error(err)
+      }
+      // (err) => console.error(err)
     );
   }
 }
