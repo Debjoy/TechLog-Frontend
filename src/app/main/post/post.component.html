@@ -1,3 +1,10 @@
+<div class="no-results" *ngIf="removedPost">
+  <div class="sad-results"><i class="fas fa-exclamation-triangle fa-2x"></i></div>
+  <h5>Post removed</h5>
+  <p>Unfortunately this post has been removed by the user.</p>
+  <p>Try searching something else.</p>
+</div>
+
 <div *ngIf="postData">
   <div class="bb-post-title">
     <h3>{{ postData.title }}</h3>
@@ -235,7 +242,7 @@
   </div>
 </div>
 
-<div *ngIf="!postData" style="width: 100%; text-align: center;">
+<div *ngIf="spinner" style="width: 100%; text-align: center;">
   <div
     class="spinner-grow text-warning spinner-grow-lg"
     style="align-self: center; margin: 80px;"

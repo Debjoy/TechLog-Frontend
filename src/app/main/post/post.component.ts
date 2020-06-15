@@ -25,6 +25,9 @@ export class PostComponent implements OnInit {
   likesList: any;
   currentUserImg = "01.png";
   deleteCommentModal = 0;
+  removedPost = false;
+  spinner = true;
+
   @ViewChild("commentText", { static: false }) commentText: ElementRef;
 
   constructor(
@@ -42,7 +45,12 @@ export class PostComponent implements OnInit {
       this.id = param.get("id");
       this.postService.getPostById(this.id).subscribe((res) => {
         this.postData = res;
-        this.postData.text = unescape(this.postData.text);
+        if(this.postData!= null)
+          this.postData.text = unescape(this.postData.text);
+        else{
+          this.removedPost = true;
+        }
+        this.spinner = false;
       });
     });
     this.cookieUsername = this.cookieService.get("user");

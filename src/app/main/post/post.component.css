@@ -203,3 +203,13 @@
   background-color: #3a3a3a;
   color: #0073b1;
 } */
+.no-results {
+  text-align: center;
+  margin: 4rem auto;
+}
+.sad-results {
+  color: #dc3545;
+}
+.no-results p {
+  opacity: 0.7;
+}
