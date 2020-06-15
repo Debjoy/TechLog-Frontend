@@ -51,7 +51,9 @@ export class MainComponent implements OnInit {
     } else {
       // start socket client otherwise ngOnDestroy will be called first
       this.webSocketAPI = new WebSocketAPI(this);
-      this.connect();
+      this.loginService.wakeUp().subscribe((res) => {
+        this.connect();
+      });
       ////////////
 
       this.loginService.existsByUsernameAndToken(LoginData).subscribe((res) => {

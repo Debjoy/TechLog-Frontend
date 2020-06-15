@@ -130,4 +130,8 @@ export class LoginService {
       }
     );
   }
+
+  wakeUp(): Observable<any> {
+    return this.http.get(this.api_prefix + "users/connect", this.httpOptions);
+  }
 }
