@@ -9,6 +9,7 @@ import {
 import { CookieService } from "ngx-cookie-service";
 import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: "app-login",
@@ -44,6 +45,7 @@ export class LoginComponent implements OnInit {
   );
 
   constructor(
+    private spinner: NgxSpinnerService,
     private loginService: LoginService,
     private cookieService: CookieService,
     private router: Router,
@@ -55,7 +57,6 @@ export class LoginComponent implements OnInit {
     if (this.cookieService.get("token") != "") {
       this.router.navigate([""]);
     }
-
     //added debounceTime to make sure http calls are fired once user stops typing.
     //custorm Validator for checking if username exists or not
     this.form2.controls.rusername.valueChanges
@@ -104,7 +105,9 @@ export class LoginComponent implements OnInit {
       password: this.form1.value.password,
     };
 
+    this.spinner.show("spinnerLogin");
     this.loginService.existsByEmailAndPassword(body).subscribe((res) => {
+      this.spinner.hide("spinnerLogin");
       if (res.exists == "true") {
         this.cookieService.set("user", res.username);
         this.cookieService.set("token", res.tokenTimestamp);
@@ -130,8 +133,10 @@ export class LoginComponent implements OnInit {
       email: this.form2.value.remail,
       password: this.form2.value.rpassword,
     };
+    this.spinner.show("spinnerLogin");
     //console.log(this.user);
     this.loginService.addUser(this.user).subscribe((res) => {
+      this.spinner.hide("spinnerLogin");
       this.toastr.success("You have registered Successfully", "Awesome!", {
         positionClass: "toast-top-center",
       });
