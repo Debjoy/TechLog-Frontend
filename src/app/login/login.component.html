@@ -270,7 +270,7 @@
           class="close"
           data-dismiss="modal"
           (click)="aboutModal = 0"
-          style="color: black;"
+          style="color: white;"
         >
           &times;
         </button>
@@ -334,7 +334,7 @@
           class="close"
           data-dismiss="modal"
           (click)="tosModal = 0"
-          style="color: black;"
+          style="color: white;"
         >
           &times;
         </button>
@@ -363,4 +363,6 @@
     </div>
   </div>
 </div>
+
+<div class="modal-backdrop show" *ngIf="aboutModal == 1 || tosModal == 1"></div>
 
