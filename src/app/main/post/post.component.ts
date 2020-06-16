@@ -106,6 +106,8 @@ export class PostComponent implements OnInit {
   unlike() {
     this.postService.deleteLike({ id: this.likeId }).subscribe((res) => {
       // console.log("success");
+      let audio = new Audio("assets/audio/bruh.mp3");
+      audio.play().catch((onRejected) => {});
       this.liked = 0;
       this.toastr.info("You have disliked this post", "Disliked!", {
         positionClass: "toast-top-right",
