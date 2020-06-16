@@ -19,6 +19,8 @@ export class HomeComponent implements OnInit {
 
   title_create: any;
   posts: any;
+  followedPost: any;
+  showTopPosts = true;
 
   ngOnInit() {
     //this.getResult();

@@ -156,3 +156,43 @@
 .edit-about:hover {
   color: var(--primary-color);
 }
+.new-post .give-a-title {
+  padding: 5px 0px;
+}
+.new-post-title {
+  margin: 0px 10px;
+  width: calc(100% - 212px);
+}
+.follow-btn {
+  border: none;
+  border-radius: 5px;
+  padding: 0px 10px;
+  margin-top: 5px;
+  color: #252523;
+  background-color: var(--primary-color);
+}
+.unfolowed {
+  background: #313130;
+  color: white;
+}
+@media only screen and (max-width: 767px) {
+  .new-post-title {
+    width: 100%;
+    margin: 0px;
+    margin-top: 10px;
+  }
+  .new-post .btn {
+    margin-top: 10px;
+  }
+  .new-post .post-card {
+    text-align: right;
+  }
+  .new-post h4 {
+    text-align: left;
+  }
+  .new-post .give-a-title {
+    text-align: left;
+    display: block;
+    padding: 5px 0px;
+  }
+}

@@ -213,3 +213,18 @@
 .no-results p {
   opacity: 0.7;
 }
+.follow-btn {
+  border: none;
+  border-radius: 5px;
+  padding: 0px 10px;
+  margin-top: 5px;
+  color: #252523;
+  background-color: var(--primary-color);
+}
+.unfolowed {
+  background: #313130;
+  color: white;
+}
+.follow-div {
+  display: inline-block;
+}
