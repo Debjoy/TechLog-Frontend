@@ -17,6 +17,8 @@ import { NgxSpinnerService } from "ngx-spinner";
   styleUrls: ["./login.component.css"],
 })
 export class LoginComponent implements OnInit {
+  aboutModal = 0;
+  tosModal = 0;
   user: any;
   //used for the login validation
   form1 = new FormGroup({
@@ -154,4 +156,12 @@ export class LoginComponent implements OnInit {
       });
     });
   }
+
+  showAbout() {
+    this.aboutModal = 1;
+  }
+  showTOS() {
+    this.tosModal = 1;
+  }
+
 }

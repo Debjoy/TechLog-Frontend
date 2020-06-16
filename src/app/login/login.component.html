@@ -249,6 +249,118 @@
           </form>
         </div>
       </div>
+      <div class="side-tech row" style="padding: 0px;">
+        <p class="simple-link" (click)="showAbout()">About</p>
+        <p class="simple-link" (click)="showTOS()">Terms of Service</p>
+        <p>©2020</p>
+      </div>
+    </div>    
+  </div>
+</div>
+
+<!--Modal for about of LoginComponent-->
+<div class="modal" id="about" [ngClass]="{ show: aboutModal == 1 }">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <!-- Modal header -->
+      <div class="modal-header">
+        <h4 class="modal-title">About</h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          (click)="aboutModal = 0"
+          style="color: black;"
+        >
+          &times;
+        </button>
+      </div>
+
+      <!-- Modal body -->
+
+      <div class="modal-body" style="padding-top: 0;">
+        <p style="text-align: justify; opacity: 0.8;">
+          Techlog is a forum where you can write about articles related to
+          technology in general. You will be able to create posts as well as see
+          new posts by others and comment on them to share your views and give
+          likes. You can customise your profile by selecting your favourite
+          avatar and writing about yourself.
+        </p>
+        <div class="dev-credits">
+          <h6>
+            By the unpaid folks
+            <i class="fas fa-heart-broken" style="color: #dc3545;"></i>
+          </h6>
+          <a href="https://debadri.com/" target="_blank" class="simple-link"
+            ><div class="dev-block">
+              <i class="fas fa-award"></i>
+              Debadri
+            </div></a
+          >
+          <a href="https://atdebjoy.com/" target="_blank" class="simple-link"
+            ><div class="dev-block">
+              <i class="fas fa-award"></i>
+              Debjoy
+            </div></a
+          >
+          <a
+            href="https://github.com/dchak001"
+            target="_blank"
+            class="simple-link"
+            ><div class="dev-block">
+              <i class="fas fa-award"></i>
+              Dipan
+            </div></a
+          >
+        </div>
+      </div>
+
+      <!-- <div class="modal-footer">
+        <button (click)="showAbout()" class="btn btn-danger">DELETE</button>
+      </div> -->
     </div>
   </div>
 </div>
+
+<!--Modal for Terms of service of LoginComponent-->
+<div class="modal" id="about" [ngClass]="{ show: tosModal == 1 }">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <!-- Modal header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Terms of service</h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          (click)="tosModal = 0"
+          style="color: black;"
+        >
+          &times;
+        </button>
+      </div>
+
+      <!-- Modal body -->
+
+      <div class="modal-body" style="padding-top: 0;">
+        <p style="text-align: justify; opacity: 0.8;">
+          This a website has similar colour combination of a holy place. If you
+          don't recognize the colours, I believe heaven is the right place for
+          you. Three developers tried to build this website with a motive which
+          was never implemented. Every bug has been successfully turned into a
+          feature. In this website you can post anything once you are
+          registered. Trust us, there is no checker for valid or invalid email.
+          The guy on the server didn't even put any security for password, its
+          just string. Your privacy is protected as long as heroku (a free home for
+          this site) permits. There is no ads because no body actually visits
+          this site unless told by the developers.
+        </p>
+      </div>
+
+      <!-- <div class="modal-footer">
+        <button (click)="showAbout()" class="btn btn-danger">DELETE</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+

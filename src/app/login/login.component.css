@@ -43,3 +43,38 @@
 .logo i{
     font-size:3rem;
 }
+
+.modal.show {
+    display: block;
+  }
+  
+  #about .modal-content {
+    background: #fefefe;
+    color: black;
+  }
+  
+  #about .modal-header {
+    border: none;
+  }
+  
+  #about.show {
+    display: flex;
+  }
+  #about .modal-dialog {
+    margin: auto;
+  }
+  .modal-footer {
+    border: none;
+  }
+  .dev-block {
+    background-color: #3a3a3a;
+    display: inline-block;
+    padding: 10px 15px;
+    margin-bottom: 0.6rem;
+    border-radius: 5px;
+    margin-right: 0.3rem;
+    margin-left: 0.3rem;
+  }
+  .dev-credits {
+    text-align: center;
+  }
