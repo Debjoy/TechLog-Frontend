@@ -27,6 +27,7 @@ export class PostComponent implements OnInit {
   deleteCommentModal = 0;
   removedPost = false;
   spinner = true;
+  profileFollowed = false; //toggle this for follow and unfollow
 
   @ViewChild("commentText", { static: false }) commentText: ElementRef;
 
@@ -45,9 +46,9 @@ export class PostComponent implements OnInit {
       this.id = param.get("id");
       this.postService.getPostById(this.id).subscribe((res) => {
         this.postData = res;
-        if(this.postData!= null)
+        if (this.postData != null)
           this.postData.text = unescape(this.postData.text);
-        else{
+        else {
           this.removedPost = true;
         }
         this.spinner = false;
@@ -195,5 +196,14 @@ export class PostComponent implements OnInit {
     this.toastr.info("Link Copied to Clipboard", "Copied", {
       positionClass: "toast-top-right",
     });
+  }
+
+  followPostUser() {
+    //do this after call
+    this.profileFollowed = true;
+  }
+  unfollowPostUser() {
+    //do this after call
+    this.profileFollowed = false;
   }
 }

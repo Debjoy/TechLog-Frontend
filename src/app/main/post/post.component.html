@@ -1,5 +1,7 @@
 <div class="no-results" *ngIf="removedPost">
-  <div class="sad-results"><i class="fas fa-exclamation-triangle fa-2x"></i></div>
+  <div class="sad-results">
+    <i class="fas fa-exclamation-triangle fa-2x"></i>
+  </div>
   <h5>Post removed</h5>
   <p>Unfortunately this post has been removed by the user.</p>
   <p>Try searching something else.</p>
@@ -8,7 +10,7 @@
 <div *ngIf="postData">
   <div class="bb-post-title">
     <h3>{{ postData.title }}</h3>
-    <p>
+    <span style="display: inline-block;">
       <span style="opacity: 0.6;"
         >posted on {{ postData.timestamp | date: "yyyy-MM-dd h:mm a" }} ~</span
       ><a
@@ -16,8 +18,24 @@
         class="simple-link"
         style="opacity: 1;"
         >{{ postData.username }}</a
-      >
-    </p>
+      >&nbsp;
+      <div *ngIf="postData.username != cookieUsername" class="follow-div">
+        <button
+          class="follow-btn"
+          *ngIf="!profileFollowed"
+          (click)="followPostUser()"
+        >
+          <strong>Follow</strong>
+        </button>
+        <button
+          class="follow-btn unfolowed"
+          *ngIf="profileFollowed"
+          (click)="unfollowPostUser()"
+        >
+          <strong>Unfollow</strong>
+        </button>
+      </div>
+    </span>
   </div>
   <div class="bb-post-content">
     <div class="post-card">

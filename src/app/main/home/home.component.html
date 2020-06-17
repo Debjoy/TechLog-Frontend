@@ -9,23 +9,29 @@
       class="new-post-title"
       placeholder="eg. Snapdragon is bitchin!"
     />
+
     <button (click)="createPost()" class="btn btn-warning">
       <strong><i class="fas fa-pen"></i> Create</strong>
     </button>
   </div>
 </div>
-<div class="top-posts" *ngIf="posts">
-  <h5>
-    Recent posts <span class="badge badge-warning">{{ posts?.length }}</span>
-  </h5>
-  <div class="post-filters">
-    <!-- <h4>
-      <span class="badge badge-dark">#all</span
-      ><span class="badge badge-dark">#pc</span
-      ><span class="badge badge-dark">#AI</span
-      ><span class="badge badge-dark">#cloud</span>
-    </h4> -->
+<div class="tabs nav nav-tabs nav-justified">
+  <div class="tab-items nav-item" (click)="showTopPosts = true">
+    <h5 class="nav-link" [ngClass]="{ active: showTopPosts }">
+      Recent posts
+      <span class="badge badge-warning" *ngIf="posts">{{ posts?.length }}</span>
+    </h5>
   </div>
+  <div class="tab-items nav-item" (click)="showTopPosts = false">
+    <h5 class="nav-link" [ngClass]="{ active: !showTopPosts }">
+      Followed posts
+      <span class="badge badge-warning" *ngIf="followedPost">{{
+        followedPost?.length
+      }}</span>
+    </h5>
+  </div>
+</div>
+<div class="top-posts" *ngIf="posts && showTopPosts">
   <div *ngFor="let post of posts">
     <div
       class="post-card post post-selectable"
@@ -80,6 +86,63 @@
     <a class="simple-link" href="#">load more</a>
   </p> -->
 </div>
+
+<div class="top-posts" *ngIf="followedPost && !showTopPosts">
+  <div *ngFor="let post of followedPost">
+    <div
+      class="post-card post post-selectable"
+      routerLink="/post/{{ post.id }}"
+    >
+      <div class="container row">
+        <div class="col-md-4">
+          <img
+            src="{{
+              post.image != null && post.image != ''
+                ? post.image
+                : 'assets/no-image.png'
+            }}"
+            onError="this.src='assets/no-image.png'"
+            class="img-fluid"
+            alt="Responsive image"
+          />
+        </div>
+        <div class="col-md-8 inner-content">
+          <h4 style="margin-bottom: 0.5rem;">
+            <a class="simple-link" routerLink="/post/{{ post.id }}">{{
+              post.title
+            }}</a>
+          </h4>
+          <p>
+            <span style="opacity: 0.6;"
+              >posted on
+              {{ post.timestamp | date: "yyyy-MM-dd h:mm a" }} ~</span
+            ><a
+              routerLink="/profile/{{ post.username }}"
+              class="simple-link"
+              style="opacity: 1;"
+              >{{ post.username }}</a
+            >
+          </p>
+          <div class="post-content">
+            <div class="bb-post-text" [innerHTML]="post.text"></div>
+            <div class="overlay"></div>
+          </div>
+          <p>
+            {{ post.likes }} <i class="fas fa-thumbs-up"></i>&nbsp; &nbsp;
+            {{ post.comments }}
+            <i class="fas fa-comment"></i>
+          </p>
+        </div>
+      </div>
+    </div>
+    <br />
+  </div>
+
+  <!-- <p class="load-more-posts lead">
+    <a class="simple-link" href="#">load more</a>
+  </p> -->
+</div>
+<!--add *ngIf="!posts || !followedPost" here-->
 <div *ngIf="!posts" style="width: 100%; text-align: center;">
   <div
     class="spinner-grow text-warning spinner-grow-lg"

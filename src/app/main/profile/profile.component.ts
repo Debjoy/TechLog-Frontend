@@ -14,6 +14,7 @@ import { parseTemplate } from "@angular/compiler";
 export class ProfileComponent implements OnInit {
   username: any;
   title: any;
+  profileFollowed = false; //toggle this to show followed or not
   editProfileModal = 0;
   editPasswordModal = 0;
   editProfilePic = 0;
