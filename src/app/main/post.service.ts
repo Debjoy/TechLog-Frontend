@@ -128,9 +128,9 @@ export class PostService {
     );
   }
 
-  reportPost(id: any): Observable<any> {
+  reportPost(body: any): Observable<any> {
     return this.http.post(
-      this.api_prefix + "posts/report", id,
+      this.api_prefix + "reports/reportPost", body,
       this.httpOptions
     )
   }
@@ -145,6 +145,13 @@ export class PostService {
   getReportedPost(): Observable<any> {
     return this.http.get(
       this.api_prefix + "posts/getReportedPosts",
+      this.httpOptions
+    )
+  }
+
+  checkReported(body: any): Observable<any> {
+    return this.http.post(
+      this.api_prefix + "reports/checkReported", body,
       this.httpOptions
     )
   }
