@@ -1,0 +1,36 @@
+@media screen and (max-width: 767px) {
+    .inner-content {
+      margin: 10px 0px;
+    }
+  }
+  .post-content {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 50px;
+    position: relative;
+  }
+  .post-content .overlay {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(rgba(39, 39, 39, 0), rgba(39, 39, 39, 1));
+  }
+  
+  @media only screen and (max-width: 767px) {
+    .row {
+      padding: 0;
+      margin: auto;
+    }
+    .col-md-5,
+    .col-md-4,
+    .col-md-8 {
+      align-self: center;
+      text-align: center;
+    }
+    .col-md-4 {
+      margin-bottom: 2rem;
+    }
+  }
+  

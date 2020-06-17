@@ -10,6 +10,7 @@ import { CookieService } from "ngx-cookie-service";
 import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { NgxSpinnerService } from "ngx-spinner";
+import { AdminService } from '../admin.service';
 
 @Component({
   selector: "app-login",
@@ -51,10 +52,18 @@ export class LoginComponent implements OnInit {
     private loginService: LoginService,
     private cookieService: CookieService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private adminService: AdminService
   ) {}
 
   ngOnInit() {
+    // check network
+    this.loginService.wakeUp().subscribe(res => {},error => {
+      this.toastr.error("Check your network connection", "Error!", {
+        positionClass: "toast-top-center",
+      });
+    });
+
     // if user tries to be oversmart
     if (this.cookieService.get("token") != "") {
       this.router.navigate([""]);
@@ -111,9 +120,13 @@ export class LoginComponent implements OnInit {
     this.loginService.existsByEmailAndPassword(body).subscribe((res) => {
       this.spinner.hide("spinnerLogin");
       if (res.exists == "true") {
+        if(res.username == "root" || res.username == "admin"){
+          this.adminService.authenticate();
+        }
         this.cookieService.set("user", res.username);
         this.cookieService.set("token", res.tokenTimestamp);
         this.router.navigate([""]);
+               
       } else {
         // console.error(res);
         this.toastr.error("Invalid Email and Password", "Error!", {
@@ -144,6 +157,9 @@ export class LoginComponent implements OnInit {
       });
       this.loginService.existsByEmailAndPassword(loginInfo).subscribe((res) => {
         if (res.exists == "true") {
+          if(res.username == "root" || res.username == "admin"){
+            this.adminService.authenticate();
+          }
           this.cookieService.set("user", res.username);
           this.cookieService.set("token", res.tokenTimestamp);
           this.router.navigate([""]);

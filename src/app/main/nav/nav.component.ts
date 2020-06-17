@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { MainComponent } from '../main.component';
+import { AdminService } from 'src/app/admin.service';
 
 @Component({
   selector: 'app-nav',
@@ -10,13 +11,14 @@ import { MainComponent } from '../main.component';
 })
 export class NavComponent implements OnInit {
 
-
-  constructor(private cookieService: CookieService, private route: Router, private mainComp: MainComponent) { }
+  clicks=0;
+  constructor(private cookieService: CookieService, private route: Router, private mainComp: MainComponent, private adminService: AdminService) { }
 
   ngOnInit() {
   }
 
   onLogout(){
+    this.adminService.deAuthenticate();
     this.cookieService.delete('token');
     this.route.navigate(['/login']);
   }
@@ -26,6 +28,14 @@ export class NavComponent implements OnInit {
   }
   showTOS(){
     this.mainComp.showTOSMain();
+  }
+
+  openAdmin(){
+    this.clicks++;
+    if(this.clicks == 5){
+      this.clicks = 0;
+      this.route.navigate(['/admin']);
+    }
   }
 
 }

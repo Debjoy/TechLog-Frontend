@@ -8,12 +8,15 @@ import { MainComponent } from "./main/main.component";
 import { LoginComponent } from "./login/login.component";
 import { EditpostComponent } from "./main/editpost/editpost.component";
 import { SearchComponent } from "./main/search/search.component";
+import { AdminComponent } from './main/admin/admin/admin.component';
+import { RouterGuardService } from './router-guard.service';
 
 const routes: Routes = [
   {
     path: "",
     component: MainComponent,
     children: [
+      { path: "admin", component: AdminComponent, canActivate: [RouterGuardService] },
       { path: "home", component: HomeComponent },
       { path: "profile/:id", component: ProfileComponent },
       { path: "profile", component: ProfileComponent },
@@ -28,7 +31,7 @@ const routes: Routes = [
     ],
   },
   { path: "login", component: LoginComponent },
-  { path: "**", component: MainComponent },
+  { path: "**", component: MainComponent }
 ];
 
 @NgModule({
