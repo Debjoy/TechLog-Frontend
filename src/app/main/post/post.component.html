@@ -19,7 +19,10 @@
         style="opacity: 1;"
         >{{ postData.username }}</a
       >&nbsp;
-      <div *ngIf="postData.username != cookieUsername" class="follow-div">
+      <div
+        *ngIf="postData.username != cookieUsername && checkFollowDone"
+        class="follow-div"
+      >
         <button
           class="follow-btn"
           *ngIf="!profileFollowed"

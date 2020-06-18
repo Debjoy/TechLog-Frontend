@@ -21,12 +21,21 @@ export class HomeComponent implements OnInit {
   posts: any;
   followedPost: any;
   showTopPosts = true;
+  cookieUsername: any;
 
   ngOnInit() {
     //this.getResult();
+    this.cookieUsername = this.cookieService.get("user");
     this.postService.getAllPosts().subscribe((res) => {
       this.posts = res;
       this.posts.sort(
+        (a, b) =>
+          new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
+      );
+    });
+    this.postService.getFollowersPost(this.cookieUsername).subscribe((res) => {
+      this.followedPost = res;
+      this.followedPost.sort(
         (a, b) =>
           new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
       );

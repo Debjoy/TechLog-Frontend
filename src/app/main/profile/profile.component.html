@@ -35,7 +35,7 @@
         ><h6>{{ userDetails.username }}</h6></a
       >
 
-      <div *ngIf="foreignUser">
+      <div *ngIf="foreignUser && checkFollowDone">
         <button
           class="follow-btn"
           *ngIf="!profileFollowed"
@@ -46,7 +46,7 @@
         <button
           class="follow-btn unfolowed"
           *ngIf="profileFollowed"
-          click)="unfollowForeignUser()"
+          (click)="unfollowForeignUser()"
         >
           <strong>Unfollow</strong>
         </button>

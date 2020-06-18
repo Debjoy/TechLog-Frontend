@@ -128,10 +128,10 @@ export class PostService {
     );
   }
 
-  reportPost(id: any): Observable<any> {
+  reportPost(body: any): Observable<any> {
     return this.http.post(
       this.api_prefix + "posts/report",
-      id,
+      body,
       this.httpOptions
     );
   }
@@ -155,6 +155,28 @@ export class PostService {
     return this.http.post(
       this.api_prefix + "reports/checkReported",
       body,
+      this.httpOptions
+    );
+  }
+
+  follow(body: any): Observable<any> {
+    return this.http.post(
+      this.api_prefix + "follows/add",
+      body,
+      this.httpOptions
+    );
+  }
+  checkIfFollowed(body: any): Observable<any> {
+    return this.http.post(
+      this.api_prefix + "follows/checkIfFollowed",
+      body,
+      this.httpOptions
+    );
+  }
+
+  getFollowersPost(body: any): Observable<any> {
+    return this.http.get(
+      this.api_prefix + "posts/getFollowersPosts?username=" + body,
       this.httpOptions
     );
   }

@@ -15,6 +15,7 @@ export class ProfileComponent implements OnInit {
   username: any;
   title: any;
   profileFollowed = false; //toggle this to show followed or not
+  checkFollowDone = false;
   editProfileModal = 0;
   editPasswordModal = 0;
   editProfilePic = 0;
@@ -149,6 +150,18 @@ export class ProfileComponent implements OnInit {
           //load foreign user's post
           this.postService.getAllByUsername(this.loadUser).subscribe((res) => {
             this.postData = res;
+          });
+          let followCheckData = {
+            follower: this.cookieUserName,
+            following: this.loadUser,
+          };
+          this.postService.checkIfFollowed(followCheckData).subscribe((res) => {
+            this.checkFollowDone = true;
+            if (res == true) {
+              this.profileFollowed = true;
+            } else {
+              this.profileFollowed = false;
+            }
           });
         }
       } else {
@@ -325,5 +338,21 @@ export class ProfileComponent implements OnInit {
     );
 
     /*this.editProfilePic = 1;*/
+  }
+
+  followForeignUser() {
+    this.profileFollowed = true;
+    let body = {
+      follower: this.cookieUserName,
+      following: this.loadUser,
+    };
+    this.postService.follow(body).subscribe((res) => {
+      this.toastr.info("You have followed " + this.loadUser, "Followed!", {
+        positionClass: "toast-top-center",
+      });
+    });
+  }
+  unfollowForeignUser() {
+    this.profileFollowed = false;
   }
 }

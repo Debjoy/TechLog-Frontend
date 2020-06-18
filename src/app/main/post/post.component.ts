@@ -30,6 +30,7 @@ export class PostComponent implements OnInit {
   removedPost = false;
   spinner = true;
   profileFollowed = false; //toggle this for follow and unfollow
+  checkFollowDone = false;
 
   @ViewChild("commentText", { static: false }) commentText: ElementRef;
 
@@ -49,9 +50,21 @@ export class PostComponent implements OnInit {
       this.id = param.get("id");
       this.postService.getPostById(this.id).subscribe((res) => {
         this.postData = res;
-        if (this.postData != null)
+        if (this.postData != null) {
           this.postData.text = unescape(this.postData.text);
-        else {
+          let followCheckData = {
+            follower: this.cookieUsername,
+            following: this.postData.username,
+          };
+          this.postService.checkIfFollowed(followCheckData).subscribe((res) => {
+            this.checkFollowDone = true;
+            if (res == true) {
+              this.profileFollowed = true;
+            } else {
+              this.profileFollowed = false;
+            }
+          });
+        } else {
           this.removedPost = true;
         }
         this.spinner = false;
@@ -225,6 +238,19 @@ export class PostComponent implements OnInit {
   followPostUser() {
     //do this after call
     this.profileFollowed = true;
+    let body = {
+      follower: this.cookieUsername,
+      following: this.postData.username,
+    };
+    this.postService.follow(body).subscribe((res) => {
+      this.toastr.info(
+        "You have followed " + this.postData.username,
+        "Followed!",
+        {
+          positionClass: "toast-top-center",
+        }
+      );
+    });
   }
   unfollowPostUser() {
     //do this after call
