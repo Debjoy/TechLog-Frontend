@@ -56,9 +56,18 @@
     </div>
   </div>
   <div class="bb-like-share">
-    <i class="fas fa-heart unlike" (click)="unlike()" *ngIf="liked == 1"></i>
-    <i class="far fa-heart like" (click)="like()" *ngIf="liked == 0"></i>&nbsp;
-    <div class="like-parent" tabindex="1234">
+    <i
+      class="fas fa-heart unlike post-bottom-item"
+      (click)="unlike()"
+      *ngIf="liked == 1"
+    ></i>
+    <i
+      class="far fa-heart like post-bottom-item"
+      (click)="like()"
+      *ngIf="liked == 0"
+    ></i
+    >&nbsp;
+    <div class="like-parent post-bottom-item" tabindex="1234">
       <span *ngIf="likesList" style="cursor: pointer;"
         >{{ likesList.length }} likes</span
       >
@@ -80,13 +89,24 @@
     <button
       routerLink="/edit/{{ id }}"
       *ngIf="postData.username == cookieUsername"
-      class="btn btn-sm btn-warning"
+      class="btn btn-sm btn-warning post-bottom-item"
     >
       <strong>Edit this post </strong> <i class="fas fa-edit"></i>
     </button>
     &nbsp;
-    <button class="btn btn-sm btn-light" (click)="sharePostModal = 1">
+    <button
+      class="btn btn-sm btn-light post-bottom-item"
+      (click)="sharePostModal = 1"
+    >
       <strong>Share </strong> <i class="fas fa-share"></i>
+    </button>
+    &nbsp;
+    <button
+      class="btn btn-sm btn-dark post-bottom-item report-btn"
+      (click)="reportPostModal = 1"
+      *ngIf="showReportButton"
+    >
+      <strong>Report </strong> <i class="fas fa-flag"></i>
     </button>
   </div>
 
@@ -177,6 +197,43 @@
     </div>
   </div>
 </div>
+
+<!--Modal For Reporting Post-->
+<div
+  class="modal"
+  id="editTitle"
+  *ngIf="comments"
+  [ngClass]="{ show: reportPostModal == 1 }"
+>
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <!-- Modal header -->
+      <div class="modal-header" style="padding-bottom: 0px;">
+        <h4 class="modal-title">Report Post</h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          (click)="reportPostModal = 0"
+          style="color: white;"
+        >
+          &times;
+        </button>
+      </div>
+
+      <!-- Modal body -->
+
+      <div class="modal-body">
+        <p style="margin: 0;">Are your sure you want to report this post?</p>
+      </div>
+
+      <div class="modal-footer" style="padding-top: 0px;">
+        <button (click)="reportPost()" class="btn btn-dark">REPORT</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!--Modal for sharing article-->
 <div
   class="modal"
@@ -268,5 +325,5 @@
 </div>
 <div
   class="modal-backdrop show"
-  *ngIf="deleteCommentModal == 1 || sharePostModal == 1"
+  *ngIf="deleteCommentModal == 1 || sharePostModal == 1 || reportPostModal == 1"
 ></div>

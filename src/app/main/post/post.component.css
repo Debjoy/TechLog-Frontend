@@ -228,3 +228,6 @@
 .follow-div {
   display: inline-block;
 }
+.post-bottom-item {
+  margin-bottom: 10px;
+}

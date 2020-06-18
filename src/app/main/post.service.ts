@@ -128,31 +128,34 @@ export class PostService {
     );
   }
 
-  reportPost(body: any): Observable<any> {
+  reportPost(id: any): Observable<any> {
     return this.http.post(
-      this.api_prefix + "reports/reportPost", body,
+      this.api_prefix + "posts/report",
+      id,
       this.httpOptions
-    )
+    );
   }
 
   resetReportedPost(id: any): Observable<any> {
     return this.http.post(
-      this.api_prefix + "posts/resetReport", id,
+      this.api_prefix + "posts/resetReport",
+      id,
       this.httpOptions
-    )
+    );
   }
 
   getReportedPost(): Observable<any> {
     return this.http.get(
       this.api_prefix + "posts/getReportedPosts",
       this.httpOptions
-    )
+    );
   }
 
   checkReported(body: any): Observable<any> {
     return this.http.post(
-      this.api_prefix + "reports/checkReported", body,
+      this.api_prefix + "reports/checkReported",
+      body,
       this.httpOptions
-    )
+    );
   }
 }

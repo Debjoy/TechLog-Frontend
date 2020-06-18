@@ -25,6 +25,8 @@ export class PostComponent implements OnInit {
   likesList: any;
   currentUserImg = "01.png";
   deleteCommentModal = 0;
+  reportPostModal = 0;
+  showReportButton = false;
   removedPost = false;
   spinner = true;
   profileFollowed = false; //toggle this for follow and unfollow
@@ -42,6 +44,7 @@ export class PostComponent implements OnInit {
 
   ngOnInit() {
     this.baseLocation = window.location.origin;
+    this.cookieUsername = this.cookieService.get("user");
     this.route.paramMap.subscribe((param) => {
       this.id = param.get("id");
       this.postService.getPostById(this.id).subscribe((res) => {
@@ -53,8 +56,16 @@ export class PostComponent implements OnInit {
         }
         this.spinner = false;
       });
+      let checkReportedData = {
+        postid: this.id,
+        username: this.cookieUsername,
+      };
+      this.postService.checkReported(checkReportedData).subscribe((res) => {
+        if (res.length == 0) {
+          this.showReportButton = true;
+        }
+      });
     });
-    this.cookieUsername = this.cookieService.get("user");
 
     // get the image of current user
     this.loginService
@@ -195,6 +206,19 @@ export class PostComponent implements OnInit {
     document.body.removeChild(x);
     this.toastr.info("Link Copied to Clipboard", "Copied", {
       positionClass: "toast-top-right",
+    });
+  }
+
+  reportPost() {
+    let body = {
+      postid: this.id,
+      username: this.cookieUsername,
+    };
+    this.postService.reportPost(body).subscribe((res) => {
+      this.toastr.info("Post Reported", "Reported", {
+        positionClass: "toast-top-right",
+      });
+      this.reportPostModal = 0;
     });
   }
 
