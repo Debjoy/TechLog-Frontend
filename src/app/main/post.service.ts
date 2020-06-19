@@ -130,7 +130,7 @@ export class PostService {
 
   reportPost(body: any): Observable<any> {
     return this.http.post(
-      this.api_prefix + "posts/report",
+      this.api_prefix + "reports/reportPost",
       body,
       this.httpOptions
     );
@@ -165,6 +165,15 @@ export class PostService {
       body,
       this.httpOptions
     );
+  }
+  unFollow(body: any): Observable<any> {
+    return this.http.post(this.api_prefix + "follows/unfollow", body, {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        authKey: "vbryg7aj@jh9gsd.AShgf%",
+      }),
+      responseType: "text",
+    });
   }
   checkIfFollowed(body: any): Observable<any> {
     return this.http.post(

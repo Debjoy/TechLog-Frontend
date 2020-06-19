@@ -354,5 +354,18 @@ export class ProfileComponent implements OnInit {
   }
   unfollowForeignUser() {
     this.profileFollowed = false;
+    let body = {
+      follower: this.cookieUserName,
+      following: this.loadUser,
+    };
+    this.postService.unFollow(body).subscribe((res) => {
+      this.toastr.info(
+        "You have un-followed " + this.loadUser,
+        "Un-Followed!",
+        {
+          positionClass: "toast-top-center",
+        }
+      );
+    });
   }
 }

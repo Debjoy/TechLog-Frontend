@@ -1,20 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { PostService } from '../../post.service';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { PostService } from "../../post.service";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+  selector: "app-admin",
+  templateUrl: "./admin.component.html",
+  styleUrls: ["./admin.component.css"],
 })
 export class AdminComponent implements OnInit {
-
   posts: any;
 
-  constructor(private postService: PostService, private router: Router) { }
+  constructor(
+    private postService: PostService,
+    private router: Router,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit() {
-    this.postService.getReportedPost().subscribe(res => {
+    this.fetchReportedPosts();
+  }
+  fetchReportedPosts() {
+    this.postService.getReportedPost().subscribe((res) => {
       this.posts = res;
       this.posts.sort(
         (a, b) =>
@@ -23,4 +30,19 @@ export class AdminComponent implements OnInit {
     });
   }
 
+  resetPost(value: any) {
+    this.postService.resetReportedPost(value).subscribe((res) => {
+      this.toastr.info("Post has been reset", "Post Reset!");
+      this.fetchReportedPosts();
+    });
+  }
+  removePost(value: any) {
+    let body = {
+      id: value,
+    };
+    this.postService.deletePostById(body).subscribe((res) => {
+      this.toastr.info("Post has been deleted", "Post Deleted!");
+      this.fetchReportedPosts();
+    });
+  }
 }

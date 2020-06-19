@@ -232,6 +232,7 @@ export class PostComponent implements OnInit {
         positionClass: "toast-top-right",
       });
       this.reportPostModal = 0;
+      this.showReportButton = false;
     });
   }
 
@@ -255,5 +256,18 @@ export class PostComponent implements OnInit {
   unfollowPostUser() {
     //do this after call
     this.profileFollowed = false;
+    let body = {
+      follower: this.cookieUsername,
+      following: this.postData.username,
+    };
+    this.postService.unFollow(body).subscribe((res) => {
+      this.toastr.info(
+        "You have un-followed " + this.postData.username,
+        "Un-Followed!",
+        {
+          positionClass: "toast-top-center",
+        }
+      );
+    });
   }
 }

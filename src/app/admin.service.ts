@@ -1,26 +1,24 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class AdminService {
-
   authenticated = false;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  isAuthenticated(){
-    if(this.authenticated == true)
-      return true;
+  isAuthenticated() {
+    if (this.authenticated == true) return true;
     return false;
   }
 
-  authenticate(){
+  authenticate() {
     this.authenticated = true;
   }
 
-  deAuthenticate(){
+  deAuthenticate() {
     this.authenticated = false;
   }
 }
