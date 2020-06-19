@@ -34,6 +34,9 @@
       <a class="simple-link" style="display: block;"
         ><h6>{{ userDetails.username }}</h6></a
       >
+      <p style="margin: 0; opacity: 0.6;" *ngIf="followers">
+        {{ followers.length }} Follower{{ followers.length == 1 ? "" : "s" }}
+      </p>
 
       <div *ngIf="foreignUser && checkFollowDone">
         <button
@@ -51,7 +54,7 @@
           <strong>Unfollow</strong>
         </button>
       </div>
-      <div style="display: block; margin-top: 15px;">
+      <div style="display: block; margin-top: 5px;">
         <button
           class="btn btn-sm btn-outline-warning"
           routerLink="/user-post"

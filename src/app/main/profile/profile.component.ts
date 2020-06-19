@@ -20,6 +20,7 @@ export class ProfileComponent implements OnInit {
   editPasswordModal = 0;
   editProfilePic = 0;
   editAboutModal = 0;
+  followers: any;
 
   editNameLoading = 0;
   editUsernameLoading = 0;
@@ -169,6 +170,8 @@ export class ProfileComponent implements OnInit {
         this.loadUser = this.cookieUserName;
         this.foreignUser = false;
       }
+
+      this.getFollowers();
 
       this.loginService.findByUsername(this.loadUser).subscribe(
         (res) => {
@@ -350,6 +353,7 @@ export class ProfileComponent implements OnInit {
       this.toastr.info("You have followed " + this.loadUser, "Followed!", {
         positionClass: "toast-top-center",
       });
+      this.getFollowers();
     });
   }
   unfollowForeignUser() {
@@ -366,6 +370,14 @@ export class ProfileComponent implements OnInit {
           positionClass: "toast-top-center",
         }
       );
+      this.getFollowers();
+    });
+  }
+
+  getFollowers() {
+    this.postService.getFollower(this.loadUser).subscribe((res) => {
+      console.log(res);
+      this.followers = res;
     });
   }
 }
