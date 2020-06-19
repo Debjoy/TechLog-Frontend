@@ -148,6 +148,65 @@
   background-color: #171717;
   cursor: pointer;
 }
+
+.follow-body::-webkit-scrollbar {
+  width: 10px;
+  cursor: pointer;
+}
+.follow-body::-webkit-scrollbar-thumb {
+  background-color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.follow-body::-webkit-scrollbar-thumb:hover {
+  background-color: var(--primary-color);
+}
+.follow-body::-webkit-scrollbar-track {
+  background-color: #171717;
+  cursor: pointer;
+}
+.follow-body {
+  max-height: 65vh;
+  overflow-y: auto;
+}
+.follow-element-body {
+  display: block;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+  outline: none;
+  position: relative;
+  cursor: pointer;
+}
+
+.follow-img {
+  display: inline-block;
+  max-width: 50px;
+  vertical-align: inherit;
+  border-radius: 50px;
+  transition: opacity 0.3s;
+}
+.follow-element-body p {
+  display: inline-block;
+  padding: 5px 10px;
+  margin: 0px;
+  font-weight: 500;
+  vertical-align: top;
+  transition: all 0.3s ease;
+}
+.follow-element-body:hover p {
+  color: var(--primary-color);
+}
+.follow-element-body:hover .follow-img {
+  opacity: 0.5;
+}
+.follow-img:hover {
+  cursor: pointer;
+}
+.modal-follow {
+  min-width: 300px;
+}
+
 .edit-about {
   color: white;
   transition: all 0.3s ease;
@@ -194,5 +253,10 @@
     text-align: left;
     display: block;
     padding: 5px 0px;
+  }
+}
+@media only screen and (max-width: 460px) {
+  .modal-follow {
+    width: 100%;
   }
 }

@@ -34,11 +34,21 @@
       <a style="display: block;"
         ><h6>{{ userDetails.username }}</h6></a
       >
-      <a class="simple-link" style="margin: 0; opacity: 0.6;" *ngIf="followers" (click)="showFollowersModal=1">
+      <a
+        class="simple-link"
+        style="margin: 0; opacity: 0.6;"
+        *ngIf="followers"
+        (click)="showFollowersModal = 1"
+      >
         {{ followers.length }} Follower{{ followers.length == 1 ? "" : "s" }}
       </a>
       &nbsp;
-      <a class="simple-link" style="margin: 0; opacity: 0.6;" *ngIf="followings" (click)="showFollowingsModal=1">
+      <a
+        class="simple-link"
+        style="margin: 0; opacity: 0.6;"
+        *ngIf="followings"
+        (click)="showFollowingsModal = 1"
+      >
         {{ followings.length }} Following
       </a>
 
@@ -417,8 +427,12 @@
 </div>
 
 <!-- modal for followers -->
-<div class="modal" [ngClass]="{ show: showFollowersModal == 1 }" id="editProfile">
-  <div class="modal-dialog modal-lg">
+<div
+  class="modal"
+  [ngClass]="{ show: showFollowersModal == 1 }"
+  id="editProfile"
+>
+  <div class="modal-dialog modal-lg modal-follow">
     <div class="modal-content">
       <!-- Modal Header -->
       <div class="modal-header">
@@ -433,23 +447,48 @@
         </button>
       </div>
 
-      <div class="modal-body">
-        <div class="picker-body">
-          <div class="picker-element-body" *ngFor="let follower of followers">
-            <img src="assets/image/{{ (follower[2]==null)?'01.png':follower[2] }}" class="picker-img" routerLink="/profile/{{ follower[0] }}" (click)="showFollowersModal=0" />
-            <p>{{ follower[1] }}</p>
+      <div class="modal-body" style="padding-top: 0;">
+        <div class="follow-body">
+          <div
+            class="follow-element-body"
+            *ngFor="let follower of followers"
+            (click)="showFollowersModal = 0"
+            routerLink="/profile/{{ follower[0] }}"
+          >
+            <img
+              src="assets/image/{{
+                follower[2] == null ? '01.png' : follower[2]
+              }}"
+              class="follow-img"
+            />
+            <p>
+              {{ follower[1]
+              }}<span
+                style="font-size: 0.7rem; display: block; opacity: 0.7;"
+                >{{ follower[0] }}</span
+              >
+            </p>
           </div>
+          <p
+            style="opacity: 0.7; text-align: center;"
+            *ngIf="followers.length == 0"
+          >
+            <i class="fas fa-frown-open"></i><br />
+            No followers
+          </p>
         </div>
-      </div>
-      <div class="modal-footer">
       </div>
     </div>
   </div>
 </div>
 
 <!-- modal for following -->
-<div class="modal" [ngClass]="{ show: showFollowingsModal == 1 }" id="editProfile">
-  <div class="modal-dialog modal-lg">
+<div
+  class="modal"
+  [ngClass]="{ show: showFollowingsModal == 1 }"
+  id="editProfile"
+>
+  <div class="modal-dialog modal-lg modal-follow">
     <div class="modal-content">
       <!-- Modal Header -->
       <div class="modal-header">
@@ -464,15 +503,36 @@
         </button>
       </div>
 
-      <div class="modal-body">
-        <div class="picker-body">
-          <div class="picker-element-body" *ngFor="let following of followings">
-            <img src="assets/image/{{ (following[2]==null)?'01.png':following[2] }}" class="picker-img" routerLink="/profile/{{ following[0] }}" (click)="showFollowingsModal=0" />
-            <p>{{ following[1] }}</p>
+      <div class="modal-body" style="padding-top: 0;">
+        <div class="follow-body">
+          <div
+            class="follow-element-body"
+            *ngFor="let following of followings"
+            routerLink="/profile/{{ following[0] }}"
+            (click)="showFollowingsModal = 0"
+          >
+            <img
+              src="assets/image/{{
+                following[2] == null ? '01.png' : following[2]
+              }}"
+              class="follow-img"
+            />
+            <p>
+              {{ following[1]
+              }}<span
+                style="font-size: 0.7rem; display: block; opacity: 0.7;"
+                >{{ following[0] }}</span
+              >
+            </p>
           </div>
+          <p
+            style="opacity: 0.7; text-align: center;"
+            *ngIf="followings.length == 0"
+          >
+            <i class="fas fa-frown-open"></i><br />
+            No followings.
+          </p>
         </div>
-      </div>
-      <div class="modal-footer">
       </div>
     </div>
   </div>
@@ -480,5 +540,11 @@
 
 <div
   class="modal-backdrop show"
-  *ngIf="editPasswordModal == 1 || editProfileModal == 1 || editProfilePic == 1 || showFollowersModal == 1 || showFollowingsModal == 1"
+  *ngIf="
+    editPasswordModal == 1 ||
+    editProfileModal == 1 ||
+    editProfilePic == 1 ||
+    showFollowersModal == 1 ||
+    showFollowingsModal == 1
+  "
 ></div>
