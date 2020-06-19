@@ -18,13 +18,13 @@
 <div class="tabs nav nav-tabs nav-justified">
   <div class="tab-items nav-item" (click)="showTopPosts = true">
     <h5 class="nav-link" [ngClass]="{ active: showTopPosts }">
-      Recent posts
+      Recent
       <span class="badge badge-warning" *ngIf="posts">{{ posts?.length }}</span>
     </h5>
   </div>
   <div class="tab-items nav-item" (click)="showTopPosts = false">
     <h5 class="nav-link" [ngClass]="{ active: !showTopPosts }">
-      Followed posts
+      Followed
       <span class="badge badge-warning" *ngIf="followedPost">{{
         followedPost?.length
       }}</span>
@@ -136,6 +136,13 @@
       </div>
     </div>
     <br />
+  </div>
+
+  <div class="no-results" *ngIf="followedPost?.length == 0">
+    <div class="sad-results"><i class="fas fa-frown"></i></div>
+    <h5>No posts here</h5>
+    <p>Unfortunately there are no post from your followings.</p>
+    <p>Try following someone with content.</p>
   </div>
 
   <!-- <p class="load-more-posts lead">
