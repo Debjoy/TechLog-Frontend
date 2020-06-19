@@ -198,7 +198,7 @@ export class PostService {
   }
   getFollowing(follower: any): Observable<any> {
     return this.http.get(
-      this.api_prefix + "follows/getFollower?follower=" + follower,
+      this.api_prefix + "follows/getFollowing?follower=" + follower,
       this.httpOptions
     );
   }

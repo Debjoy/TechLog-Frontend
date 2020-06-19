@@ -21,6 +21,9 @@ export class ProfileComponent implements OnInit {
   editProfilePic = 0;
   editAboutModal = 0;
   followers: any;
+  followings: any;
+  showFollowersModal = 0;
+  showFollowingsModal = 0;
 
   editNameLoading = 0;
   editUsernameLoading = 0;
@@ -172,6 +175,7 @@ export class ProfileComponent implements OnInit {
       }
 
       this.getFollowers();
+      this.getFollowings();
 
       this.loginService.findByUsername(this.loadUser).subscribe(
         (res) => {
@@ -376,8 +380,33 @@ export class ProfileComponent implements OnInit {
 
   getFollowers() {
     this.postService.getFollower(this.loadUser).subscribe((res) => {
-      console.log(res);
+      // JSON structure of res - 
+      // [
+      //   [
+      //     'username',
+      //     'name',
+      //     'image'
+      //   ]
+      // ]
+
+      // console.log(res);
       this.followers = res;
+    });
+  }
+
+  getFollowings() {
+    this.postService.getFollowing(this.loadUser).subscribe((res) => {
+      // JSON structure of res - 
+      // [
+      //   [
+      //     'username',
+      //     'name',
+      //     'image'
+      //   ]
+      // ]
+      
+      // console.log(res);
+      this.followings = res;
     });
   }
 }
