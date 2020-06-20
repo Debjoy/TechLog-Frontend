@@ -55,7 +55,7 @@
           </button>
           <button
             class="btn btn-outline-danger btn-sm user-post-remove"
-            (click)="removePost(post.id)"
+            (click)="deletePostModal=1; deleteid = post.id"
           >
             <i class="fas fa-trash"></i>
           </button>
@@ -73,7 +73,7 @@
 <div
   class="modal"
   id="editTitle"
-  *ngIf="postDetails"
+  *ngIf="posts"
   [ngClass]="{ show: deletePostModal == 1 }"
 >
   <div class="modal-dialog modal-sm">
@@ -99,7 +99,7 @@
       </div>
 
       <div class="modal-footer">
-        <button (click)="deletePost()" class="btn btn-danger">DELETE</button>
+        <button (click)="removePost(deleteid);" class="btn btn-danger">DELETE</button>
       </div>
     </div>
   </div>
@@ -111,3 +111,8 @@
     style="align-self: center; margin: 80px;"
   ></div>
 </div>
+
+<div
+  class="modal-backdrop show"
+  *ngIf="deletePostModal == 1"
+></div>

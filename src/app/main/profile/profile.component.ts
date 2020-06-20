@@ -20,8 +20,8 @@ export class ProfileComponent implements OnInit {
   editPasswordModal = 0;
   editProfilePic = 0;
   editAboutModal = 0;
-  followers: any;
-  followings: any;
+  followers = [];
+  followings = [];
   showFollowersModal = 0;
   showFollowingsModal = 0;
 

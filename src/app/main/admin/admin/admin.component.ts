@@ -10,6 +10,8 @@ import { ToastrService } from "ngx-toastr";
 })
 export class AdminComponent implements OnInit {
   posts: any;
+  deletePostModal = 0;
+  deleteid = -1;
 
   constructor(
     private postService: PostService,
@@ -37,11 +39,13 @@ export class AdminComponent implements OnInit {
     });
   }
   removePost(value: any) {
+    // console.log(value);
     let body = {
       id: value,
     };
     this.postService.deletePostById(body).subscribe((res) => {
       this.toastr.info("Post has been deleted", "Post Deleted!");
+      this.deletePostModal=0;
       this.fetchReportedPosts();
     });
   }

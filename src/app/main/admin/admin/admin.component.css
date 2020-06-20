@@ -46,6 +46,11 @@
 #editTitle .modal-dialog {
   margin: auto;
 }
+
+.modal-footer {
+  border: none;
+}
+
 @media only screen and (max-width: 767px) {
   .row {
     padding: 0;
