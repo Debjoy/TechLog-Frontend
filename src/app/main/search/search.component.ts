@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { PostService } from "../post.service";
-import { LoginService } from 'src/app/login.service';
+import { LoginService } from "src/app/login.service";
 
 @Component({
   selector: "app-search",
@@ -33,12 +33,22 @@ export class SearchComponent implements OnInit {
           (a, b) =>
             new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
         );
+        this.openTabNecessory();
       });
 
-      this.loginService.getSearchedUsers(this.query).subscribe(res => {
+      this.loginService.getSearchedUsers(this.query).subscribe((res) => {
         this.people = res;
-      })
-
+        this.people.sort((a, b) => a[0].localeCompare(b[0]));
+        this.openTabNecessory();
+      });
     });
+  }
+
+  openTabNecessory() {
+    if (this.postData != undefined && this.people != undefined) {
+      if (this.postData.length == 0 && this.people.length > 0) {
+        this.showPosts = false;
+      }
+    }
   }
 }

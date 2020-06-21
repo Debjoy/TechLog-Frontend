@@ -76,6 +76,7 @@
   .col-md-8 {
     align-self: center;
     text-align: center;
+    padding: 0;
   }
   .col-md-4 {
     margin-bottom: 2rem;

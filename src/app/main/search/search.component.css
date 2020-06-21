@@ -23,7 +23,7 @@
   background-image: linear-gradient(rgba(39, 39, 39, 0), rgba(39, 39, 39, 1));
 }
 .tabs {
-  margin: 0 20px;
+  margin: 0;
   border: none;
 }
 .tab-items h5 {
@@ -59,4 +59,81 @@
 }
 .no-results p {
   opacity: 0.7;
+}
+.user-results {
+  text-align: center;
+}
+.user-card {
+  display: inline-block;
+  max-width: 200px;
+  background: #272727;
+  padding: 10px;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+.user-title {
+  margin: 0;
+  margin-top: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  white-space: nowrap;
+  width: 185px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.user-name {
+  margin: 0;
+  margin-bottom: 10px;
+  white-space: nowrap;
+  width: 185px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.post-selectable {
+  cursor: pointer;
+}
+@media only screen and (max-width: 476px) {
+  .user-card {
+    display: flex;
+    max-width: 100%;
+    width: 100%;
+    text-align: left;
+  }
+  .user-img {
+    max-width: 80px;
+    display: flex;
+  }
+  .user-content {
+    display: inline-block;
+    padding: 0px 10px;
+    width: 100%;
+    vertical-align: middle;
+  }
+  .user-title {
+    margin: 0;
+    width: calc(60vw - 10px);
+  }
+  .user-name {
+    width: calc(60vw - 10px);
+  }
+}
+@media only screen and (max-width: 767px) {
+  .row {
+    padding: 0;
+    margin: auto;
+  }
+  .col-md-5,
+  .col-md-4,
+  .col-md-8 {
+    align-self: center;
+    text-align: center;
+  }
+  .col-md-4 {
+    margin-bottom: 2rem;
+  }
+  .new-post-title {
+    width: 100%;
+    margin: 0px;
+    margin-top: 10px;
+  }
 }

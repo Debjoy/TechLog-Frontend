@@ -9,7 +9,9 @@
     <div class="tab-items nav-item" (click)="showPosts = true">
       <h5 class="nav-link" [ngClass]="{ active: showPosts }">
         Posts
-        <span class="badge badge-warning" *ngIf="postData">{{ postData?.length }}</span>
+        <span class="badge badge-warning" *ngIf="postData">{{
+          postData?.length
+        }}</span>
       </h5>
     </div>
     <div class="tab-items nav-item" (click)="showPosts = false">
@@ -24,6 +26,7 @@
 
   <div class="search-results" *ngIf="postData && showPosts">
     <div *ngFor="let post of postData">
+      <br />
       <div
         class="post-card post post-selectable"
         routerLink="/post/{{ post.id }}"
@@ -71,10 +74,9 @@
           </div>
         </div>
       </div>
-      <br />
     </div>
 
-    <div class="no-results" *ngIf="postData?.length == 0">
+    <div class="no-results">
       <div class="sad-results"><i class="fas fa-heart-broken"></i></div>
       <h5>No matching post</h5>
       <p>Unfortunately there are no post matching your search.</p>
@@ -83,37 +85,23 @@
   </div>
 
   <div class="search-results" *ngIf="people && !showPosts">
-    <div *ngFor="let user of people">
+    <div class="user-results">
       <div
-        class="post-card post post-selectable"
+        class="user-card post-selectable"
         routerLink="/profile/{{ user[1] }}"
+        *ngFor="let user of people"
       >
-        <div class="container row">
-          <div class="col-md-4">
-            <img
-              src="assets/image/{{
-                user[2] != null
-                  ? user[2]
-                  : '01.png'
-              }}"
-              class="img-fluid"
-              alt="Responsive image"
-            />
-          </div>
-          <div class="col-md-8 inner-content">
-            <h4 style="margin-bottom: 0.5rem;">
-              <a>{{
-                user[0]
-              }}</a>
-            </h4>
-            <div class="post-content">
-              <div class="bb-post-text" [innerHTML]="user[1]"></div>
-              <div class="overlay"></div>
-            </div>
-          </div>
+        <div class="user-img">
+          <img
+            src="assets/image/{{ user[2] != null ? user[2] : '01.png' }}"
+            class="img-fluid"
+          />
+        </div>
+        <div class="user-content">
+          <p class="user-title">{{ user[0] }}</p>
+          <p class="user-name simple-link">{{ user[1] }}</p>
         </div>
       </div>
-      <br />
     </div>
 
     <div class="no-results" *ngIf="people?.length == 0">
@@ -123,7 +111,6 @@
       <p>Try searching something else.</p>
     </div>
   </div>
-  
 </div>
 
 <div *ngIf="!postData" style="width: 100%; text-align: center;">
