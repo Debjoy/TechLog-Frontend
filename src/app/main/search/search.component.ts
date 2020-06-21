@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { PostService } from "../post.service";
+import { LoginService } from 'src/app/login.service';
 
 @Component({
   selector: "app-search",
@@ -10,9 +11,13 @@ import { PostService } from "../post.service";
 export class SearchComponent implements OnInit {
   postData: any;
   query: any;
+  people: any;
+  showPosts = true;
+
   constructor(
     private activeRoute: ActivatedRoute,
-    private postService: PostService
+    private postService: PostService,
+    private loginService: LoginService
   ) {}
 
   ngOnInit() {
@@ -20,6 +25,7 @@ export class SearchComponent implements OnInit {
       //console.log(param.get("q"));
       this.query = param.get("q");
       this.postData = undefined;
+
       this.postService.getSearchResult(this.query).subscribe((res) => {
         // console.log(res);
         this.postData = res;
@@ -28,6 +34,11 @@ export class SearchComponent implements OnInit {
             new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
         );
       });
+
+      this.loginService.getSearchedUsers(this.query).subscribe(res => {
+        this.people = res;
+      })
+
     });
   }
 }

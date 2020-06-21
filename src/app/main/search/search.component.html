@@ -2,13 +2,27 @@
   <div class="search-heading">
     <h3>
       Search Results
-      <span class="badge badge-warning search-length" *ngIf="postData">{{
-        postData.length
-      }}</span>
     </h3>
-    <p *ngIf="query">You have searched : "{{ query }}"</p>
   </div>
-  <div class="search-results">
+
+  <div class="tabs nav nav-tabs nav-justified">
+    <div class="tab-items nav-item" (click)="showPosts = true">
+      <h5 class="nav-link" [ngClass]="{ active: showPosts }">
+        Posts
+        <span class="badge badge-warning" *ngIf="postData">{{ postData?.length }}</span>
+      </h5>
+    </div>
+    <div class="tab-items nav-item" (click)="showPosts = false">
+      <h5 class="nav-link" [ngClass]="{ active: !showPosts }">
+        People
+        <span class="badge badge-warning" *ngIf="people">{{
+          people?.length
+        }}</span>
+      </h5>
+    </div>
+  </div>
+
+  <div class="search-results" *ngIf="postData && showPosts">
     <div *ngFor="let post of postData">
       <div
         class="post-card post post-selectable"
@@ -67,7 +81,51 @@
       <p>Try searching something else.</p>
     </div>
   </div>
+
+  <div class="search-results" *ngIf="people && !showPosts">
+    <div *ngFor="let user of people">
+      <div
+        class="post-card post post-selectable"
+        routerLink="/profile/{{ user[1] }}"
+      >
+        <div class="container row">
+          <div class="col-md-4">
+            <img
+              src="assets/image/{{
+                user[2] != null
+                  ? user[2]
+                  : '01.png'
+              }}"
+              class="img-fluid"
+              alt="Responsive image"
+            />
+          </div>
+          <div class="col-md-8 inner-content">
+            <h4 style="margin-bottom: 0.5rem;">
+              <a>{{
+                user[0]
+              }}</a>
+            </h4>
+            <div class="post-content">
+              <div class="bb-post-text" [innerHTML]="user[1]"></div>
+              <div class="overlay"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+    </div>
+
+    <div class="no-results" *ngIf="people?.length == 0">
+      <div class="sad-results"><i class="fas fa-heart-broken"></i></div>
+      <h5>No matching user</h5>
+      <p>Unfortunately there are no users matching your search.</p>
+      <p>Try searching something else.</p>
+    </div>
+  </div>
+  
 </div>
+
 <div *ngIf="!postData" style="width: 100%; text-align: center;">
   <div
     class="spinner-grow text-warning spinner-grow-lg"
