@@ -76,7 +76,7 @@
       </div>
     </div>
 
-    <div class="no-results">
+    <div class="no-results" *ngIf="postData?.length == 0">
       <div class="sad-results"><i class="fas fa-heart-broken"></i></div>
       <h5>No matching post</h5>
       <p>Unfortunately there are no post matching your search.</p>
