@@ -40,3 +40,25 @@
 a {
   text-decoration: none;
 }
+@media only screen and (max-width: 767px) {
+  .post-card.post {
+    padding: 0px;
+  }
+  .post-card.post .container {
+    max-width: 100%;
+  }
+  .post-card.post .col-md-4 {
+    margin: 0;
+    padding: 0;
+  }
+  .post-card.post .col-md-3 {
+    margin: 0 0 20px 0;
+    padding: 0;
+  }
+  .inner-content {
+    margin: 20px 10px 10px 10px;
+  }
+  .post-card.post img {
+    width: 100%;
+  }
+}

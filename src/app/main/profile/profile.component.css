@@ -234,6 +234,9 @@
   background: #313130;
   color: white;
 }
+.foreign-title {
+  margin: 35px 35px 20px 35px;
+}
 @media only screen and (max-width: 767px) {
   .new-post-title {
     width: 100%;
@@ -253,6 +256,35 @@
     text-align: left;
     display: block;
     padding: 5px 0px;
+  }
+  .post-card.post {
+    padding: 0px;
+  }
+  .post-card.post .container {
+    max-width: 100%;
+    padding: 0;
+  }
+  .post-card.post .col-md-4 {
+    margin: 0;
+    padding: 0;
+  }
+  .post-card.post .col-md-3 {
+    margin: 0 0 20px 0;
+    padding: 0;
+  }
+  .inner-content {
+    margin: 20px 10px 10px 10px;
+  }
+  .post-card.post img {
+    width: 100%;
+  }
+  .foreign-title {
+    text-align: center;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .foreign-title {
+    text-align: left;
   }
 }
 @media only screen and (max-width: 460px) {

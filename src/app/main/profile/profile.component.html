@@ -73,10 +73,10 @@
           class="btn btn-sm btn-outline-warning"
           routerLink="/user-post"
           *ngIf="!foreignUser"
+          style="margin-right: 10px;"
         >
           <strong>Your posts</strong>
         </button>
-        &nbsp;
         <a class="link" (click)="editPasswordModal = 1" *ngIf="!foreignUser"
           >change password</a
         >
@@ -381,7 +381,19 @@
 </div>
 
 <!-- loading posts of foreign user -->
-<div *ngFor="let post of postData?.reverse()">
+<div class="foreign-title" *ngIf="foreignUser && userDetails">
+  <h4>
+    Posts from
+    {{ userDetails.name.substr(0, userDetails.name.indexOf(" ")) }}
+    <span
+      class="badge badge-warning"
+      style="font-size: 1rem;"
+      *ngIf="postData"
+      >{{ postData.length }}</span
+    >
+  </h4>
+</div>
+<div *ngFor="let post of postData">
   <div class="post-card post post-selectable" routerLink="/post/{{ post.id }}">
     <div class="container row" style="text-align: center; margin: auto;">
       <div class="col-md-4">
