@@ -12,6 +12,9 @@
   width: 100%;
   text-align: center;
 }
+.bb-post-image img {
+  width: 100%;
+}
 .bb-post-text {
   padding: 30px 20px 0px 20px;
 }
