@@ -159,12 +159,12 @@
 
 <div class="container" *ngIf="postDetails">
   <div class="container">
-    <h1 style="margin-top: 20px; opacity: 0.8;">
+    <h3 style="margin-top: 20px; opacity: 0.8;">
       {{ postDetails.title }}
       <button (click)="editTitleModal = 1" class="btn btn-sm btn-warning">
         <i style="font-size: 1rem;" class="fas fa-pen"></i>
       </button>
-    </h1>
+    </h3>
     <div class="row">
       <div class="col-md-9">
         <p>
@@ -194,8 +194,7 @@
         />
       </div>
     </div>
-    <h4 style="opacity: 0.7;">Type your post here :</h4>
-    <br />
+    <h4 style="opacity: 0.7; margin: 20px 0px;">Type your post here :</h4>
   </div>
   <div class="container">
     <form class="quil-background" [formGroup]="editorForm">
@@ -203,7 +202,11 @@
         formControlName="editorData"
         [styles]="editorStyle"
         placeholder=""
-      ></quill-editor>
+        (click)="onFocus($event)"
+        (onEditorCreated)="setEditor($event)"
+        [modules]="editorOptions"
+      >
+      </quill-editor>
     </form>
   </div>
   <br />

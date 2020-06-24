@@ -39,6 +39,10 @@
     >
       <div class="container row">
         <div class="col-md-4">
+          <div
+            class="backdrop-post-image"
+            [style.backgroundImage]="'url(' + getUrl(post) + ')'"
+          ></div>
           <img
             src="{{
               post.image != null && post.image != ''
@@ -95,6 +99,10 @@
     >
       <div class="container row">
         <div class="col-md-4">
+          <div
+            class="backdrop-post-image"
+            [style.backgroundImage]="'url(' + getUrl(post) + ')'"
+          ></div>
           <img
             src="{{
               post.image != null && post.image != ''
@@ -106,6 +114,7 @@
             alt="Responsive image"
           />
         </div>
+
         <div class="col-md-8 inner-content">
           <h4 style="margin-bottom: 0.5rem;">
             <a class="simple-link" routerLink="/post/{{ post.id }}">{{

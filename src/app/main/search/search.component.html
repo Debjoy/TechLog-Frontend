@@ -33,6 +33,10 @@
       >
         <div class="container row">
           <div class="col-md-4">
+            <div
+              class="backdrop-post-image"
+              [style.backgroundImage]="'url(' + getUrl(post) + ')'"
+            ></div>
             <img
               src="{{
                 post.image != null && post.image != ''

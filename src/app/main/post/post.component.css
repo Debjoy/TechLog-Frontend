@@ -231,3 +231,8 @@
 .post-bottom-item {
   margin-bottom: 10px;
 }
+
+.post-card {
+  padding: 0px;
+  padding-bottom: 20px;
+}

@@ -65,4 +65,10 @@ export class HomeComponent implements OnInit {
       // (err) => console.error(err)
     );
   }
+
+  getUrl(postItem) {
+    return postItem.image != null && postItem.image != ""
+      ? postItem.image
+      : "assets/no-image.png";
+  }
 }

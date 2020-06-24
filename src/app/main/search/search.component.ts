@@ -51,4 +51,11 @@ export class SearchComponent implements OnInit {
       }
     }
   }
+
+  //for forming url of image
+  getUrl(postItem) {
+    return postItem.image != null && postItem.image != ""
+      ? postItem.image
+      : "assets/no-image.png";
+  }
 }
