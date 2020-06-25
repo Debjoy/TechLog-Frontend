@@ -16,7 +16,7 @@ export class UserPostComponent implements OnInit {
 
   ngOnInit() {
     this.postService
-      .getAllByUsername(this.cookieSerice.get("user"))
+      .getPrivatePostsByUsername(this.cookieSerice.get("user"))
       .subscribe((res) => {
         this.postData = res;
         // console.log(res);

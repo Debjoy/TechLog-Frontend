@@ -50,6 +50,29 @@ export class PostService {
     );
   }
 
+  getPrivatePostsByUsername(body: any): Observable<any> {
+    return this.http.get(
+      this.api_prefix + "posts/getOwnByUsername?username=" + body,
+      this.httpOptions
+    );
+  }
+
+  publishById(body: any): Observable<any> {
+    return this.http.post(
+      this.api_prefix + "posts/pubishById",
+      body,
+      this.httpOptions
+    );
+  }
+
+  unpublishById(body: any): Observable<any> {
+    return this.http.post(
+      this.api_prefix + "posts/unpubishById",
+      body,
+      this.httpOptions
+    );
+  }
+
   updateImageById(body: any): Observable<any> {
     return this.http.post(
       this.api_prefix + "posts/updateImageById",

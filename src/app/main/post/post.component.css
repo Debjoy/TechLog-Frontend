@@ -38,8 +38,10 @@
   white-space: -o-pre-wrap; /* Opera 7 */
   word-wrap: break-word;
 }
+
 .bb-comment .post-card {
   width: 100%;
+  padding: 20px;
 }
 .btn-group-xs > .btn,
 .btn-xs {

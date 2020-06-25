@@ -145,6 +145,27 @@ export class EditpostComponent implements OnInit {
     );
   }
 
+  publishPost() {
+    this.postService.publishById(this.postDetails.id).subscribe((res) => {
+      if (res == 1) {
+        this.toastr.info("The Post has been made public", "Published!", {
+          positionClass: "toast-top-left",
+        });
+        this.postDetails.privacy = 1;
+      }
+    });
+  }
+  unpublishPost() {
+    this.postService.unpublishById(this.postDetails.id).subscribe((res) => {
+      if (res == 1) {
+        this.toastr.info("The Post has been made private", "Unpublished!", {
+          positionClass: "toast-top-left",
+        });
+        this.postDetails.privacy = 0;
+      }
+    });
+  }
+
   //editor focus
   onFocus($event) {
     // tslint:disable-next-line:no-console

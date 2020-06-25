@@ -220,7 +220,7 @@
 }
 .new-post-title {
   margin: 0px 10px;
-  width: calc(100% - 220);
+  width: calc(100% - 220px);
 }
 .follow-btn {
   border: none;

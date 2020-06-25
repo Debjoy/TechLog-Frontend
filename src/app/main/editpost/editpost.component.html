@@ -224,6 +224,20 @@
     >&nbsp;&nbsp;<button class="btn btn-light" (click)="deletePostModal = 1">
       Delete <i class="fa fa-trash" aria-hidden="true"></i>
     </button>
+    &nbsp;&nbsp;<button
+      class="btn btn-primary"
+      (click)="publishPost()"
+      *ngIf="!postDetails.privacy"
+    >
+      Publish <i class="fas fa-upload"></i>
+    </button>
+    <button
+      class="btn btn-dark"
+      (click)="unpublishPost()"
+      *ngIf="postDetails.privacy"
+    >
+      Unpublish <i class="fas fa-download"></i>
+    </button>
     <div
       [ngClass]="{
         'spinner-grow text-warning spinner-grow-sm': savePostTextLoad == 1
